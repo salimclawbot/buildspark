@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const slideVariants = {
@@ -153,6 +153,11 @@ export default function CalculatorClient() {
   const [selectedGoal, setSelectedGoal] = useState("");
   const [suburb, setSuburb] = useState("");
   const [email, setEmail] = useState("");
+  const quizRef = useRef<HTMLDivElement>(null);
+
+  function scrollToQuiz() {
+    quizRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
   const revealData = getRevealData(selectedBusinessType, selectedSources);
 
   // Fix 4: Browser back-button handling via URL step param
@@ -255,7 +260,31 @@ export default function CalculatorClient() {
         </div>
       )}
 
-      <div className="flex-1 flex flex-col items-center justify-start px-4 pt-6 pb-32">
+      {/* HERO SECTION */}
+      {!submitted && step === 1 && (
+        <div className="w-full py-16 sm:py-20 px-4">
+          <div className="max-w-2xl mx-auto flex flex-col items-center text-center gap-6">
+            <span className="inline-block px-3 py-1 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-widest">
+              Free Tool
+            </span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+              How much revenue is your business leaving on the table?
+            </h1>
+            <p className="text-zinc-400 text-lg max-w-md">
+              It takes 60 seconds to find out. Most business owners are surprised.
+            </p>
+            <button
+              onClick={scrollToQuiz}
+              className="h-12 px-10 bg-amber-500 hover:bg-amber-400 text-black font-semibold rounded-lg shadow-lg shadow-amber-500/20 transition-all duration-200 text-base cursor-pointer"
+            >
+              Calculate My Revenue
+            </button>
+            <p className="text-zinc-500 text-sm">No signup required. See your results instantly.</p>
+          </div>
+        </div>
+      )}
+
+      <div ref={quizRef} id="quiz-start" className="flex-1 flex flex-col items-center justify-start px-4 pt-6 pb-32">
         <div className="w-full max-w-2xl">
           <AnimatePresence mode="wait" custom={direction}>
             {!submitted ? (
