@@ -58,23 +58,9 @@ function getRevealData(businessType: string, sources: string[]): RevealResult {
   const hasWordOfMouthOnly = sources.length === 1 && sources.includes("word_of_mouth");
   const trades = ["tradie", "electrician", "plumber", "mechanic"];
 
-  if (trades.includes(businessType) && hasNothingOnline) {
-    return { headline: "Here's what you're leaving on the table...", value: "$2,400/mo", sub: "in lost jobs — every month — just from having no website.", ctaText: "See My Website Options →" };
-  }
-  if ((businessType === "cafe" || businessType === "bakery") && hasNothingOnline) {
-    return { headline: "Here's what you're leaving on the table...", value: "18 bookings", sub: "a week — sitting empty because no one can find you online.", ctaText: "See My Website Options →" };
-  }
-  if (businessType === "bookkeeper" && hasNothingOnline) {
-    return { headline: "Here's what you're leaving on the table...", value: "$1,800/mo", sub: "in missed enquiries — just from not having a website.", ctaText: "See My Website Options →" };
-  }
-  if (hasGoogleOnly) {
-    return { headline: "Here's what you're leaving on the table...", value: "+31%", sub: "more enquiries — if you had a website working with Google right now.", ctaText: "See My Website Options →" };
-  }
-  if (hasWordOfMouthOnly) {
-    return { headline: "Here's what you're leaving on the table...", value: "+44%", sub: "more calls — if people could find you on Google when they search.", ctaText: "See My Website Options →" };
-  }
+  // Priority 1: nothing_online → show big per-type number
   if (hasNothingOnline) {
-    if (trades.includes(businessType)) {
+    if (trades.includes(businessType) || businessType === "other") {
       return { headline: "Here's what you're leaving on the table...", value: "$2,400/mo", sub: "in lost jobs — every month — just from having no website.", ctaText: "See My Website Options →" };
     }
     if (businessType === "cafe" || businessType === "bakery") {
@@ -85,6 +71,18 @@ function getRevealData(businessType: string, sources: string[]): RevealResult {
     }
     return { headline: "Here's what you're leaving on the table...", value: "$2,400/mo", sub: "in missed revenue — just from not having a website.", ctaText: "See My Website Options →" };
   }
+
+  // Priority 2: Google only → +31%
+  if (hasGoogleOnly) {
+    return { headline: "Here's what you're leaving on the table...", value: "+31%", sub: "more enquiries — if you had a website working with Google right now.", ctaText: "See My Website Options →" };
+  }
+
+  // Priority 3: Word of mouth only → +44%
+  if (hasWordOfMouthOnly) {
+    return { headline: "Here's what you're leaving on the table...", value: "+44%", sub: "more calls — if people could find you on Google when they search.", ctaText: "See My Website Options →" };
+  }
+
+  // Priority 4: fallback for any other combo
   return { headline: "Here's what you're leaving on the table...", value: "$2,400/mo", sub: "in missed revenue — if you had a website working for you right now.", ctaText: "See My Website Options →" };
 }
 
@@ -157,9 +155,40 @@ export default function CalculatorClient() {
   const [email, setEmail] = useState("");
   const revealData = getRevealData(selectedBusinessType, selectedSources);
 
+  // Fix 4: Browser back-button handling via URL step param
+  useEffect(() => {
+    // Restore step from URL on mount
+    const params = new URLSearchParams(window.location.search);
+    const urlStep = parseInt(params.get("step") ?? "1", 10);
+    if (urlStep >= 1 && urlStep <= TOTAL_STEPS) {
+      setStep(urlStep);
+    }
+  }, []);
+
   useEffect(() => {
     GA4Event("page_view", { page_title: "Business Revenue Calculator", page_location: window.location.href });
   }, []);
+
+  // Update URL step when step changes (no page reload)
+  useEffect(() => {
+    if (step === 1) return;
+    window.history.pushState({ step }, "", "?step=" + step);
+  }, [step]);
+
+  // Handle browser back/forward
+  useEffect(() => {
+    const onPopState = (e: PopStateEvent) => {
+      const state = e.state as { step: number } | null;
+      if (state && state.step >= 1 && state.step <= TOTAL_STEPS) {
+        const newStep = state.step;
+        const dir = newStep > step ? 1 : -1;
+        setDirection(dir);
+        setStep(newStep);
+      }
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [step]);
 
   function goNext() { setDirection(1); setStep((s) => Math.min(s + 1, TOTAL_STEPS)); }
   function goBack() { setDirection(-1); setStep((s) => Math.max(s - 1, 1)); }
@@ -177,12 +206,21 @@ export default function CalculatorClient() {
 
   async function handleSubmit() {
     if (!canProceed()) return;
-    const payload = { business_type: selectedBusinessType, customer_sources: selectedSources.join(", "), goal_want: selectedGoal, suburb, email, source: "fb-revenue-calc" };
     try {
-      await fetch("https://formsubmit.co/info@buildspark.com.au", {
+      await fetch("https://formsubmit.co/ajax/info@buildspark.com.au", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        headers: { Accept: "application/json" },
+        body: new URLSearchParams({
+          _subject: "New Revenue Calculator Lead - BuildSpark",
+          _captcha: "false",
+          _template: "table",
+          "Business Type": selectedBusinessType,
+          "Customer Sources": selectedSources.join(", "),
+          "Goal": selectedGoal,
+          "Suburb": suburb,
+          Email: email,
+          source: "fb-revenue-calc",
+        }),
       });
     } catch { /* silent fail */ }
     GA4Event("form_submit", { event_category: "Calculator", event_label: "Revenue Calculator" });
@@ -270,9 +308,12 @@ export default function CalculatorClient() {
                 )}
                 {step === 5 && (
                   <div>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">See exactly what you&apos;re missing out on</h2>
+                    {/* Fix 5: removed "exactly" */}
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">See what you&apos;re missing out on</h2>
                     <p className="text-zinc-400 mb-6 text-base">We&apos;ll send your personalised revenue breakdown — takes 30 seconds to read.</p>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com.au" className="w-full h-14 px-4 rounded-xl border border-zinc-800 bg-surface text-white placeholder:text-zinc-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors text-base mb-4" />
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com.au" className="w-full h-14 px-4 rounded-xl border border-zinc-800 bg-surface text-white placeholder:text-zinc-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors text-base mb-2" />
+                    {/* Fix 2: helper text below email */}
+                    <p className="text-zinc-500 text-sm">We&apos;ll send your results here</p>
                   </div>
                 )}
               </motion.div>
