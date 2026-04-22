@@ -290,7 +290,7 @@ export default function AICalculatorClient() {
               Free Tool
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
-              How many hours a week is your business wasting on manual work?
+              How many hours and dollars can your business save with AI?
             </h1>
             <p className="text-zinc-400 text-lg max-w-md">
               Find out in 60 seconds — see what AI could automate for free.
