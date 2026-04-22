@@ -174,6 +174,14 @@ export default function CalculatorClient() {
     GA4Event("page_view", { page_title: "Business Revenue Calculator", page_location: window.location.href });
   }, []);
 
+  // GA4 step view tracking
+  useEffect(() => {
+    GA4Event(`rev_calc_step_${step}_view`, {
+      quiz_name: "revenue_calculator",
+      step_number: String(step),
+    });
+  }, [step]);
+
   // Update URL step when step changes (no page reload)
   useEffect(() => {
     if (step === 1) return;
@@ -196,6 +204,10 @@ export default function CalculatorClient() {
   }, [step]);
 
   function goNext() {
+    GA4Event(`rev_calc_step_${step}_next`, {
+      quiz_name: "revenue_calculator",
+      step_number: String(step),
+    });
     GA4Event('calc_step_started', {
       step_number: String(step + 1),
       business_type: selectedBusinessType || 'not_selected',
@@ -203,10 +215,20 @@ export default function CalculatorClient() {
     setDirection(1);
     setStep((s) => Math.min(s + 1, TOTAL_STEPS));
   }
-  function goBack() { setDirection(-1); setStep((s) => Math.max(s - 1, 1)); }
+
+  function goBack() {
+    GA4Event(`rev_calc_step_${step}_back`, {
+      quiz_name: "revenue_calculator",
+      step_number: String(step),
+    });
+    setDirection(-1);
+    setStep((s) => Math.max(s - 1, 1));
+  }
+
   function toggleSource(id: string) {
     setSelectedSources((prev) => prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]);
   }
+
   function canProceed(): boolean {
     if (step === 1) return !!selectedBusinessType;
     if (step === 2) return selectedSources.length > 0;
@@ -235,16 +257,29 @@ export default function CalculatorClient() {
         }),
       });
     } catch { /* silent fail */ }
-    GA4Event('calc_email_submitted', {
+
+    GA4Event('rev_calc_email_submitted', {
+      quiz_name: "revenue_calculator",
+      step_number: "5",
       business_type: selectedBusinessType,
       customer_sources: selectedSources.join(', '),
       goal: selectedGoal,
     });
+
+    GA4Event('rev_calc_complete', {
+      quiz_name: "revenue_calculator",
+      step_number: "6",
+      revenue_figure: revealData.value,
+      business_type: selectedBusinessType,
+    });
+
     GA4Event('calc_revenue_reveal_shown', {
       revenue_figure: revealData.value,
       business_type: selectedBusinessType,
     });
+
     GA4Event('form_submit', { event_category: 'Calculator', event_label: 'Revenue Calculator' });
+
     setDirection(1);
     setSubmitted(true);
   }

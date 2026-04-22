@@ -143,6 +143,14 @@ export default function AICalculatorClient() {
     GA4Event("page_view", { page_title: "AI Time Calculator", page_location: window.location.href });
   }, []);
 
+  // GA4 step view tracking
+  useEffect(() => {
+    GA4Event(`ai_calc_step_${step}_view`, {
+      quiz_name: "ai_calculator",
+      step_number: String(step),
+    });
+  }, [step]);
+
   // Update URL step when step changes
   useEffect(() => {
     if (step === 1) return;
@@ -165,6 +173,10 @@ export default function AICalculatorClient() {
   }, [step]);
 
   function goNext() {
+    GA4Event(`ai_calc_step_${step}_next`, {
+      quiz_name: "ai_calculator",
+      step_number: String(step),
+    });
     GA4Event("calc_step_started", {
       step_number: String(step + 1),
       business_type: selectedBusinessType || "not_selected",
@@ -174,6 +186,10 @@ export default function AICalculatorClient() {
   }
 
   function goBack() {
+    GA4Event(`ai_calc_step_${step}_back`, {
+      quiz_name: "ai_calculator",
+      step_number: String(step),
+    });
     setDirection(-1);
     setStep((s) => Math.max(s - 1, 1));
   }
@@ -223,11 +239,21 @@ export default function AICalculatorClient() {
       });
     } catch { /* silent fail */ }
 
-    GA4Event("calc_email_submitted", {
+    GA4Event("ai_calc_email_submitted", {
+      quiz_name: "ai_calculator",
+      step_number: "5",
       business_type: selectedBusinessType,
       time_drains: selectedSources.join(", "),
       ai_usage: aiUsage,
       staff_count: staffCount,
+    });
+
+    GA4Event("ai_calc_complete", {
+      quiz_name: "ai_calculator",
+      step_number: "6",
+      hours_saved: String(hoursPerWeek),
+      monthly_value: String(monthlyDollars),
+      business_type: selectedBusinessType,
     });
 
     GA4Event("calc_reveal_shown", {
