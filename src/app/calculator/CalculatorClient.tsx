@@ -368,6 +368,19 @@ export default function CalculatorClient() {
                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">{revealData.headline}</h2>
                 <div className="mb-6"><AnimatedNumber value={revealData.value} /></div>
                 <p className="text-zinc-300 text-lg mb-8 max-w-sm">{revealData.sub}</p>
+                {/* Social proof */}
+                <div className="mt-8 text-center">
+                  <p className="text-zinc-500 text-sm mb-3">Trusted by businesses across Australia — and companies like:</p>
+                  <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-zinc-400 text-xs font-medium">
+                    <span>KPMG</span>
+                    <span className="text-zinc-600">·</span>
+                    <span>Capgemini</span>
+                    <span className="text-zinc-600">·</span>
+                    <span>Australian Open</span>
+                    <span className="text-zinc-600">·</span>
+                    <span>Singaporean Government</span>
+                  </div>
+                </div>
                 <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 mb-8 w-full max-w-sm text-left">
                   <p className="text-zinc-300 text-base mb-1">A website from <span className="text-amber-500 font-bold">$490</span> could close this gap.</p>
                   <p className="text-zinc-400 text-sm">Want to see what yours would look like?</p>
