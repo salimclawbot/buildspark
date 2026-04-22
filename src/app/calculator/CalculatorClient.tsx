@@ -195,7 +195,14 @@ export default function CalculatorClient() {
     return () => window.removeEventListener("popstate", onPopState);
   }, [step]);
 
-  function goNext() { setDirection(1); setStep((s) => Math.min(s + 1, TOTAL_STEPS)); }
+  function goNext() {
+    GA4Event('calc_step_started', {
+      step_number: step + 1,
+      business_type: selectedBusinessType || 'not_selected',
+    });
+    setDirection(1);
+    setStep((s) => Math.min(s + 1, TOTAL_STEPS));
+  }
   function goBack() { setDirection(-1); setStep((s) => Math.max(s - 1, 1)); }
   function toggleSource(id: string) {
     setSelectedSources((prev) => prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]);
@@ -228,7 +235,16 @@ export default function CalculatorClient() {
         }),
       });
     } catch { /* silent fail */ }
-    GA4Event("form_submit", { event_category: "Calculator", event_label: "Revenue Calculator" });
+    GA4Event('calc_email_submitted', {
+      business_type: selectedBusinessType,
+      customer_sources: selectedSources.join(', '),
+      goal: selectedGoal,
+    });
+    GA4Event('calc_revenue_reveal_shown', {
+      revenue_figure: revealData.value,
+      business_type: selectedBusinessType,
+    });
+    GA4Event('form_submit', { event_category: 'Calculator', event_label: 'Revenue Calculator' });
     setDirection(1);
     setSubmitted(true);
   }
@@ -268,7 +284,7 @@ export default function CalculatorClient() {
               Free Tool
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
-              How much revenue is your business leaving on the table?
+              Find out how much more revenue you can make with a website
             </h1>
             <p className="text-zinc-400 text-lg max-w-md">
               It takes 60 seconds to find out. Most business owners are surprised.
