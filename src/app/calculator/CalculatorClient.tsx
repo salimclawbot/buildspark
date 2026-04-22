@@ -197,7 +197,7 @@ export default function CalculatorClient() {
 
   function goNext() {
     GA4Event('calc_step_started', {
-      step_number: step + 1,
+      step_number: String(step + 1),
       business_type: selectedBusinessType || 'not_selected',
     });
     setDirection(1);
