@@ -6,8 +6,17 @@ import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { analysisPosts } from "@/lib/analysis-posts";
 
 const posts = [
+  ...analysisPosts.map((post) => ({
+    title: post.title,
+    excerpt: post.excerpt,
+    readTime: post.readTime,
+    date: post.date,
+    category: post.category,
+    href: `/blog/${post.slug}`,
+  })),
   {
     title:
       "5 Reasons Your Tradie Business Isn't Showing Up on Google (And How to Fix It)",
