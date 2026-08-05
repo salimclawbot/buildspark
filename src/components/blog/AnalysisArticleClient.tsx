@@ -9,7 +9,7 @@ import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import type { AnalysisPost } from "@/lib/analysis-posts";
+import type { AnalysisPost, ComparisonVisual } from "@/lib/analysis-posts";
 
 function ComparisonImage({
   post,
@@ -33,6 +33,76 @@ function ComparisonImage({
       />
       <figcaption className="mt-3 text-sm leading-relaxed text-zinc-400">
         <strong className="text-amber-400">Image {index}:</strong> {takeaway}
+      </figcaption>
+    </figure>
+  );
+}
+
+function ComparisonPanel({
+  visual,
+  fix,
+  index,
+}: {
+  visual: ComparisonVisual;
+  fix: string;
+  index: number;
+}) {
+  return (
+    <figure className="my-8 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/25">
+      <div className="border-b border-zinc-800 bg-zinc-900/80 px-5 py-4">
+        <p className="text-sm font-bold uppercase text-amber-400">Comparison image {index}B</p>
+        <h3 className="mt-1 text-xl font-bold text-white">
+          What the visitor sees vs what helps them enquire
+        </h3>
+      </div>
+      <div className="grid sm:grid-cols-2">
+        <div className="border-b border-zinc-800 bg-red-950/20 p-5 sm:border-b-0 sm:border-r">
+          <p className="mb-4 text-sm font-bold uppercase tracking-wide text-red-300">
+            Not enough to win the job
+          </p>
+          <div className="space-y-3">
+            {visual.badItems.map((item, itemIndex) => (
+              <div key={item} className="rounded-lg border border-red-500/30 bg-black/25 p-4">
+                <div className="flex items-start gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-500/25 text-sm font-bold text-red-200">
+                    {itemIndex + 1}
+                  </span>
+                  <div>
+                    <p className="font-bold text-white">{item}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-zinc-400">
+                      The customer has to guess, wait, or trust you without proof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="bg-emerald-950/20 p-5">
+          <p className="mb-4 text-sm font-bold uppercase tracking-wide text-emerald-300">
+            Better way to set it up
+          </p>
+          <div className="space-y-3">
+            {visual.goodItems.map((item, itemIndex) => (
+              <div key={item} className="rounded-lg border border-emerald-500/30 bg-black/25 p-4">
+                <div className="flex items-start gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500/25 text-sm font-bold text-emerald-200">
+                    {itemIndex + 1}
+                  </span>
+                  <div>
+                    <p className="font-bold text-white">{item}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-zinc-400">
+                      The customer knows what to do and why they should pick you.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <figcaption className="border-t border-zinc-800 bg-zinc-900/70 px-5 py-4 text-sm leading-relaxed text-zinc-300">
+        <strong className="text-white">Do this on your site:</strong> {fix}
       </figcaption>
     </figure>
   );
@@ -188,6 +258,7 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
                   takeaway={section.visual.takeaway}
                   index={index + 1}
                 />
+                <ComparisonPanel visual={section.visual} fix={section.fix} index={index + 1} />
               </section>
             ))}
 
