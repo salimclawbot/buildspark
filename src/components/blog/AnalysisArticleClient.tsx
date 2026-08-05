@@ -4,54 +4,165 @@ import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, CheckCircle, PhoneCall, ShieldCheck, X } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  CheckCircle,
+  MousePointerClick,
+  PhoneCall,
+  ShieldCheck,
+  X,
+} from "lucide-react";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { AnalysisPost, ComparisonVisual } from "@/lib/analysis-posts";
 
+function MockWebsite({
+  tone,
+  title,
+  items,
+}: {
+  tone: "bad" | "good";
+  title: string;
+  items: string[];
+}) {
+  const isGood = tone === "good";
+
+  return (
+    <div className="rounded-lg border border-zinc-800 bg-zinc-950/80 p-3">
+      <div className="mb-3 flex items-center gap-1.5 border-b border-zinc-800 pb-2">
+        <span className="h-2.5 w-2.5 rounded-full bg-zinc-700" />
+        <span className="h-2.5 w-2.5 rounded-full bg-zinc-700" />
+        <span className="h-2.5 w-2.5 rounded-full bg-zinc-700" />
+        <span className="ml-2 h-2 flex-1 rounded-full bg-zinc-800" />
+      </div>
+      <div className="space-y-3">
+        <div className={`h-4 w-3/4 rounded-full ${isGood ? "bg-emerald-400/70" : "bg-red-400/60"}`} />
+        <div className="space-y-1.5">
+          <div className="h-2 rounded-full bg-zinc-800" />
+          <div className="h-2 w-5/6 rounded-full bg-zinc-800" />
+        </div>
+        <div className="grid gap-2">
+          {items.slice(0, 3).map((item) => (
+            <div key={item} className="rounded-md border border-zinc-800 bg-black/30 p-2">
+              <div className="mb-1 flex items-center gap-2">
+                <span className={`h-2.5 w-2.5 rounded-full ${isGood ? "bg-emerald-400" : "bg-red-400"}`} />
+                <span className="text-[11px] font-semibold leading-tight text-white">{item}</span>
+              </div>
+              <div className="h-1.5 w-3/4 rounded-full bg-zinc-800" />
+            </div>
+          ))}
+        </div>
+        <div
+          className={`flex items-center justify-center gap-2 rounded-md px-3 py-2 text-xs font-bold ${
+            isGood ? "bg-emerald-400 text-zinc-950" : "bg-zinc-800 text-zinc-500"
+          }`}
+        >
+          {isGood && <MousePointerClick className="h-3.5 w-3.5" />}
+          {isGood ? "Clear next step" : "Visitor still unsure"}
+        </div>
+        <p className="text-center text-xs font-bold text-white">{title}</p>
+      </div>
+    </div>
+  );
+}
+
 function ComparisonGraphic({ visual, index }: { visual: ComparisonVisual; index: number }) {
   return (
-    <figure className="my-8 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950">
-      <div className="grid sm:grid-cols-2">
-        <div className="border-b border-zinc-800 bg-red-950/20 p-5 sm:border-b-0 sm:border-r">
+    <figure className="my-8 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/25">
+      <div className="border-b border-zinc-800 bg-zinc-900/80 px-5 py-4">
+        <p className="text-sm font-bold uppercase text-amber-400">Comparison image {index}A</p>
+        <h3 className="mt-1 text-xl font-bold text-white">Bad website setup vs better website setup</h3>
+      </div>
+      <div className="grid lg:grid-cols-2">
+        <div className="border-b border-zinc-800 bg-red-950/20 p-5 lg:border-b-0 lg:border-r">
           <div className="mb-4 flex items-center gap-2 text-red-300">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-red-500/15">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-500/15">
               <X className="h-4 w-4" />
             </span>
-            <span className="text-sm font-bold uppercase tracking-wide">What Costs You Leads</span>
+            <span className="text-sm font-bold uppercase tracking-wide">What people often do</span>
           </div>
-          <h3 className="mb-4 text-xl font-bold text-white">{visual.badTitle}</h3>
-          <ul className="space-y-3">
-            {visual.badItems.map((item) => (
-              <li key={item} className="flex gap-3 text-sm text-zinc-300">
-                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-red-400" />
-                {item}
-              </li>
-            ))}
-          </ul>
+          <MockWebsite tone="bad" title={visual.badTitle} items={visual.badItems} />
         </div>
         <div className="bg-emerald-950/20 p-5">
           <div className="mb-4 flex items-center gap-2 text-emerald-300">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/15">
               <Check className="h-4 w-4" />
             </span>
-            <span className="text-sm font-bold uppercase tracking-wide">What Works Better</span>
+            <span className="text-sm font-bold uppercase tracking-wide">What you should do instead</span>
           </div>
-          <h3 className="mb-4 text-xl font-bold text-white">{visual.goodTitle}</h3>
-          <ul className="space-y-3">
-            {visual.goodItems.map((item) => (
-              <li key={item} className="flex gap-3 text-sm text-zinc-300">
-                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-emerald-400" />
-                {item}
-              </li>
-            ))}
-          </ul>
+          <MockWebsite tone="good" title={visual.goodTitle} items={visual.goodItems} />
         </div>
       </div>
       <figcaption className="border-t border-zinc-800 bg-zinc-900/70 px-5 py-4 text-sm text-zinc-300">
-        <strong className="text-amber-400">Image {index} takeaway:</strong> {visual.takeaway}
+        <strong className="text-amber-400">What this means:</strong> {visual.takeaway}
+      </figcaption>
+    </figure>
+  );
+}
+
+function ActionComparisonGraphic({
+  visual,
+  fix,
+  index,
+}: {
+  visual: ComparisonVisual;
+  fix: string;
+  index: number;
+}) {
+  return (
+    <figure className="my-8 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/25">
+      <div className="border-b border-zinc-800 bg-zinc-900/80 px-5 py-4">
+        <p className="text-sm font-bold uppercase text-amber-400">Comparison image {index}B</p>
+        <h3 className="mt-1 text-xl font-bold text-white">What the visitor sees vs what helps them enquire</h3>
+      </div>
+      <div className="grid lg:grid-cols-[1fr_auto_1fr]">
+        <div className="bg-red-950/20 p-5">
+          <p className="mb-3 text-sm font-bold uppercase tracking-wide text-red-300">Not enough to win the job</p>
+          <div className="space-y-3">
+            {visual.badItems.map((item, itemIndex) => (
+              <div key={item} className="rounded-lg border border-red-500/20 bg-black/25 p-3">
+                <div className="flex items-start gap-3">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-500/15 text-xs font-bold text-red-300">
+                    {itemIndex + 1}
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-white">{item}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-zinc-400">
+                      The customer has to guess, wait, or trust you without proof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="hidden w-px bg-zinc-800 lg:block" />
+        <div className="bg-emerald-950/20 p-5">
+          <p className="mb-3 text-sm font-bold uppercase tracking-wide text-emerald-300">Better way to set it up</p>
+          <div className="space-y-3">
+            {visual.goodItems.map((item, itemIndex) => (
+              <div key={item} className="rounded-lg border border-emerald-500/20 bg-black/25 p-3">
+                <div className="flex items-start gap-3">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500/15 text-xs font-bold text-emerald-300">
+                    {itemIndex + 1}
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-white">{item}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-zinc-400">
+                      The customer knows what to do and why they should pick you.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <figcaption className="border-t border-zinc-800 bg-zinc-900/70 px-5 py-4 text-sm text-zinc-300">
+        <strong className="text-white">Do this on your site:</strong> {fix}
       </figcaption>
     </figure>
   );
@@ -202,6 +313,7 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
                   </p>
                 </div>
                 <ComparisonGraphic visual={section.visual} index={index + 1} />
+                <ActionComparisonGraphic visual={section.visual} fix={section.fix} index={index + 1} />
               </section>
             ))}
 
