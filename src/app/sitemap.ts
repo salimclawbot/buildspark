@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { suburbs } from "@/data/suburbs";
+import { analysisPosts } from "@/lib/analysis-posts";
 
 const BASE_URL = "https://buildspark.com.au";
 
@@ -31,6 +32,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const blogPosts: { url: string; priority: number; changeFrequency: Freq }[] = [
+    ...analysisPosts.map((post) => ({
+      url: `${BASE_URL}/blog/${post.slug}`,
+      priority: 0.7,
+      changeFrequency: "monthly" as Freq,
+    })),
     { url: `${BASE_URL}/blog/tradie-google`, priority: 0.7, changeFrequency: "monthly" },
     { url: `${BASE_URL}/blog/cafe-website-guide`, priority: 0.7, changeFrequency: "monthly" },
     { url: `${BASE_URL}/blog/mechanic-case-study`, priority: 0.7, changeFrequency: "monthly" },
