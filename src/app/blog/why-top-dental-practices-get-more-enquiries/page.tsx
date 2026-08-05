@@ -8,6 +8,7 @@ const post = getAnalysisPost("why-top-dental-practices-get-more-enquiries");
 export const metadata: Metadata = {
   title: post?.metaTitle,
   description: post?.description,
+  keywords: post ? [post.primaryKeyword, ...post.secondaryKeywords] : undefined,
   alternates: { canonical: "https://buildspark.com.au/blog/why-top-dental-practices-get-more-enquiries" },
   openGraph: {
     title: post?.metaTitle,
@@ -31,6 +32,7 @@ export default function Page() {
     dateModified: post.published,
     publisher: { "@type": "Organization", name: "BuildSpark", url: "https://buildspark.com.au" },
     image: `https://buildspark.com.au${post.hero}`,
+    keywords: [post.primaryKeyword, ...post.secondaryKeywords].join(", "),
   };
 
   return (

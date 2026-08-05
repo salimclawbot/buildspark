@@ -8,6 +8,7 @@ const post = getAnalysisPost("plumber-website-analysis-top-5-percent");
 export const metadata: Metadata = {
   title: post?.metaTitle,
   description: post?.description,
+  keywords: post ? [post.primaryKeyword, ...post.secondaryKeywords] : undefined,
   alternates: { canonical: "https://buildspark.com.au/blog/plumber-website-analysis-top-5-percent" },
   openGraph: {
     title: post?.metaTitle,
@@ -31,6 +32,7 @@ export default function Page() {
     dateModified: post.published,
     publisher: { "@type": "Organization", name: "BuildSpark", url: "https://buildspark.com.au" },
     image: `https://buildspark.com.au${post.hero}`,
+    keywords: [post.primaryKeyword, ...post.secondaryKeywords].join(", "),
   };
 
   return (

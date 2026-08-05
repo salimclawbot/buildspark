@@ -41,17 +41,14 @@ function ComparisonImage({
 function ComparisonPanel({
   visual,
   fix,
-  index,
 }: {
   visual: ComparisonVisual;
   fix: string;
-  index: number;
 }) {
   return (
     <figure className="my-8 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/25">
       <div className="border-b border-zinc-800 bg-zinc-900/80 px-5 py-4">
-        <p className="text-sm font-bold uppercase text-amber-400">Comparison image {index}B</p>
-        <h3 className="mt-1 text-xl font-bold text-white">
+        <h3 className="text-xl font-bold text-white">
           What the visitor sees vs what helps them enquire
         </h3>
       </div>
@@ -258,7 +255,7 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
                   takeaway={section.visual.takeaway}
                   index={index + 1}
                 />
-                <ComparisonPanel visual={section.visual} fix={section.fix} index={index + 1} />
+                <ComparisonPanel visual={section.visual} fix={section.fix} />
               </section>
             ))}
 
