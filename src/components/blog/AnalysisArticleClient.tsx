@@ -26,7 +26,7 @@ function ComparisonImage({
     <figure className="my-8">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={`/images/blog-comparisons/${post.slug}-point-${index}.svg`}
+        src={`/images/blog-comparisons/${post.slug}-point-${index}.webp`}
         alt={`${sectionTitle}: comparison showing what business owners do wrong and what to do instead`}
         className="h-auto w-full rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/30"
         loading="lazy"
