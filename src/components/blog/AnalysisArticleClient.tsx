@@ -108,6 +108,7 @@ function ComparisonPanel({
 function AuditForm({ post }: { post: AnalysisPost }) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const isPlumberOffer = post.slug === "plumber-website-analysis-top-5-percent";
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -131,9 +132,13 @@ function AuditForm({ post }: { post: AnalysisPost }) {
     return (
       <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-6 text-center">
         <CheckCircle className="mx-auto mb-3 h-8 w-8 text-emerald-400" />
-        <p className="text-xl font-bold text-white">Got it. We&apos;ll take a look.</p>
+        <p className="text-xl font-bold text-white">
+          {isPlumberOffer ? "Got it. We'll check August availability." : "Got it. We'll take a look."}
+        </p>
         <p className="mt-2 text-sm text-zinc-300">
-          You&apos;ll get a plain-English website audit back by email. No jargon, no pressure.
+          {isPlumberOffer
+            ? "We'll send you the next step for a brand new plumber website from $150/m*. No jargon, no pressure."
+            : "You'll get a plain-English website audit back by email. No jargon, no pressure."}
         </p>
       </div>
     );
@@ -146,15 +151,30 @@ function AuditForm({ post }: { post: AnalysisPost }) {
           <ShieldCheck className="h-5 w-5" />
         </span>
         <div>
-          <p className="text-xl font-bold text-white">Want to know what your website is costing you?</p>
+          <p className="text-xl font-bold text-white">
+            {isPlumberOffer
+              ? "Want a brand new plumber website from $150/m*?"
+              : "Want to know what your website is costing you?"}
+          </p>
           <p className="mt-1 text-sm leading-relaxed text-zinc-400">
-            Submit your site and we&apos;ll send a quick audit showing what to fix first.
+            {isPlumberOffer
+              ? "Limited August spots remaining. Send your details and we'll confirm if your area is still available."
+              : "Submit your site and we'll send a quick audit showing what to fix first."}
           </p>
         </div>
       </div>
       <form onSubmit={handleSubmit} className="grid gap-3 sm:grid-cols-2">
-        <input type="hidden" name="_subject" value={`BuildSpark audit request from ${post.title}`} />
+        <input
+          type="hidden"
+          name="_subject"
+          value={
+            isPlumberOffer
+              ? `BuildSpark $150/m plumber website enquiry from ${post.title}`
+              : `BuildSpark audit request from ${post.title}`
+          }
+        />
         <input type="hidden" name="article" value={post.slug} />
+        {isPlumberOffer ? <input type="hidden" name="offer" value="Brand new website from $150/m - August spots" /> : null}
         <input
           name="business"
           required
@@ -180,14 +200,25 @@ function AuditForm({ post }: { post: AnalysisPost }) {
           className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
         />
         <Button type="submit" disabled={submitting} className="sm:col-span-2">
-          {submitting ? "Submitting..." : "Send My Free Website Audit"}
+          {submitting
+            ? "Submitting..."
+            : isPlumberOffer
+              ? "Check If I Can Get a $150/m Website"
+              : "Send My Free Website Audit"}
         </Button>
       </form>
+      {isPlumberOffer ? (
+        <p className="mt-3 text-xs leading-relaxed text-zinc-500">
+          *$150/m website offer is for eligible BuildSpark monthly website plans. Limited August onboarding spots.
+        </p>
+      ) : null}
     </div>
   );
 }
 
 export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) {
+  const isPlumberOffer = post.slug === "plumber-website-analysis-top-5-percent";
+
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
@@ -275,15 +306,26 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
 
             <div className="mt-12 rounded-xl border border-amber-500/30 bg-amber-500/5 p-6 text-center sm:p-8">
               <PhoneCall className="mx-auto mb-4 h-9 w-9 text-amber-500" />
-              <h2 className="text-2xl font-bold text-white">Want a website that turns visitors into enquiries?</h2>
+              <h2 className="text-2xl font-bold text-white">
+                {isPlumberOffer
+                  ? "Want this fixed with a brand new plumber website from $150/m*?"
+                  : "Want a website that turns visitors into enquiries?"}
+              </h2>
               <p className="mx-auto mt-3 max-w-xl text-zinc-400">
-                BuildSpark builds fast, local-focused websites that make the next step obvious. Submit your site above or start the quiz and we&apos;ll show you what we&apos;d fix first.
+                {isPlumberOffer
+                  ? "BuildSpark builds fast, local-focused plumber websites that make calls and quote requests obvious. Limited August spots remaining."
+                  : "BuildSpark builds fast, local-focused websites that make the next step obvious. Submit your site above or start the quiz and we'll show you what we'd fix first."}
               </p>
               <Button asChild size="lg" className="mt-5">
                 <Link href="/quiz">
-                  Start Your Free Quiz <ArrowRight className="ml-2 h-4 w-4" />
+                  {isPlumberOffer ? "Start My $150/m Website" : "Start Your Free Quiz"} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
+              {isPlumberOffer ? (
+                <p className="mx-auto mt-3 max-w-lg text-xs leading-relaxed text-zinc-500">
+                  *For eligible monthly website plans. Final inclusions confirmed before you start.
+                </p>
+              ) : null}
             </div>
           </motion.div>
         </div>

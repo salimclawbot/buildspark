@@ -41,9 +41,9 @@ export const analysisPosts: AnalysisPost[] = [
     title: "We Analysed 25 Local Plumbers Websites. Here's What the Top 5% Do Differently.",
     metaTitle: "Plumber Website Analysis: What Top Sites Do | BuildSpark",
     description:
-      "We reviewed 25 local plumber websites and found the simple things the best ones do to get more calls, quotes, and emergency jobs.",
+      "We reviewed 25 local plumber websites. The winners get more calls because they make trust, suburbs, services, and contact obvious.",
     excerpt:
-      "We reviewed 25 local plumber websites. The winners were not fancy. They were clear, fast, local, and easy to contact.",
+      "The plumber websites winning more jobs are not fancy. They are clear, local, fast, and easy to call.",
     category: "Plumbing SEO",
     date: "5 Aug 2026",
     published: "2026-08-05",
@@ -58,27 +58,27 @@ export const analysisPosts: AnalysisPost[] = [
     hero: "/images/tradie-on-job-call.webp",
     heroAlt: "Local plumber answering a job enquiry from his website",
     intro: [
-      "Most plumber websites say the same thing: licensed, reliable, affordable, call us today. That is not enough anymore.",
-      "We looked through 25 local plumber websites and compared what the strongest ones do differently. The top sites were not the prettiest. They were the clearest. They made it dead easy for someone with a burst pipe, blocked drain, or no hot water to call fast.",
-      "If your plumber website is getting visits but not many calls, this is the stuff to fix first.",
+      "Here is the blunt version: most plumber websites make people think too hard.",
+      "The best ones do the opposite. They show the phone number early, name the exact jobs and suburbs, prove trust quickly, and make the quote form easy.",
+      "If your website is getting views but not calls, fix these five things first.",
     ],
     quickWins: [
-      "Put your phone number and emergency CTA above the fold.",
-      "Show the exact suburbs and plumbing jobs you want.",
-      "Use real job photos, not stock images.",
-      "Make your quote form short enough to finish on a phone.",
-      "Show proof: reviews, licences, response times, and guarantees.",
+      "Put a tap-to-call number and emergency button in the first screen.",
+      "Say the suburbs you serve and the jobs you want more of.",
+      "Show reviews, licences, and real job proof before asking for the call.",
+      "Make the page easy to use on a phone.",
+      "Keep the quote form short enough to finish in 10 seconds.",
     ],
     sections: [
       {
         eyebrow: "Point 1",
         title: "The best plumber websites make the phone call obvious",
         body: [
-          "When someone has water coming through the ceiling, they are not reading your company story. They want to know one thing: can you help, and how fast can they reach you?",
-          "The weaker sites buried the phone number in the footer or hid it behind a tiny contact link. The better sites had a tap-to-call button in the header, another one in the hero, and clear wording like emergency plumber available.",
+          "When someone has water coming through the ceiling, they do not want your company story. They want to know if you can help and how fast they can reach you.",
+          "Weak plumber websites hide the phone number in the footer. Strong ones show a phone number, emergency button, and service area before the customer scrolls.",
         ],
         fix:
-          "Add a sticky mobile call button, a clear emergency CTA, and your service area in the first screen.",
+          "Add a tap-to-call number, an emergency plumber button, and your main suburbs in the first screen.",
         visual: {
           badTitle: "Costly Setup",
           badItems: ["Phone hidden in footer", "Generic contact button", "No emergency wording"],
@@ -91,11 +91,11 @@ export const analysisPosts: AnalysisPost[] = [
         eyebrow: "Point 2",
         title: "They talk about real plumbing jobs, not vague services",
         body: [
-          "A page that says plumbing services is too broad. Real customers search for blocked drains, hot water repairs, toilet leaks, gas fitting, roof leaks, and emergency plumbing in their suburb.",
-          "The better sites had clear service blocks and separate wording for the jobs they actually want. That helps Google understand the page and helps the customer feel like they are in the right place.",
+          "\"Plumbing services\" is too vague. People search for blocked drains, hot water repairs, toilet leaks, gas fitting, burst pipes, and emergency plumbers near them.",
+          "The better sites name the exact jobs and suburbs. That helps Google understand the page and helps the customer feel like they found the right plumber.",
         ],
         fix:
-          "List your top services in plain words and link important ones to their own pages over time.",
+          "List your main jobs in plain words and pair them with the suburbs you actually want work from.",
         visual: {
           badTitle: "Weak Copy",
           badItems: ["General services", "No job examples", "No suburb wording"],
@@ -108,11 +108,11 @@ export const analysisPosts: AnalysisPost[] = [
         eyebrow: "Point 3",
         title: "They prove trust before asking for the job",
         body: [
-          "People do not invite a plumber into their home just because a website looks nice. They want signs you are real, licensed, insured, and trusted by other locals.",
-          "The strongest sites showed Google reviews, licence details, local job photos, and short proof points near the top. The weaker sites made visitors hunt for proof or gave them none at all.",
+          "A nice looking website is not enough. People want signs you are real, licensed, insured, and trusted by other locals.",
+          "The stronger sites show reviews, licence details, response times, and real job photos near the call button. The weaker sites make people hunt for proof.",
         ],
         fix:
-          "Put your review score, licence note, and two or three short trust points near your main CTA.",
+          "Put your review score, licence note, response time, and real job photos near your main call or quote button.",
         visual: {
           badTitle: "No Proof",
           badItems: ["Stock van photo", "No reviews", "No licence details"],
@@ -123,13 +123,13 @@ export const analysisPosts: AnalysisPost[] = [
       },
       {
         eyebrow: "Point 4",
-        title: "Their mobile pages are built for thumbs",
+        title: "They build the page for thumbs, not desktops",
         body: [
-          "Most emergency plumbing searches happen on a phone. If your form is tiny, your menu is awkward, or the phone number is hard to tap, you are losing work before the person even reads your page.",
-          "The top sites had short sections, big buttons, no pinch-to-zoom, and contact options that stayed easy while scrolling.",
+          "Most urgent plumbing searches happen on a phone. If the text is tiny, the menu is awkward, or the call button is hard to tap, you lose the job.",
+          "The best sites use short sections, big buttons, and contact options that stay easy while the customer scrolls.",
         ],
         fix:
-          "Check your site on your own phone. If calling, reading, or submitting a quote request feels annoying, fix mobile first.",
+          "Open your site on your phone. If calling, reading, or sending a quote request feels annoying, fix mobile first.",
         visual: {
           badTitle: "Mobile Pain",
           badItems: ["Tiny text", "Hard-to-tap buttons", "Long form"],
@@ -140,19 +140,19 @@ export const analysisPosts: AnalysisPost[] = [
       },
       {
         eyebrow: "Point 5",
-        title: "They make the next step feel low-risk",
+        title: "They make the quote form short and low-risk",
         body: [
-          "A lot of plumber websites ask for too much too soon. Big forms, vague pricing, and no idea what happens next can stop people from enquiring.",
-          "The better sites used simple CTAs like request a callback, get a fast quote, or book an emergency callout. They also explained what happens after the form is submitted.",
+          "Long forms kill enquiries. If you ask for too much too soon, busy customers leave and call the next plumber.",
+          "The better sites ask for the basics only: name, phone, suburb, and job type. They also tell people when they will hear back.",
         ],
         fix:
-          "Use a short form with name, phone, suburb, and job type. Tell visitors when you will reply.",
+          "Use a short form with name, phone, suburb, and job type. Add a simple line like \"takes 10 seconds\" and \"we reply today\".",
         visual: {
           badTitle: "Friction",
           badItems: ["10-field form", "No response time", "Vague submit button"],
           goodTitle: "Easy Enquiry",
           goodItems: ["4 quick fields", "Reply time shown", "Clear callback CTA"],
-          takeaway: "Less friction means more quote requests.",
+          takeaway: "A short form gets more quote requests from busy customers.",
         },
       },
     ],
