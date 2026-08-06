@@ -2,7 +2,6 @@
 
 import { FormEvent, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -227,9 +226,6 @@ export default function TradieWebsites150Client() {
                 <a href="#get-started">
                   Check My August Spot <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/pricing">See Website Pricing</Link>
               </Button>
             </div>
             <p className="mt-4 text-sm font-semibold text-amber-300">

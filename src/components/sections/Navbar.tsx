@@ -22,7 +22,6 @@ const navLinks = [
   { label: "Results", href: "/case-studies" },
   { label: "Reviews", href: "/reviews" },
   { label: "Blog", href: "/blog" },
-  { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
 ];
 

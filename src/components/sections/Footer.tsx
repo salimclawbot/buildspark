@@ -9,7 +9,6 @@ const footerLinks = {
     { label: "Free Website Quiz", href: "/quiz" },
     { label: "About", href: "/about" },
     { label: "Portfolio", href: "/portfolio" },
-    { label: "Pricing", href: "/pricing" },
     { label: "Case Studies", href: "/case-studies" },
     { label: "Reviews", href: "/reviews" },
     { label: "Blog", href: "/blog" },
