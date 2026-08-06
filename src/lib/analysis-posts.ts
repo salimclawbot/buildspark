@@ -58,9 +58,7 @@ export const analysisPosts: AnalysisPost[] = [
     hero: "/images/tradie-on-job-call.webp",
     heroAlt: "Local plumber answering a job enquiry from his website",
     intro: [
-      "Here is the blunt version: most plumber websites make people think too hard.",
-      "The best ones do the opposite. They show the phone number early, name the exact jobs and suburbs, prove trust quickly, and make the quote form easy.",
-      "If your website is getting views but not calls, fix these five things first.",
+      "Most plumber websites make people think too hard. The best ones get more calls because the phone number, service area, trust proof, and quote form are obvious straight away.",
     ],
     quickWins: [
       "Put a tap-to-call number and emergency button in the first screen.",

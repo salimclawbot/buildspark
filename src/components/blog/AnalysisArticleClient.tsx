@@ -252,32 +252,52 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
               </p>
             ))}
 
-            <div className="my-9 rounded-xl border border-zinc-800 bg-surface p-5">
-              <p className="mb-4 text-sm font-bold uppercase text-amber-400">Quick wins</p>
-              <ul className="space-y-3">
-                {post.quickWins.map((win) => (
-                  <li key={win} className="flex gap-3 text-zinc-300">
-                    <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
-                    {win}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {!isPlumberOffer ? (
+              <>
+                <div className="my-9 rounded-xl border border-zinc-800 bg-surface p-5">
+                  <p className="mb-4 text-sm font-bold uppercase text-amber-400">Quick wins</p>
+                  <ul className="space-y-3">
+                    {post.quickWins.map((win) => (
+                      <li key={win} className="flex gap-3 text-zinc-300">
+                        <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
+                        {win}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-            <AuditForm post={post} />
+                <AuditForm post={post} />
+              </>
+            ) : null}
 
             {post.sections.map((section, index) => (
-              <section key={section.title} className="mt-12">
+              <section key={section.title} className={isPlumberOffer ? "mt-14" : "mt-12"}>
                 <p className="mb-2 text-sm font-bold uppercase text-amber-400">{section.eyebrow}</p>
-                <h2 className="mb-4 text-2xl font-bold text-white">{section.title}</h2>
-                {section.body.map((paragraph) => (
-                  <p key={paragraph} className="mb-4 text-lg leading-relaxed text-zinc-300">
+                <h2 className={isPlumberOffer ? "mb-5 text-3xl font-bold text-white" : "mb-4 text-2xl font-bold text-white"}>{section.title}</h2>
+                {section.body.map((paragraph, paragraphIndex) => (
+                  <p
+                    key={paragraph}
+                    className={
+                      isPlumberOffer && paragraphIndex === 0
+                        ? "mb-4 border-l-4 border-amber-500 pl-4 text-xl font-semibold leading-relaxed text-white"
+                        : "mb-4 text-lg leading-relaxed text-zinc-300"
+                    }
+                  >
                     {paragraph}
                   </p>
                 ))}
-                <div className="mb-6 rounded-lg border border-zinc-800 bg-zinc-900/70 p-4">
-                  <p className="text-zinc-300">
-                    <strong className="text-white">What to do:</strong> {section.fix}
+                <div
+                  className={
+                    isPlumberOffer
+                      ? "mb-6 rounded-lg border border-amber-500/40 bg-amber-500/10 p-5"
+                      : "mb-6 rounded-lg border border-zinc-800 bg-zinc-900/70 p-4"
+                  }
+                >
+                  <p className={isPlumberOffer ? "text-lg leading-relaxed text-zinc-100" : "text-zinc-300"}>
+                    <strong className={isPlumberOffer ? "text-xl text-amber-300" : "text-white"}>
+                      {isPlumberOffer ? "Fix this:" : "What to do:"}
+                    </strong>{" "}
+                    {section.fix}
                   </p>
                 </div>
                 <ComparisonImage
@@ -286,7 +306,7 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
                   takeaway={section.visual.takeaway}
                   index={index + 1}
                 />
-                <ComparisonPanel visual={section.visual} fix={section.fix} />
+                {!isPlumberOffer ? <ComparisonPanel visual={section.visual} fix={section.fix} /> : null}
               </section>
             ))}
 
