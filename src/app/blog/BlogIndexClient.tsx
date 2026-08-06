@@ -9,6 +9,15 @@ import { Badge } from "@/components/ui/badge";
 import { analysisPosts } from "@/lib/analysis-posts";
 
 const posts = [
+  {
+    title: "More Leads. More Trust. More Jobs. For $150/m.",
+    excerpt:
+      "High-converting websites for plumbers, electricians, builders, landscapers and other trades, without the $5,000+ upfront cost.",
+    readTime: "5 min read",
+    date: "6 Aug 2026",
+    category: "Tradie Websites",
+    href: "/blog/tradie-websites-150-month",
+  },
   ...analysisPosts.map((post) => ({
     title: post.title,
     excerpt: post.excerpt,

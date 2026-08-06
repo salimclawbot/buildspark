@@ -32,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const blogPosts: { url: string; priority: number; changeFrequency: Freq }[] = [
+    { url: `${BASE_URL}/blog/tradie-websites-150-month`, priority: 0.8, changeFrequency: "monthly" },
     ...analysisPosts.map((post) => ({
       url: `${BASE_URL}/blog/${post.slug}`,
       priority: 0.7,
