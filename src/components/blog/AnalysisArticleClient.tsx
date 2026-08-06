@@ -11,6 +11,30 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { AnalysisPost, ComparisonVisual } from "@/lib/analysis-posts";
 
+const directOfferArticleSlugs = new Set([
+  "plumber-website-analysis-top-5-percent",
+  "why-73-percent-website-visitors-never-contact-you",
+  "why-top-dental-practices-get-more-enquiries",
+  "500-local-business-website-analysis",
+  "local-businesses-3x-more-enquiries",
+]);
+
+function usesDirectOfferTemplate(post: AnalysisPost) {
+  return directOfferArticleSlugs.has(post.slug);
+}
+
+function getWebsiteOfferLabel(post: AnalysisPost) {
+  if (post.slug === "plumber-website-analysis-top-5-percent") {
+    return "plumber website";
+  }
+
+  if (post.slug === "why-top-dental-practices-get-more-enquiries") {
+    return "dental practice website";
+  }
+
+  return "website";
+}
+
 function ComparisonImage({
   post,
   sectionTitle,
@@ -108,7 +132,8 @@ function ComparisonPanel({
 function AuditForm({ post }: { post: AnalysisPost }) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const isPlumberOffer = post.slug === "plumber-website-analysis-top-5-percent";
+  const isDirectOffer = usesDirectOfferTemplate(post);
+  const websiteOfferLabel = getWebsiteOfferLabel(post);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -133,11 +158,11 @@ function AuditForm({ post }: { post: AnalysisPost }) {
       <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-6 text-center">
         <CheckCircle className="mx-auto mb-3 h-8 w-8 text-emerald-400" />
         <p className="text-xl font-bold text-white">
-          {isPlumberOffer ? "Got it. We'll check August availability." : "Got it. We'll take a look."}
+          {isDirectOffer ? "Got it. We'll check August availability." : "Got it. We'll take a look."}
         </p>
         <p className="mt-2 text-sm text-zinc-300">
-          {isPlumberOffer
-            ? "We'll send you the next step for a brand new plumber website from $150/m*. No jargon, no pressure."
+          {isDirectOffer
+            ? `We'll send you the next step for a brand new ${websiteOfferLabel} from $150/m*. No jargon, no pressure.`
             : "You'll get a plain-English website audit back by email. No jargon, no pressure."}
         </p>
       </div>
@@ -152,12 +177,12 @@ function AuditForm({ post }: { post: AnalysisPost }) {
         </span>
         <div>
           <p className="text-xl font-bold text-white">
-            {isPlumberOffer
-              ? "Want a brand new plumber website from $150/m*?"
+            {isDirectOffer
+              ? `Want a brand new ${websiteOfferLabel} from $150/m*?`
               : "Want to know what your website is costing you?"}
           </p>
           <p className="mt-1 text-sm leading-relaxed text-zinc-400">
-            {isPlumberOffer
+            {isDirectOffer
               ? "Limited August spots remaining. Send your details and we'll confirm if your area is still available."
               : "Submit your site and we'll send a quick audit showing what to fix first."}
           </p>
@@ -168,13 +193,13 @@ function AuditForm({ post }: { post: AnalysisPost }) {
           type="hidden"
           name="_subject"
           value={
-            isPlumberOffer
-              ? `BuildSpark $150/m plumber website enquiry from ${post.title}`
+            isDirectOffer
+              ? `BuildSpark $150/m ${websiteOfferLabel} enquiry from ${post.title}`
               : `BuildSpark audit request from ${post.title}`
           }
         />
         <input type="hidden" name="article" value={post.slug} />
-        {isPlumberOffer ? <input type="hidden" name="offer" value="Brand new website from $150/m - August spots" /> : null}
+        {isDirectOffer ? <input type="hidden" name="offer" value="Brand new website from $150/m - August spots" /> : null}
         <input
           name="business"
           required
@@ -202,12 +227,12 @@ function AuditForm({ post }: { post: AnalysisPost }) {
         <Button type="submit" disabled={submitting} className="sm:col-span-2">
           {submitting
             ? "Submitting..."
-            : isPlumberOffer
+            : isDirectOffer
               ? "Check If I Can Get a $150/m Website"
               : "Send My Free Website Audit"}
         </Button>
       </form>
-      {isPlumberOffer ? (
+      {isDirectOffer ? (
         <p className="mt-3 text-xs leading-relaxed text-zinc-500">
           *$150/m website offer is for eligible BuildSpark monthly website plans. Limited August onboarding spots.
         </p>
@@ -217,7 +242,8 @@ function AuditForm({ post }: { post: AnalysisPost }) {
 }
 
 export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) {
-  const isPlumberOffer = post.slug === "plumber-website-analysis-top-5-percent";
+  const isDirectOffer = usesDirectOfferTemplate(post);
+  const websiteOfferLabel = getWebsiteOfferLabel(post);
 
   return (
     <main className="min-h-screen bg-background">
@@ -252,7 +278,7 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
               </p>
             ))}
 
-            {!isPlumberOffer ? (
+            {!isDirectOffer ? (
               <>
                 <div className="my-9 rounded-xl border border-zinc-800 bg-surface p-5">
                   <p className="mb-4 text-sm font-bold uppercase text-amber-400">Quick wins</p>
@@ -271,14 +297,14 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
             ) : null}
 
             {post.sections.map((section, index) => (
-              <section key={section.title} className={isPlumberOffer ? "mt-14" : "mt-12"}>
+              <section key={section.title} className={isDirectOffer ? "mt-14" : "mt-12"}>
                 <p className="mb-2 text-sm font-bold uppercase text-amber-400">{section.eyebrow}</p>
-                <h2 className={isPlumberOffer ? "mb-5 text-3xl font-bold text-white" : "mb-4 text-2xl font-bold text-white"}>{section.title}</h2>
+                <h2 className={isDirectOffer ? "mb-5 text-3xl font-bold text-white" : "mb-4 text-2xl font-bold text-white"}>{section.title}</h2>
                 {section.body.map((paragraph, paragraphIndex) => (
                   <p
                     key={paragraph}
                     className={
-                      isPlumberOffer && paragraphIndex === 0
+                      isDirectOffer && paragraphIndex === 0
                         ? "mb-4 border-l-4 border-amber-500 pl-4 text-xl font-semibold leading-relaxed text-white"
                         : "mb-4 text-lg leading-relaxed text-zinc-300"
                     }
@@ -288,14 +314,14 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
                 ))}
                 <div
                   className={
-                    isPlumberOffer
+                    isDirectOffer
                       ? "mb-6 rounded-lg border border-amber-500/40 bg-amber-500/10 p-5"
                       : "mb-6 rounded-lg border border-zinc-800 bg-zinc-900/70 p-4"
                   }
                 >
-                  <p className={isPlumberOffer ? "text-lg leading-relaxed text-zinc-100" : "text-zinc-300"}>
-                    <strong className={isPlumberOffer ? "text-xl text-amber-300" : "text-white"}>
-                      {isPlumberOffer ? "Fix this:" : "What to do:"}
+                  <p className={isDirectOffer ? "text-lg leading-relaxed text-zinc-100" : "text-zinc-300"}>
+                    <strong className={isDirectOffer ? "text-xl text-amber-300" : "text-white"}>
+                      {isDirectOffer ? "Fix this:" : "What to do:"}
                     </strong>{" "}
                     {section.fix}
                   </p>
@@ -306,7 +332,7 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
                   takeaway={section.visual.takeaway}
                   index={index + 1}
                 />
-                {!isPlumberOffer ? <ComparisonPanel visual={section.visual} fix={section.fix} /> : null}
+                {!isDirectOffer ? <ComparisonPanel visual={section.visual} fix={section.fix} /> : null}
               </section>
             ))}
 
@@ -327,21 +353,21 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
             <div className="mt-12 rounded-xl border border-amber-500/30 bg-amber-500/5 p-6 text-center sm:p-8">
               <PhoneCall className="mx-auto mb-4 h-9 w-9 text-amber-500" />
               <h2 className="text-2xl font-bold text-white">
-                {isPlumberOffer
-                  ? "Want this fixed with a brand new plumber website from $150/m*?"
+                {isDirectOffer
+                  ? `Want this fixed with a brand new ${websiteOfferLabel} from $150/m*?`
                   : "Want a website that turns visitors into enquiries?"}
               </h2>
               <p className="mx-auto mt-3 max-w-xl text-zinc-400">
-                {isPlumberOffer
-                  ? "BuildSpark builds fast, local-focused plumber websites that make calls and quote requests obvious. Limited August spots remaining."
+                {isDirectOffer
+                  ? `BuildSpark builds fast, local-focused ${websiteOfferLabel}s that make calls, bookings, and quote requests obvious. Limited August spots remaining.`
                   : "BuildSpark builds fast, local-focused websites that make the next step obvious. Submit your site above or start the quiz and we'll show you what we'd fix first."}
               </p>
               <Button asChild size="lg" className="mt-5">
                 <Link href="/quiz">
-                  {isPlumberOffer ? "Start My $150/m Website" : "Start Your Free Quiz"} <ArrowRight className="ml-2 h-4 w-4" />
+                  {isDirectOffer ? "Start My $150/m Website" : "Start Your Free Quiz"} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              {isPlumberOffer ? (
+              {isDirectOffer ? (
                 <p className="mx-auto mt-3 max-w-lg text-xs leading-relaxed text-zinc-500">
                   *For eligible monthly website plans. Final inclusions confirmed before you start.
                 </p>

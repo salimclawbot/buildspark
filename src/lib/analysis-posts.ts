@@ -198,9 +198,7 @@ export const analysisPosts: AnalysisPost[] = [
     hero: "/images/website-call-now.webp",
     heroAlt: "Phone enquiry from a local business website",
     intro: [
-      "Getting people to your website is only half the job. The real money is in what happens next.",
-      "For many local businesses, most visitors look around for a few seconds, get confused, and leave without calling. That does not always mean they were bad leads. It often means the website made the next step too hard.",
-      "Here is why visitors disappear and what to fix so more of them contact you.",
+      "Most website visitors do not leave because they hate your business. They leave because the page makes calling, trusting you, or asking for a quote harder than it should be.",
     ],
     quickWins: [
       "Make the first screen answer what you do, where you work, and how to contact you.",
@@ -340,9 +338,7 @@ export const analysisPosts: AnalysisPost[] = [
     hero: "/images/business-owner-success.webp",
     heroAlt: "Local business owner reviewing new website enquiries",
     intro: [
-      "You can be the better dentist and still lose the enquiry. That sounds harsh, but it is what happens online every day.",
-      "Patients do not know who is better clinically when they are comparing websites. They judge what they can see: trust, reviews, treatment information, photos, booking ease, and whether the practice feels right for them.",
-      "Here is why top dental practices get more enquiries and what to fix if your clinic should be getting more.",
+      "You can be the better dental practice and still lose the enquiry. Patients choose the clinic that feels clearer, safer, easier to book, and more trustworthy online.",
     ],
     quickWins: [
       "Make booking visible on every page.",
@@ -482,9 +478,7 @@ export const analysisPosts: AnalysisPost[] = [
     hero: "/images/vic-main-street.webp",
     heroAlt: "Victorian main street with local businesses",
     intro: [
-      "We have looked at hundreds of local business websites: tradies, cafes, clinics, mechanics, bookkeepers, bakers, salons, and service businesses.",
-      "The pattern is clear. The top 5% are not winning because they have huge budgets or fancy animations. They win because the website answers the customer's questions faster than everyone else.",
-      "Here is what the best local business websites do differently.",
+      "The top local business websites are not winning because they are fancy. They win because customers can understand, trust, and contact the business faster than everyone else.",
     ],
     quickWins: [
       "Say what you do and where you do it in the first screen.",
@@ -624,9 +618,7 @@ export const analysisPosts: AnalysisPost[] = [
     hero: "/images/business-owner-success.webp",
     heroAlt: "Local business owner celebrating more website enquiries",
     intro: [
-      "Two local businesses can do the same work, charge similar prices, and service the same suburbs. One gets steady calls. The other waits.",
-      "Most of the time, the difference is not luck. It is how easy the business is to find, trust, and contact online.",
-      "Here are the simple differences that help some local businesses get 3x more enquiries than competitors.",
+      "Two local businesses can do the same work in the same suburbs, but one gets steady calls while the other waits. The difference is usually how easy they are to find, trust, and contact online.",
     ],
     quickWins: [
       "Own the urgent searches in your area.",
