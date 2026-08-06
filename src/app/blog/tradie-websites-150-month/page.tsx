@@ -5,7 +5,7 @@ const title = "Tradie Websites From $150/m | BuildSpark";
 const description =
   "High-converting websites for plumbers, electricians, builders, landscapers and other trades, without the $5,000+ upfront cost.";
 const canonical = "https://buildspark.com.au/blog/tradie-websites-150-month";
-const image = "https://buildspark.com.au/images/social/local-businesses-3x-more-enquiries.jpg";
+const image = "https://buildspark.com.au/images/social/tradie-websites-150-month.jpg";
 const keywords = [
   "tradie websites",
   "website for tradies",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         url: image,
         width: 1200,
         height: 630,
-        alt: "Trade business owner in a workshop promoting BuildSpark websites",
+        alt: "Laptop showing a trade website offer for more leads, trust and jobs from $150 per month",
       },
     ],
     locale: "en_AU",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "More Leads. More Trust. More Jobs. For $150/m.",
     description,
-    images: [{ url: image, alt: "Trade business owner in a workshop promoting BuildSpark websites" }],
+    images: [{ url: image, alt: "Laptop showing a trade website offer for more leads, trust and jobs from $150 per month" }],
   },
 };
 

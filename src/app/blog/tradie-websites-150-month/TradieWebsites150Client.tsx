@@ -73,6 +73,32 @@ const pages = [
   "Contact and quote form",
 ];
 
+function ArticleImage({
+  src,
+  alt,
+  caption,
+}: {
+  src: string;
+  alt: string;
+  caption: string;
+}) {
+  return (
+    <figure className="my-8">
+      <Image
+        src={src}
+        alt={alt}
+        width={1254}
+        height={1254}
+        className="h-auto w-full rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/30"
+        sizes="(min-width: 1024px) 768px, 100vw"
+      />
+      <figcaption className="mt-3 text-sm leading-relaxed text-zinc-400">
+        <strong className="text-amber-400">Visual:</strong> {caption}
+      </figcaption>
+    </figure>
+  );
+}
+
 function StartForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -222,6 +248,11 @@ export default function TradieWebsites150Client() {
             <p className="mt-5 text-lg leading-relaxed text-zinc-300">
               BuildSpark gives tradies a proper website without the huge upfront invoice. You get a sharp site built around your trade, your suburbs, and the jobs you actually want.
             </p>
+            <ArticleImage
+              src="/images/tradie-websites-150/hero-offer.webp"
+              alt="Laptop showing a trade website offer for more leads, trust and jobs from $150 per month"
+              caption="The offer in plain English: a proper trade website designed to win more calls and quote requests."
+            />
 
             <section className="mt-14">
               <p className="mb-2 text-sm font-bold uppercase text-amber-400">The offer</p>
@@ -237,6 +268,11 @@ export default function TradieWebsites150Client() {
               <p className="mt-4 text-sm leading-relaxed text-zinc-500">
                 *Exact setup depends on your trade, content, pages, and plan fit. We confirm everything before you start.
               </p>
+              <ArticleImage
+                src="/images/tradie-websites-150/inclusions.webp"
+                alt="Laptop showing six inclusions in a $150 per month tradie website package"
+                caption="What is included: mobile design, service sections, quote form, proof, and local SEO setup."
+              />
             </section>
 
             <section className="mt-14">
@@ -261,6 +297,11 @@ export default function TradieWebsites150Client() {
                   );
                 })}
               </div>
+              <ArticleImage
+                src="/images/tradie-websites-150/conversion.webp"
+                alt="Before and after laptop screens showing a weak trade website and a high converting trade website"
+                caption="The difference that matters: a generic page versus a page with calls, proof, service area, and quote buttons."
+              />
             </section>
 
             <section className="mt-14">
@@ -283,6 +324,11 @@ export default function TradieWebsites150Client() {
                   );
                 })}
               </div>
+              <ArticleImage
+                src="/images/tradie-websites-150/design-quality.webp"
+                alt="Laptop and phone showing a professional trade website design with clean colours and mobile layout"
+                caption="A trade website should look sharp on desktop and mobile, with clear colours, headings, trust sections, and quote flow."
+              />
             </section>
 
             <section className="mt-14">
@@ -298,6 +344,11 @@ export default function TradieWebsites150Client() {
                   </p>
                 ))}
               </div>
+              <ArticleImage
+                src="/images/tradie-websites-150/pages.webp"
+                alt="Laptop showing the pages BuildSpark builds for tradie websites"
+                caption="Most tradies need clear pages and sections, not a bloated website nobody reads."
+              />
             </section>
 
             <section className="mt-14">
@@ -311,6 +362,11 @@ export default function TradieWebsites150Client() {
                   From there, we handle the structure, wording, design, build, and launch. You give feedback. We keep it simple.
                 </p>
               </div>
+              <ArticleImage
+                src="/images/tradie-websites-150/get-started.webp"
+                alt="Laptop showing the three step process to get started with a tradie website"
+                caption="Getting started should be simple: send your details, map the website, launch and get enquiries."
+              />
             </section>
 
             <div className="mt-10">
