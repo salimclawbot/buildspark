@@ -10,6 +10,7 @@ import { Footer } from "@/components/sections/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { AnalysisPost, ComparisonVisual } from "@/lib/analysis-posts";
+import { trackLead } from "@/lib/meta-pixel";
 
 const directOfferArticleSlugs = new Set([
   "plumber-website-analysis-top-5-percent",
@@ -145,8 +146,16 @@ function AuditForm({ post }: { post: AnalysisPost }) {
         method: "POST",
         body: formData,
       });
+      trackLead("Analysis Article CTA", {
+        article: post.slug,
+        offer_type: isDirectOffer ? "150_month_website" : "website_audit",
+      });
       setSubmitted(true);
     } catch {
+      trackLead("Analysis Article CTA", {
+        article: post.slug,
+        offer_type: isDirectOffer ? "150_month_website" : "website_audit",
+      });
       setSubmitted(true);
     } finally {
       setSubmitting(false);

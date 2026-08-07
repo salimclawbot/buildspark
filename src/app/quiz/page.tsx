@@ -4,6 +4,7 @@ import { useState, FormEvent, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { trackLead, trackMetaStandardEvent } from "@/lib/meta-pixel";
 
 const businessTypes = [
   "Tradie",
@@ -144,6 +145,14 @@ export default function QuizPage() {
     } catch {
       // Still show success - email may have sent
     }
+    trackLead("Website Quiz", {
+      business_type: businessType === "Other" ? "Other" : businessType,
+      selected_plan: selectedPlan,
+    });
+    trackMetaStandardEvent("CompleteRegistration", {
+      content_name: "Website Quiz",
+      status: "submitted",
+    });
     setSubmitted(true);
   }
 

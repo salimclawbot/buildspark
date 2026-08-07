@@ -9,6 +9,7 @@ import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { trackLead } from "@/lib/meta-pixel";
 
 const auditChecks = [
   {
@@ -106,8 +107,14 @@ export default function FreeAuditClient() {
         method: "POST",
         body: formData,
       });
+      trackLead("Free Website Audit", {
+        offer_type: "website_audit",
+      });
       setSubmitted(true);
     } catch {
+      trackLead("Free Website Audit", {
+        offer_type: "website_audit",
+      });
       setSubmitted(true);
     } finally {
       setSubmitting(false);

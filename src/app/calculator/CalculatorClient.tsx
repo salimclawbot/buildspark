@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackLead, trackMetaStandardEvent } from "@/lib/meta-pixel";
 
 const slideVariants = {
   enter: (direction: number) => ({
@@ -279,6 +280,14 @@ export default function CalculatorClient() {
     });
 
     GA4Event('form_submit', { event_category: 'Calculator', event_label: 'Revenue Calculator' });
+    trackLead("Revenue Calculator", {
+      business_type: selectedBusinessType,
+      goal: selectedGoal,
+    });
+    trackMetaStandardEvent("CompleteRegistration", {
+      content_name: "Revenue Calculator",
+      status: "submitted",
+    });
 
     setDirection(1);
     setSubmitted(true);

@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card";
 import { Mail, MapPin, Clock } from "lucide-react";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
+import { trackLead } from "@/lib/meta-pixel";
 
 export default function ContactClient() {
   return (
@@ -58,6 +59,11 @@ export default function ContactClient() {
                 <form
                   action="https://formsubmit.co/info@buildspark.com.au"
                   method="POST"
+                  onSubmit={() => {
+                    trackLead("Contact Form", {
+                      offer_type: "contact",
+                    });
+                  }}
                   className="space-y-4"
                 >
                   <input type="hidden" name="_captcha" value="false" />

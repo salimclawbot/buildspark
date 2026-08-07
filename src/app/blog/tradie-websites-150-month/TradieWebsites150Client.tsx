@@ -17,6 +17,7 @@ import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { trackLead } from "@/lib/meta-pixel";
 
 const inclusions = [
   "Custom website built for your trade and service area",
@@ -112,8 +113,14 @@ function StartForm() {
         method: "POST",
         body: formData,
       });
+      trackLead("Tradie Websites $150/m Article", {
+        offer_type: "150_month_website",
+      });
       setSubmitted(true);
     } catch {
+      trackLead("Tradie Websites $150/m Article", {
+        offer_type: "150_month_website",
+      });
       setSubmitted(true);
     } finally {
       setSubmitting(false);

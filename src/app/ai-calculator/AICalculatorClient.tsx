@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackLead, trackMetaStandardEvent } from "@/lib/meta-pixel";
 
 const slideVariants = {
   enter: (direction: number) => ({
@@ -263,6 +264,14 @@ export default function AICalculatorClient() {
     });
 
     GA4Event("form_submit", { event_category: "Calculator", event_label: "AI Calculator" });
+    trackLead("AI Calculator", {
+      business_type: selectedBusinessType,
+      ai_usage: aiUsage,
+    });
+    trackMetaStandardEvent("CompleteRegistration", {
+      content_name: "AI Calculator",
+      status: "submitted",
+    });
 
     setDirection(1);
     setSubmitted(true);
