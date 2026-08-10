@@ -18,6 +18,19 @@ const directOfferArticleSlugs = new Set([
   "why-top-dental-practices-get-more-enquiries",
   "500-local-business-website-analysis",
   "local-businesses-3x-more-enquiries",
+  "plumber-websites-250-month",
+  "electrician-websites-250-month",
+  "tradie-websites-250-month",
+  "excavation-earthmoving-websites-250-month",
+  "security-cctv-installer-websites-lead-generator",
+]);
+
+const monthly250ArticleSlugs = new Set([
+  "plumber-websites-250-month",
+  "electrician-websites-250-month",
+  "tradie-websites-250-month",
+  "excavation-earthmoving-websites-250-month",
+  "security-cctv-installer-websites-lead-generator",
 ]);
 
 function usesDirectOfferTemplate(post: AnalysisPost) {
@@ -25,8 +38,27 @@ function usesDirectOfferTemplate(post: AnalysisPost) {
 }
 
 function getWebsiteOfferLabel(post: AnalysisPost) {
-  if (post.slug === "plumber-website-analysis-top-5-percent") {
+  if (
+    post.slug === "plumber-website-analysis-top-5-percent" ||
+    post.slug === "plumber-websites-250-month"
+  ) {
     return "plumber website";
+  }
+
+  if (post.slug === "electrician-websites-250-month") {
+    return "electrician website";
+  }
+
+  if (post.slug === "tradie-websites-250-month") {
+    return "tradie website";
+  }
+
+  if (post.slug === "excavation-earthmoving-websites-250-month") {
+    return "excavation and earthmoving website";
+  }
+
+  if (post.slug === "security-cctv-installer-websites-lead-generator") {
+    return "security and CCTV installer website";
   }
 
   if (post.slug === "why-top-dental-practices-get-more-enquiries") {
@@ -34,6 +66,14 @@ function getWebsiteOfferLabel(post: AnalysisPost) {
   }
 
   return "website";
+}
+
+function getOfferPrice(post: AnalysisPost) {
+  return monthly250ArticleSlugs.has(post.slug) ? "$250/month" : "$150/m";
+}
+
+function getOfferType(post: AnalysisPost) {
+  return monthly250ArticleSlugs.has(post.slug) ? "250_month_website" : "150_month_website";
 }
 
 function ComparisonImage({
@@ -135,6 +175,8 @@ function AuditForm({ post }: { post: AnalysisPost }) {
   const [submitting, setSubmitting] = useState(false);
   const isDirectOffer = usesDirectOfferTemplate(post);
   const websiteOfferLabel = getWebsiteOfferLabel(post);
+  const offerPrice = getOfferPrice(post);
+  const offerType = getOfferType(post);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -148,13 +190,13 @@ function AuditForm({ post }: { post: AnalysisPost }) {
       });
       trackLead("Analysis Article CTA", {
         article: post.slug,
-        offer_type: isDirectOffer ? "150_month_website" : "website_audit",
+        offer_type: isDirectOffer ? offerType : "website_audit",
       });
       setSubmitted(true);
     } catch {
       trackLead("Analysis Article CTA", {
         article: post.slug,
-        offer_type: isDirectOffer ? "150_month_website" : "website_audit",
+        offer_type: isDirectOffer ? offerType : "website_audit",
       });
       setSubmitted(true);
     } finally {
@@ -171,7 +213,7 @@ function AuditForm({ post }: { post: AnalysisPost }) {
         </p>
         <p className="mt-2 text-sm text-zinc-300">
           {isDirectOffer
-            ? `We'll send you the next step for a brand new ${websiteOfferLabel} from $150/m*. No jargon, no pressure.`
+            ? `We'll send you the next step for a brand new ${websiteOfferLabel} from ${offerPrice}*. No jargon, no pressure.`
             : "You'll get a plain-English website audit back by email. No jargon, no pressure."}
         </p>
       </div>
@@ -187,7 +229,7 @@ function AuditForm({ post }: { post: AnalysisPost }) {
         <div>
           <p className="text-xl font-bold text-white">
             {isDirectOffer
-              ? `Want a brand new ${websiteOfferLabel} from $150/m*?`
+              ? `Want a brand new ${websiteOfferLabel} from ${offerPrice}*?`
               : "Want to know what your website is costing you?"}
           </p>
           <p className="mt-1 text-sm leading-relaxed text-zinc-400">
@@ -203,12 +245,12 @@ function AuditForm({ post }: { post: AnalysisPost }) {
           name="_subject"
           value={
             isDirectOffer
-              ? `BuildSpark $150/m ${websiteOfferLabel} enquiry from ${post.title}`
+              ? `BuildSpark ${offerPrice} ${websiteOfferLabel} enquiry from ${post.title}`
               : `BuildSpark audit request from ${post.title}`
           }
         />
         <input type="hidden" name="article" value={post.slug} />
-        {isDirectOffer ? <input type="hidden" name="offer" value="Brand new website from $150/m - August spots" /> : null}
+        {isDirectOffer ? <input type="hidden" name="offer" value={`Brand new website from ${offerPrice} - August spots`} /> : null}
         <input
           name="business"
           required
@@ -237,13 +279,13 @@ function AuditForm({ post }: { post: AnalysisPost }) {
           {submitting
             ? "Submitting..."
             : isDirectOffer
-              ? "Check If I Can Get a $150/m Website"
+              ? `Check If I Can Get a ${offerPrice} Website`
               : "Send My Free Website Audit"}
         </Button>
       </form>
       {isDirectOffer ? (
         <p className="mt-3 text-xs leading-relaxed text-zinc-500">
-          *$150/m website offer is for eligible BuildSpark monthly website plans. Limited August onboarding spots.
+          *{offerPrice} website offer is for eligible BuildSpark monthly website plans. Limited August onboarding spots.
         </p>
       ) : null}
     </div>
@@ -253,6 +295,7 @@ function AuditForm({ post }: { post: AnalysisPost }) {
 export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) {
   const isDirectOffer = usesDirectOfferTemplate(post);
   const websiteOfferLabel = getWebsiteOfferLabel(post);
+  const offerPrice = getOfferPrice(post);
 
   return (
     <main className="min-h-screen bg-background">
@@ -363,7 +406,7 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
               <PhoneCall className="mx-auto mb-4 h-9 w-9 text-amber-500" />
               <h2 className="text-2xl font-bold text-white">
                 {isDirectOffer
-                  ? `Want this fixed with a brand new ${websiteOfferLabel} from $150/m*?`
+                  ? `Want this fixed with a brand new ${websiteOfferLabel} from ${offerPrice}*?`
                   : "Want a website that turns visitors into enquiries?"}
               </h2>
               <p className="mx-auto mt-3 max-w-xl text-zinc-400">
@@ -373,7 +416,7 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
               </p>
               <Button asChild size="lg" className="mt-5">
                 <Link href="/quiz">
-                  {isDirectOffer ? "Start My $150/m Website" : "Start Your Free Quiz"} <ArrowRight className="ml-2 h-4 w-4" />
+                  {isDirectOffer ? `Start My ${offerPrice} Website` : "Start Your Free Quiz"} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               {isDirectOffer ? (

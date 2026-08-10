@@ -736,6 +736,706 @@ export const analysisPosts: AnalysisPost[] = [
       { title: "500 Local Business Websites Analysed", href: "/blog/500-local-business-website-analysis", readTime: "9 min read" },
     ],
   },
+  {
+    slug: "plumber-websites-250-month",
+    title: "Websites Built Specifically for Plumbers - From $250/Month",
+    metaTitle: "Plumber Websites From $250/Month | BuildSpark",
+    description:
+      "BuildSpark builds plumber websites from $250/month that make calls, emergency jobs, suburbs, reviews, and quote requests clear.",
+    excerpt:
+      "A plumber website should get calls, not just sit there. Here is what we build from $250/month.",
+    category: "Plumber Websites",
+    date: "10 Aug 2026",
+    published: "2026-08-10",
+    readTime: "7 min read",
+    primaryKeyword: "plumber websites from $250/month",
+    secondaryKeywords: [
+      "plumber website design",
+      "plumbing websites Australia",
+      "plumber website leads",
+      "emergency plumber website",
+    ],
+    hero: "/images/tradie-on-job-call.webp",
+    heroAlt: "Plumber checking a website enquiry from a phone on site",
+    intro: [
+      "Your plumber website should make people call fast. For $250/month, BuildSpark gives you a sharp site built around the jobs, suburbs, and emergency calls you actually want.",
+    ],
+    quickWins: [
+      "Put call and emergency buttons where customers see them first.",
+      "Show the exact plumbing jobs and suburbs you want.",
+      "Use reviews, licences, and job photos to build trust.",
+      "Keep the quote form short.",
+      "Track calls and form leads properly.",
+    ],
+    sections: [
+      {
+        eyebrow: "Point 1",
+        title: "We make emergency calls obvious",
+        body: [
+          "Blocked drains, burst pipes, and hot water failures are urgent. If your phone number is hidden, the customer calls the next plumber.",
+          "We build the first screen around tap-to-call, emergency wording, and your service area so people know they can reach you now.",
+        ],
+        fix:
+          "Use a sticky phone number, an emergency plumber button, and a clear suburb line before anything else.",
+        visual: {
+          badTitle: "Missed Calls",
+          badItems: ["Phone buried", "No emergency button", "No suburb shown"],
+          goodTitle: "Call Ready",
+          goodItems: ["Tap-to-call header", "Emergency plumber CTA", "Suburbs listed"],
+          takeaway: "Urgent customers should be able to call in one tap.",
+        },
+      },
+      {
+        eyebrow: "Point 2",
+        title: "We show the plumbing jobs you want more of",
+        body: [
+          "A page that only says plumbing services is too broad. Customers search for blocked drains, hot water repairs, gas fitting, toilet leaks, and burst pipes.",
+          "We build service sections that match what people search and what you actually want to quote.",
+        ],
+        fix:
+          "Name your highest-value plumbing jobs in plain words and match them with the suburbs you service.",
+        visual: {
+          badTitle: "Too General",
+          badItems: ["Plumbing services", "No job list", "No area focus"],
+          goodTitle: "Job Focused",
+          goodItems: ["Blocked drains", "Hot water repairs", "Gas fitting"],
+          takeaway: "Specific job wording brings better enquiries.",
+        },
+      },
+      {
+        eyebrow: "Point 3",
+        title: "We build trust before the quote request",
+        body: [
+          "People do not just need a plumber. They need someone reliable who will turn up, do the job properly, and not leave a mess.",
+          "We place reviews, licence notes, real work photos, and response promises close to the call and quote buttons.",
+        ],
+        fix:
+          "Show review stars, licence details, real plumbing photos, and a simple workmanship promise near the CTA.",
+        visual: {
+          badTitle: "No Proof",
+          badItems: ["Stock photo", "No reviews", "No licence note"],
+          goodTitle: "Trust Shown",
+          goodItems: ["Real job photos", "Review score", "Licensed and insured"],
+          takeaway: "Proof makes the customer feel safe to enquire.",
+        },
+      },
+      {
+        eyebrow: "Point 4",
+        title: "We keep the quote form short",
+        body: [
+          "Long forms lose plumbing leads. A busy customer will not fill out ten fields while water is leaking or the hot water is gone.",
+          "We keep the main form quick: name, phone, suburb, job type, and a short message if needed.",
+        ],
+        fix:
+          "Ask only for the details needed to call them back and quote the job properly.",
+        visual: {
+          badTitle: "Long Form",
+          badItems: ["Too many fields", "Slow to finish", "Weak submit text"],
+          goodTitle: "Quick Quote",
+          goodItems: ["Name and phone", "Suburb", "Job type"],
+          takeaway: "A short form gets finished more often.",
+        },
+      },
+      {
+        eyebrow: "Point 5",
+        title: "We include the basics that help you get found",
+        body: [
+          "A good plumber website needs more than a nice homepage. It needs local wording, fast pages, useful service sections, and tracking so you know what is working.",
+          "Your $250/month site is built to be easy for customers, clear for Google, and simple for you to measure.",
+        ],
+        fix:
+          "Build around local services, fast mobile pages, form tracking, call tracking, and clear next steps.",
+        visual: {
+          badTitle: "No Tracking",
+          badItems: ["No lead source", "Slow mobile page", "No local pages"],
+          goodTitle: "Lead System",
+          goodItems: ["Calls tracked", "Fast mobile", "Local service pages"],
+          takeaway: "A plumber website should bring and measure real enquiries.",
+        },
+      },
+    ],
+    faq: [
+      {
+        question: "What is included in a plumber website from $250/month?",
+        answer:
+          "You get a modern plumber website built around calls, quotes, suburbs, services, trust proof, mobile speed, and lead tracking. Final inclusions are confirmed before you start.",
+      },
+      {
+        question: "Do I need to pay $3,000 to $5,000 upfront?",
+        answer:
+          "No. The $250/month offer is made for plumbers who want a proper website without the big upfront invoice.",
+      },
+      {
+        question: "Can the website help with emergency plumbing jobs?",
+        answer:
+          "Yes. We build emergency calls, tap-to-call buttons, service areas, and urgent job wording into the page so customers can act fast.",
+      },
+    ],
+    related: [
+      { title: "We Analysed 25 Local Plumbers Websites", href: "/blog/plumber-website-analysis-top-5-percent", readTime: "8 min read" },
+      { title: "Why Visitors Never Contact You", href: "/blog/why-73-percent-website-visitors-never-contact-you", readTime: "7 min read" },
+    ],
+  },
+  {
+    slug: "electrician-websites-250-month",
+    title: "Websites Built Specifically for Electricians - From $250/Month",
+    metaTitle: "Electrician Websites From $250/Month | BuildSpark",
+    description:
+      "Electrician websites from $250/month, built to win more calls, quotes, emergency jobs, switchboard upgrades, and local electrical enquiries.",
+    excerpt:
+      "A good electrician website makes trust, safety, service areas, and quote requests clear from the first screen.",
+    category: "Electrician Websites",
+    date: "10 Aug 2026",
+    published: "2026-08-10",
+    readTime: "7 min read",
+    primaryKeyword: "electrician websites from $250/month",
+    secondaryKeywords: [
+      "electrician website design",
+      "electrical contractor website",
+      "electrician leads",
+      "local electrician website",
+    ],
+    hero: "/images/tradie-phone.webp",
+    heroAlt: "Electrician receiving a website enquiry on a mobile phone",
+    intro: [
+      "Your electrician website should help people trust you fast and request a quote without mucking around. BuildSpark builds that from $250/month.",
+    ],
+    quickWins: [
+      "Put call and quote buttons above the fold.",
+      "Name the exact electrical jobs you want.",
+      "Show licence and compliance proof.",
+      "Build pages around local service areas.",
+      "Track the enquiries that turn into jobs.",
+    ],
+    sections: [
+      {
+        eyebrow: "Point 1",
+        title: "We make calls and quotes easy from the first screen",
+        body: [
+          "Electrical jobs can be urgent, and customers do not want to hunt for your number. If the first screen is vague, they leave.",
+          "We show your trade, area, phone number, and quote button straight away so the next step is obvious.",
+        ],
+        fix:
+          "Put electrician, suburb, tap-to-call, and request a quote above the fold.",
+        visual: {
+          badTitle: "Unclear Start",
+          badItems: ["No phone", "Generic headline", "Hidden quote button"],
+          goodTitle: "Ready To Enquire",
+          goodItems: ["Phone visible", "Area named", "Quote CTA"],
+          takeaway: "Customers should know how to book you in seconds.",
+        },
+      },
+      {
+        eyebrow: "Point 2",
+        title: "We show your real electrical services",
+        body: [
+          "People search for switchboard upgrades, fault finding, lighting, EV chargers, smoke alarms, and emergency electrical work.",
+          "We make those services clear so the customer can quickly see you handle their job.",
+        ],
+        fix:
+          "List your key electrical services with plain explanations and strong quote buttons.",
+        visual: {
+          badTitle: "Vague Services",
+          badItems: ["Electrical work", "No job examples", "No quote path"],
+          goodTitle: "Clear Services",
+          goodItems: ["Switchboards", "EV chargers", "Fault finding"],
+          takeaway: "Specific services help better leads enquire.",
+        },
+      },
+      {
+        eyebrow: "Point 3",
+        title: "We put licence and safety proof where it matters",
+        body: [
+          "Electrical work is high-trust work. People want to know you are licensed, insured, and serious about safety.",
+          "We show licence details, compliance notes, reviews, and workmanship proof near the booking path.",
+        ],
+        fix:
+          "Place licence, insurance, safety, and review proof beside your quote CTA.",
+        visual: {
+          badTitle: "Trust Missing",
+          badItems: ["No licence", "No reviews", "No safety note"],
+          goodTitle: "Trust Clear",
+          goodItems: ["Licence shown", "Reviews nearby", "Safety promise"],
+          takeaway: "Trust proof helps people choose you over another electrician.",
+        },
+      },
+      {
+        eyebrow: "Point 4",
+        title: "We build separate paths for home and business customers",
+        body: [
+          "A homeowner needing lights fixed is different from a builder needing electrical work on a project. The page should not treat them the same.",
+          "We structure the site so domestic, commercial, emergency, and project work each has a clear path.",
+        ],
+        fix:
+          "Split your website into clear service paths so each customer sees the right next step.",
+        visual: {
+          badTitle: "One Path",
+          badItems: ["All jobs mixed", "No project info", "No commercial CTA"],
+          goodTitle: "Right Path",
+          goodItems: ["Home electrical", "Commercial work", "Emergency call"],
+          takeaway: "Different customers need different enquiry paths.",
+        },
+      },
+      {
+        eyebrow: "Point 5",
+        title: "We make the site fast, local, and trackable",
+        body: [
+          "A slow website with no tracking is just guesswork. You need to know which pages bring calls and which services get attention.",
+          "We build fast mobile pages with local service wording and lead tracking from day one.",
+        ],
+        fix:
+          "Track forms, CTA clicks, and phone actions so the site keeps improving.",
+        visual: {
+          badTitle: "Guessing",
+          badItems: ["Slow mobile", "No lead tracking", "No suburb pages"],
+          goodTitle: "Measured Leads",
+          goodItems: ["Fast pages", "Tracked forms", "Local service areas"],
+          takeaway: "A good electrician website should show what brings jobs.",
+        },
+      },
+    ],
+    faq: [
+      {
+        question: "What is included in an electrician website from $250/month?",
+        answer:
+          "You get a modern electrical website with service sections, quote CTAs, trust proof, mobile-friendly design, local wording, and lead tracking.",
+      },
+      {
+        question: "Can you build pages for specific electrical services?",
+        answer:
+          "Yes. We can structure pages around switchboards, EV chargers, lighting, fault finding, smoke alarms, emergency work, and your main service areas.",
+      },
+      {
+        question: "Is the $250/month offer for new websites?",
+        answer:
+          "Yes. It is for eligible monthly website plans, with final inclusions confirmed before you start.",
+      },
+    ],
+    related: [
+      { title: "Websites Built for Tradies From $250/Month", href: "/blog/tradie-websites-250-month", readTime: "7 min read" },
+      { title: "Why Some Local Businesses Get 3x More Enquiries", href: "/blog/local-businesses-3x-more-enquiries", readTime: "7 min read" },
+    ],
+  },
+  {
+    slug: "tradie-websites-250-month",
+    title: "Websites Built for Tradies - From $250/Month",
+    metaTitle: "Tradie Websites From $250/Month | BuildSpark",
+    description:
+      "Get a modern tradie website from $250/month without the $3,000 to $5,000 upfront cost. Built for calls, quotes, trust, and local jobs.",
+    excerpt:
+      "Get a modern website without the $3,000 to $5,000 upfront cost, built to bring more leads and better jobs.",
+    category: "Tradie Websites",
+    date: "10 Aug 2026",
+    published: "2026-08-10",
+    readTime: "7 min read",
+    primaryKeyword: "tradie websites from $250/month",
+    secondaryKeywords: [
+      "tradie website design",
+      "websites for tradies",
+      "tradie leads",
+      "modern tradie website",
+    ],
+    hero: "/images/tradie-getting-calls.webp",
+    heroAlt: "Tradie getting a lead from a modern website",
+    intro: [
+      "You should not need to pay $3,000 to $5,000 upfront just to get a proper website. BuildSpark builds modern tradie websites from $250/month, built for more leads, more trust, and more jobs.",
+    ],
+    quickWins: [
+      "Make the offer clear in the first screen.",
+      "Show trades, suburbs, and job types clearly.",
+      "Use real proof near every CTA.",
+      "Keep forms short and mobile friendly.",
+      "Track every lead action.",
+    ],
+    sections: [
+      {
+        eyebrow: "Point 1",
+        title: "We remove the big upfront website cost",
+        body: [
+          "A lot of tradies put off getting a good website because the upfront quote is too high. That delay costs calls and quote requests.",
+          "Our $250/month option gives you a proper website without the $3,000 to $5,000 upfront hit.",
+        ],
+        fix:
+          "Start with a monthly website plan that gets the essentials live without draining cash flow.",
+        visual: {
+          badTitle: "Big Upfront Cost",
+          badItems: ["$5,000 invoice", "Website delayed", "No new leads"],
+          goodTitle: "Monthly Plan",
+          goodItems: ["From $250/month", "Fast launch", "Lead-focused site"],
+          takeaway: "A monthly website plan helps you get moving sooner.",
+        },
+      },
+      {
+        eyebrow: "Point 2",
+        title: "We build around your trade, not a generic template",
+        body: [
+          "A builder, plumber, electrician, landscaper, and painter do not need the same website. The jobs, trust points, and customer questions are different.",
+          "We structure the site around your trade, your services, your suburbs, and the work you want more of.",
+        ],
+        fix:
+          "Make the homepage and service pages specific to your trade, area, and best jobs.",
+        visual: {
+          badTitle: "Generic Template",
+          badItems: ["Any business copy", "No trade details", "No area focus"],
+          goodTitle: "Trade Specific",
+          goodItems: ["Services named", "Suburbs shown", "Job photos"],
+          takeaway: "A tradie website should sound like your actual business.",
+        },
+      },
+      {
+        eyebrow: "Point 3",
+        title: "We make your website easy to trust",
+        body: [
+          "People choose tradies they feel safe with. Before they call, they look for proof that you are reliable and do good work.",
+          "We add reviews, project photos, service promises, licences where relevant, and simple proof near enquiry buttons.",
+        ],
+        fix:
+          "Put reviews, real photos, guarantees, and licence notes close to the quote path.",
+        visual: {
+          badTitle: "No Confidence",
+          badItems: ["No reviews", "No job photos", "No promise"],
+          goodTitle: "Trust Built",
+          goodItems: ["Reviews", "Before and afters", "Clear guarantee"],
+          takeaway: "Trust proof turns nervous visitors into enquiries.",
+        },
+      },
+      {
+        eyebrow: "Point 4",
+        title: "We design every page to get the enquiry",
+        body: [
+          "Good design is not just colours and nice buttons. It should guide people toward calling, booking, or asking for a quote.",
+          "We use clear landing pages, strong colours, big mobile buttons, short forms, and simple sections that are easy to scan.",
+        ],
+        fix:
+          "Use one clear CTA per section and make it obvious what happens after they click.",
+        visual: {
+          badTitle: "Pretty But Weak",
+          badItems: ["No main CTA", "Tiny buttons", "Long page with no flow"],
+          goodTitle: "Built To Convert",
+          goodItems: ["Strong CTA", "Mobile buttons", "Simple sections"],
+          takeaway: "Design should help people take the next step.",
+        },
+      },
+      {
+        eyebrow: "Point 5",
+        title: "We include tracking so you know what is working",
+        body: [
+          "If you do not track form sends, clicks, and leads, you are guessing. You need to know where jobs are coming from.",
+          "We set up the website so important actions can be tracked, including visits, CTA clicks, and lead form submissions.",
+        ],
+        fix:
+          "Track visits, calls, forms, and key CTA clicks from launch.",
+        visual: {
+          badTitle: "No Data",
+          badItems: ["No lead tracking", "No form events", "No idea what works"],
+          goodTitle: "Clear Tracking",
+          goodItems: ["Visits tracked", "Forms tracked", "CTA clicks tracked"],
+          takeaway: "Tracking shows which parts of the website bring work.",
+        },
+      },
+    ],
+    faq: [
+      {
+        question: "Can I get a modern website without paying $3,000 to $5,000 upfront?",
+        answer:
+          "Yes. BuildSpark offers eligible tradie websites from $250/month so you can get a proper site without the large upfront cost.",
+      },
+      {
+        question: "What trades do you build websites for?",
+        answer:
+          "We build websites for plumbers, electricians, builders, landscapers, painters, concreters, roofers, excavation businesses, security installers, and other trades.",
+      },
+      {
+        question: "Will the website be built to get leads?",
+        answer:
+          "Yes. The layout, copy, CTAs, forms, trust proof, local pages, and tracking are built around enquiries from day one.",
+      },
+    ],
+    related: [
+      { title: "Websites Built Specifically for Plumbers", href: "/blog/plumber-websites-250-month", readTime: "7 min read" },
+      { title: "Websites Built Specifically for Electricians", href: "/blog/electrician-websites-250-month", readTime: "7 min read" },
+    ],
+  },
+  {
+    slug: "excavation-earthmoving-websites-250-month",
+    title: "Websites Built for Excavation & Earthmoving Businesses - From $250/Month",
+    metaTitle: "Excavation Websites From $250/Month | BuildSpark",
+    description:
+      "Websites for excavation and earthmoving businesses from $250/month, built to show equipment, job types, service areas, trust, and quote requests.",
+    excerpt:
+      "Your excavation website should make equipment, services, project fit, and quote requests clear.",
+    category: "Earthmoving Websites",
+    date: "10 Aug 2026",
+    published: "2026-08-10",
+    readTime: "7 min read",
+    primaryKeyword: "excavation websites from $250/month",
+    secondaryKeywords: [
+      "earthmoving website design",
+      "excavation contractor website",
+      "earthmoving leads",
+      "civil contractor website",
+    ],
+    hero: "/images/service-tradies.webp",
+    heroAlt: "Earthmoving business owner reviewing website leads",
+    intro: [
+      "Earthmoving clients need to know what machines you run, what jobs you handle, and where you work. BuildSpark builds excavation websites from $250/month that make that clear fast.",
+    ],
+    quickWins: [
+      "Show machines and capabilities clearly.",
+      "Name job types and service areas.",
+      "Use real project photos.",
+      "Make quote requests practical.",
+      "Track high-value enquiries.",
+    ],
+    sections: [
+      {
+        eyebrow: "Point 1",
+        title: "We show your equipment and capabilities clearly",
+        body: [
+          "People need to know if you can handle their site. If your website hides your machines, job sizes, or capabilities, good leads will hesitate.",
+          "We build sections for machinery, crew capability, job types, and service areas so customers can qualify you quickly.",
+        ],
+        fix:
+          "Show your main machines, attachments, job sizes, and the work you are best set up for.",
+        visual: {
+          badTitle: "Capability Hidden",
+          badItems: ["No machine list", "No job size", "No site examples"],
+          goodTitle: "Capability Clear",
+          goodItems: ["Machines shown", "Job types listed", "Project fit clear"],
+          takeaway: "Clients should know if you can handle their job.",
+        },
+      },
+      {
+        eyebrow: "Point 2",
+        title: "We name the exact earthmoving jobs you want",
+        body: [
+          "Excavation is broad. Customers search for site cuts, trenching, drainage, driveways, post holes, land clearing, and civil work.",
+          "We make those services easy to find and easy to enquire about.",
+        ],
+        fix:
+          "Build pages or sections around your best excavation services and highest-value job types.",
+        visual: {
+          badTitle: "Too Broad",
+          badItems: ["Earthmoving services", "No service detail", "No quote prompts"],
+          goodTitle: "Job Specific",
+          goodItems: ["Site cuts", "Trenching", "Drainage works"],
+          takeaway: "Specific job pages bring clearer enquiries.",
+        },
+      },
+      {
+        eyebrow: "Point 3",
+        title: "We use real project proof",
+        body: [
+          "A customer wants proof that you can work safely, cleanly, and on the right type of site. Generic photos do not help.",
+          "We build space for real project photos, before and after shots, site notes, and testimonials.",
+        ],
+        fix:
+          "Add real project photos with short notes about the job, location, and result.",
+        visual: {
+          badTitle: "No Proof",
+          badItems: ["Stock digger photo", "No project notes", "No reviews"],
+          goodTitle: "Project Proof",
+          goodItems: ["Real site photos", "Job location", "Client result"],
+          takeaway: "Real projects help serious customers trust you.",
+        },
+      },
+      {
+        eyebrow: "Point 4",
+        title: "We make quote requests useful",
+        body: [
+          "A weak form just asks for name and message. For earthmoving, you need enough detail to know whether the job is a fit.",
+          "We keep the form simple but useful: location, job type, access, timeframe, and contact details.",
+        ],
+        fix:
+          "Ask for job type, site suburb, access notes, timeframe, name, and phone.",
+        visual: {
+          badTitle: "Vague Form",
+          badItems: ["Just a message box", "No site details", "No job type"],
+          goodTitle: "Useful Quote",
+          goodItems: ["Job type", "Site access", "Timeframe"],
+          takeaway: "A better form saves time before the first call.",
+        },
+      },
+      {
+        eyebrow: "Point 5",
+        title: "We build for local search and serious leads",
+        body: [
+          "The best enquiries often come from people looking for earthmoving help in a specific area. Your website should make that easy for Google and customers.",
+          "We build local wording, service pages, mobile speed, CTA tracking, and lead forms that focus on real jobs.",
+        ],
+        fix:
+          "Use local service pages, clear project types, and tracking for every form and important CTA.",
+        visual: {
+          badTitle: "Not Local",
+          badItems: ["No suburbs", "No service pages", "No tracking"],
+          goodTitle: "Local Leads",
+          goodItems: ["Service areas", "Tracked forms", "High-value jobs"],
+          takeaway: "Local search pages help the right customers find you.",
+        },
+      },
+    ],
+    faq: [
+      {
+        question: "What should an excavation website include?",
+        answer:
+          "It should include equipment, job types, service areas, project photos, reviews, a useful quote form, and clear CTAs.",
+      },
+      {
+        question: "Can BuildSpark build earthmoving websites from $250/month?",
+        answer:
+          "Yes. Eligible excavation and earthmoving websites can be built from $250/month, with final inclusions confirmed before you start.",
+      },
+      {
+        question: "Can the website help bring bigger project enquiries?",
+        answer:
+          "Yes. We structure the site around job types, proof, service areas, and quote details so serious customers can see if you are the right fit.",
+      },
+    ],
+    related: [
+      { title: "Websites Built for Tradies From $250/Month", href: "/blog/tradie-websites-250-month", readTime: "7 min read" },
+      { title: "500 Local Business Websites Analysed", href: "/blog/500-local-business-website-analysis", readTime: "9 min read" },
+    ],
+  },
+  {
+    slug: "security-cctv-installer-websites-lead-generator",
+    title: "Websites for Security & CCTV Installers - Turn Your Website Into a Lead Generator",
+    metaTitle: "Security & CCTV Installer Websites | BuildSpark",
+    description:
+      "Security and CCTV installer websites built to generate leads with clear packages, trust proof, local service pages, quote CTAs, and tracking.",
+    excerpt:
+      "Your CCTV and security website should explain the offer, build trust, and turn visitors into quote requests.",
+    category: "Security Websites",
+    date: "10 Aug 2026",
+    published: "2026-08-10",
+    readTime: "7 min read",
+    primaryKeyword: "security installer website",
+    secondaryKeywords: [
+      "CCTV installer website",
+      "security website design",
+      "CCTV installation leads",
+      "security business website",
+    ],
+    hero: "/images/business-owner-success.webp",
+    heroAlt: "Security installer checking website enquiries",
+    intro: [
+      "Security and CCTV buyers want trust before they book. BuildSpark builds installer websites that make packages, proof, areas, and quote requests simple.",
+    ],
+    quickWins: [
+      "Make CCTV and security services clear.",
+      "Show licence and trust proof.",
+      "Explain packages without confusing people.",
+      "Make quote requests easy.",
+      "Track lead actions properly.",
+    ],
+    sections: [
+      {
+        eyebrow: "Point 1",
+        title: "We make the offer clear straight away",
+        body: [
+          "People looking for CCTV or security help want to know what you install, where you work, and how to get a quote.",
+          "We make CCTV installation, alarms, access control, intercoms, and service areas clear before the visitor scrolls.",
+        ],
+        fix:
+          "Put your main security services, suburbs, and quote CTA in the first screen.",
+        visual: {
+          badTitle: "Unclear Offer",
+          badItems: ["Security solutions", "No area", "No quote button"],
+          goodTitle: "Clear Offer",
+          goodItems: ["CCTV installs", "Alarms", "Get a quote"],
+          takeaway: "Visitors should know what you install and how to enquire.",
+        },
+      },
+      {
+        eyebrow: "Point 2",
+        title: "We explain packages in plain English",
+        body: [
+          "Security products can get confusing fast. If the page feels technical, people put it off or call someone easier to understand.",
+          "We write package and service sections in plain words so homeowners and businesses can choose the right next step.",
+        ],
+        fix:
+          "Use simple package blocks for homes, businesses, CCTV, alarms, and access control.",
+        visual: {
+          badTitle: "Too Technical",
+          badItems: ["Jargon", "No package guide", "No simple next step"],
+          goodTitle: "Easy Packages",
+          goodItems: ["Home CCTV", "Business security", "Quote visit"],
+          takeaway: "Simple package wording gets more quote requests.",
+        },
+      },
+      {
+        eyebrow: "Point 3",
+        title: "We build trust into the page",
+        body: [
+          "Security work needs trust. People want to know you are reliable, licensed where required, and careful with their property.",
+          "We place reviews, licences, real install photos, brands you work with, and guarantees near the CTA.",
+        ],
+        fix:
+          "Show reviews, licence details, real installs, and a clear workmanship promise.",
+        visual: {
+          badTitle: "Doubt",
+          badItems: ["No install photos", "No reviews", "No licence proof"],
+          goodTitle: "Trusted Installer",
+          goodItems: ["Real installs", "Review stars", "Licensed team"],
+          takeaway: "Trust proof helps people invite you into their property.",
+        },
+      },
+      {
+        eyebrow: "Point 4",
+        title: "We make the enquiry form practical",
+        body: [
+          "A good security enquiry form should not be long, but it should ask the right basics.",
+          "We ask for property type, suburb, service needed, contact details, and a good time to call.",
+        ],
+        fix:
+          "Keep the form short, but include property type, suburb, service needed, and phone number.",
+        visual: {
+          badTitle: "Weak Form",
+          badItems: ["Only message box", "No property type", "No callback option"],
+          goodTitle: "Smart Quote",
+          goodItems: ["Home or business", "Service needed", "Call time"],
+          takeaway: "A practical form helps you quote faster.",
+        },
+      },
+      {
+        eyebrow: "Point 5",
+        title: "We turn the site into a lead system",
+        body: [
+          "A security website should not just look good. It should bring calls, form enquiries, and quote bookings you can track.",
+          "We build local service pages, strong CTAs, fast mobile design, and Meta Pixel event tracking so lead actions are measured.",
+        ],
+        fix:
+          "Track visits, quote clicks, form starts, and lead submissions from day one.",
+        visual: {
+          badTitle: "Just A Brochure",
+          badItems: ["No tracking", "No local pages", "No lead focus"],
+          goodTitle: "Lead Generator",
+          goodItems: ["Tracked forms", "Local pages", "Quote CTAs"],
+          takeaway: "A security website should show which actions create leads.",
+        },
+      },
+    ],
+    faq: [
+      {
+        question: "What should a CCTV installer website include?",
+        answer:
+          "It should include services, packages, service areas, reviews, licence or trust proof, install photos, quote CTAs, and lead tracking.",
+      },
+      {
+        question: "Can BuildSpark build websites for security installers?",
+        answer:
+          "Yes. We build websites for CCTV installers, alarm installers, access control providers, intercom installers, and security businesses.",
+      },
+      {
+        question: "Will the website track leads?",
+        answer:
+          "Yes. The site includes Meta Pixel tracking through the global setup, plus form and CTA event tracking where relevant.",
+      },
+    ],
+    related: [
+      { title: "Why Website Visitors Never Contact You", href: "/blog/why-73-percent-website-visitors-never-contact-you", readTime: "7 min read" },
+      { title: "Why Some Local Businesses Get 3x More Enquiries", href: "/blog/local-businesses-3x-more-enquiries", readTime: "7 min read" },
+    ],
+  },
 ];
 
 export const getAnalysisPost = (slug: string) =>
