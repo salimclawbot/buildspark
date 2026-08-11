@@ -76,6 +76,10 @@ function getOfferType(post: AnalysisPost) {
   return monthly250ArticleSlugs.has(post.slug) ? "250_month_website" : "150_month_website";
 }
 
+function usesArticleLeadFormAnchor(post: AnalysisPost) {
+  return post.slug === "tradie-websites-250-month";
+}
+
 function ComparisonImage({
   post,
   sectionTitle,
@@ -170,7 +174,7 @@ function ComparisonPanel({
   );
 }
 
-function AuditForm({ post }: { post: AnalysisPost }) {
+function AuditForm({ post, id }: { post: AnalysisPost; id?: string }) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const isDirectOffer = usesDirectOfferTemplate(post);
@@ -221,7 +225,7 @@ function AuditForm({ post }: { post: AnalysisPost }) {
   }
 
   return (
-    <div className="my-10 rounded-xl border border-amber-500/30 bg-amber-500/5 p-5 sm:p-7">
+    <div id={id} className="scroll-mt-24 my-10 rounded-xl border border-amber-500/30 bg-amber-500/5 p-5 sm:p-7">
       <div className="mb-5 flex items-start gap-3">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-500 text-black">
           <ShieldCheck className="h-5 w-5" />
@@ -251,35 +255,67 @@ function AuditForm({ post }: { post: AnalysisPost }) {
         />
         <input type="hidden" name="article" value={post.slug} />
         {isDirectOffer ? <input type="hidden" name="offer" value={`Brand new website from ${offerPrice} - August spots`} /> : null}
-        <input
-          name="business"
-          required
-          placeholder="Business name"
-          className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
-        />
-        <input
-          name="website"
-          required
-          placeholder="Website URL"
-          className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
-        />
-        <input
-          name="email"
-          type="email"
-          required
-          placeholder="Email"
-          className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
-        />
-        <input
-          name="phone"
-          placeholder="Phone (optional)"
-          className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
-        />
+        {isDirectOffer ? (
+          <>
+            <input
+              name="name"
+              required
+              placeholder="Your name"
+              className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
+            />
+            <input
+              name="business"
+              required
+              placeholder="Business name"
+              className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
+            />
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="Email"
+              className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
+            />
+            <input
+              name="phone"
+              required
+              placeholder="Phone number"
+              className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
+            />
+          </>
+        ) : (
+          <>
+            <input
+              name="business"
+              required
+              placeholder="Business name"
+              className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
+            />
+            <input
+              name="website"
+              required
+              placeholder="Website URL"
+              className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
+            />
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="Email"
+              className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
+            />
+            <input
+              name="phone"
+              placeholder="Phone (optional)"
+              className="rounded-lg border border-zinc-800 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-amber-500"
+            />
+          </>
+        )}
         <Button type="submit" disabled={submitting} className="sm:col-span-2">
           {submitting
             ? "Submitting..."
             : isDirectOffer
-              ? `Check If I Can Get a ${offerPrice} Website`
+              ? `Get Started With a ${offerPrice} Website`
               : "Send My Free Website Audit"}
         </Button>
       </form>
@@ -296,10 +332,16 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
   const isDirectOffer = usesDirectOfferTemplate(post);
   const websiteOfferLabel = getWebsiteOfferLabel(post);
   const offerPrice = getOfferPrice(post);
+  const useLeadFormAnchor = usesArticleLeadFormAnchor(post);
+  const leadFormHref = useLeadFormAnchor ? "#article-lead-form" : "/quiz";
 
   return (
     <main className="min-h-screen bg-background">
-      <Navbar />
+      <Navbar
+        ctaLabel={useLeadFormAnchor ? "Get Started" : undefined}
+        ctaHref={useLeadFormAnchor ? "#article-lead-form" : undefined}
+        singleCta={useLeadFormAnchor}
+      />
 
       <section className="relative overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-20">
         <div className="absolute inset-0">
@@ -349,46 +391,49 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
             ) : null}
 
             {post.sections.map((section, index) => (
-              <section key={section.title} className={isDirectOffer ? "mt-14" : "mt-12"}>
-                <p className="mb-2 text-sm font-bold uppercase text-amber-400">{section.eyebrow}</p>
-                <h2 className={isDirectOffer ? "mb-5 text-3xl font-bold text-white" : "mb-4 text-2xl font-bold text-white"}>{section.title}</h2>
-                {section.body.map((paragraph, paragraphIndex) => (
-                  <p
-                    key={paragraph}
+              <div key={section.title}>
+                {useLeadFormAnchor && index === 1 ? <AuditForm post={post} id="article-lead-form" /> : null}
+                <section className={isDirectOffer ? "mt-14" : "mt-12"}>
+                  <p className="mb-2 text-sm font-bold uppercase text-amber-400">{section.eyebrow}</p>
+                  <h2 className={isDirectOffer ? "mb-5 text-3xl font-bold text-white" : "mb-4 text-2xl font-bold text-white"}>{section.title}</h2>
+                  {section.body.map((paragraph, paragraphIndex) => (
+                    <p
+                      key={paragraph}
+                      className={
+                        isDirectOffer && paragraphIndex === 0
+                          ? "mb-4 border-l-4 border-amber-500 pl-4 text-xl font-semibold leading-relaxed text-white"
+                          : "mb-4 text-lg leading-relaxed text-zinc-300"
+                      }
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                  <div
                     className={
-                      isDirectOffer && paragraphIndex === 0
-                        ? "mb-4 border-l-4 border-amber-500 pl-4 text-xl font-semibold leading-relaxed text-white"
-                        : "mb-4 text-lg leading-relaxed text-zinc-300"
+                      isDirectOffer
+                        ? "mb-6 rounded-lg border border-amber-500/40 bg-amber-500/10 p-5"
+                        : "mb-6 rounded-lg border border-zinc-800 bg-zinc-900/70 p-4"
                     }
                   >
-                    {paragraph}
-                  </p>
-                ))}
-                <div
-                  className={
-                    isDirectOffer
-                      ? "mb-6 rounded-lg border border-amber-500/40 bg-amber-500/10 p-5"
-                      : "mb-6 rounded-lg border border-zinc-800 bg-zinc-900/70 p-4"
-                  }
-                >
-                  <p className={isDirectOffer ? "text-lg leading-relaxed text-zinc-100" : "text-zinc-300"}>
-                    <strong className={isDirectOffer ? "text-xl text-amber-300" : "text-white"}>
-                      {isDirectOffer ? "Fix this:" : "What to do:"}
-                    </strong>{" "}
-                    {section.fix}
-                  </p>
-                </div>
-                <ComparisonImage
-                  post={post}
-                  sectionTitle={section.title}
-                  takeaway={section.visual.takeaway}
-                  index={index + 1}
-                />
-                {!isDirectOffer ? <ComparisonPanel visual={section.visual} fix={section.fix} /> : null}
-              </section>
+                    <p className={isDirectOffer ? "text-lg leading-relaxed text-zinc-100" : "text-zinc-300"}>
+                      <strong className={isDirectOffer ? "text-xl text-amber-300" : "text-white"}>
+                        {isDirectOffer ? "Fix this:" : "What to do:"}
+                      </strong>{" "}
+                      {section.fix}
+                    </p>
+                  </div>
+                  <ComparisonImage
+                    post={post}
+                    sectionTitle={section.title}
+                    takeaway={section.visual.takeaway}
+                    index={index + 1}
+                  />
+                  {!isDirectOffer ? <ComparisonPanel visual={section.visual} fix={section.fix} /> : null}
+                </section>
+              </div>
             ))}
 
-            <AuditForm post={post} />
+            <AuditForm post={post} id={useLeadFormAnchor ? undefined : "article-lead-form"} />
 
             <section className="mt-12">
               <h2 className="mb-6 text-2xl font-bold text-white">Frequently Asked Questions</h2>
@@ -415,7 +460,7 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
                   : "BuildSpark builds fast, local-focused websites that make the next step obvious. Submit your site above or start the quiz and we'll show you what we'd fix first."}
               </p>
               <Button asChild size="lg" className="mt-5">
-                <Link href="/quiz">
+                <Link href={isDirectOffer ? "#article-lead-form" : leadFormHref}>
                   {isDirectOffer ? `Start My ${offerPrice} Website` : "Start Your Free Quiz"} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

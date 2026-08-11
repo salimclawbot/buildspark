@@ -25,7 +25,17 @@ const navLinks = [
   { label: "About", href: "/about" },
 ];
 
-export function Navbar() {
+type NavbarProps = {
+  ctaLabel?: string;
+  ctaHref?: string;
+  singleCta?: boolean;
+};
+
+export function Navbar({
+  ctaLabel = "Start Quiz →",
+  ctaHref = "/quiz",
+  singleCta = false,
+}: NavbarProps = {}) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -109,11 +119,13 @@ export function Navbar() {
                 </Link>
               )
             )}
-            <Button asChild variant="outline" size="default">
-              <Link href="/free-website-audit">Free Audit</Link>
-            </Button>
+            {!singleCta ? (
+              <Button asChild variant="outline" size="default">
+                <Link href="/free-website-audit">Free Audit</Link>
+              </Button>
+            ) : null}
             <Button asChild size="default">
-              <Link href="/quiz">Start Quiz →</Link>
+              <Link href={ctaHref}>{ctaLabel}</Link>
             </Button>
           </div>
 
@@ -164,11 +176,15 @@ export function Navbar() {
                   )}
                 </div>
               ))}
-              <Button asChild variant="outline" size="lg" className="mt-2 w-full">
-                <Link href="/free-website-audit">Free Audit</Link>
-              </Button>
+              {!singleCta ? (
+                <Button asChild variant="outline" size="lg" className="mt-2 w-full">
+                  <Link href="/free-website-audit">Free Audit</Link>
+                </Button>
+              ) : null}
               <Button asChild size="lg" className="mt-2 w-full">
-                <Link href="/quiz">Start Quiz →</Link>
+                <Link href={ctaHref} onClick={() => setMobileOpen(false)}>
+                  {ctaLabel}
+                </Link>
               </Button>
             </div>
           </motion.div>
