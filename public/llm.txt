@@ -1,0 +1,25 @@
+# BuildSpark
+
+The canonical AI summary file for BuildSpark is available at:
+
+https://buildspark.com.au/llms.txt
+
+BuildSpark builds affordable, conversion-focused websites for Victorian tradies and local businesses. Core pages include:
+
+- https://buildspark.com.au
+- https://buildspark.com.au/services
+- https://buildspark.com.au/services/tradies
+- https://buildspark.com.au/locations
+- https://buildspark.com.au/blog
+- https://buildspark.com.au/contact
+- https://buildspark.com.au/free-website-audit
+
+Key offer pages:
+
+- https://buildspark.com.au/blog/tradie-websites-250-month
+- https://buildspark.com.au/blog/plumber-websites-250-month
+- https://buildspark.com.au/blog/electrician-websites-250-month
+- https://buildspark.com.au/blog/excavation-earthmoving-websites-250-month
+- https://buildspark.com.au/blog/security-cctv-installer-websites-lead-generator
+
+For full AI-readable context, use https://buildspark.com.au/llms.txt.
