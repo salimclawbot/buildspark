@@ -2,7 +2,12 @@
 
 import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { trackGAEvent, trackMetaEvent, trackMetaStandardEvent } from "@/lib/meta-pixel";
+import {
+  trackGAEvent,
+  trackMetaEvent,
+  trackMetaStandardEvent,
+  trackRedditEvent,
+} from "@/lib/meta-pixel";
 
 function getClickLabel(element: Element) {
   return (
@@ -53,6 +58,7 @@ function getFormName(form: HTMLFormElement) {
 function trackFunnelEvent(eventName: string, params: Record<string, string | number | boolean | undefined>) {
   trackMetaEvent(eventName, params);
   trackGAEvent(eventName.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`).replace(/^_/, ""), params);
+  trackRedditEvent(eventName, params);
 }
 
 function getPageMeta() {
@@ -76,6 +82,7 @@ export function MetaPixelEvents() {
   useEffect(() => {
     trackGAEvent("page_view", getPageMeta());
     trackMetaStandardEvent("PageView");
+    trackRedditEvent("PageVisit", getPageMeta());
   }, [pathname, searchParams]);
 
   useEffect(() => {

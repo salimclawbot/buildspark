@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Suspense } from "react";
 import { MetaPixelEvents } from "@/components/MetaPixelEvents";
-import { META_PIXEL_ID } from "@/lib/meta-pixel";
+import { META_PIXEL_ID, REDDIT_PIXEL_ID } from "@/lib/meta-pixel";
 import "./globals.css";
 
 const inter = Inter({
@@ -151,6 +151,12 @@ export default function RootLayout({
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
           fbq('init', '${META_PIXEL_ID}');
+        `}
+      </Script>
+      <Script id="reddit-pixel-init" strategy="afterInteractive">
+        {`
+          !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=${REDDIT_PIXEL_ID}",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+          rdt('init','${REDDIT_PIXEL_ID}');
         `}
       </Script>
       <noscript
