@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 const footerLinks = {
   Company: [
-    { label: "Free Website Quiz", href: "/quiz" },
+    { label: "Website Quiz", href: "/quiz" },
     { label: "About", href: "/about" },
     { label: "Portfolio", href: "/portfolio" },
     { label: "Case Studies", href: "/case-studies" },
@@ -54,7 +54,7 @@ export function Footer() {
             fluff, no nonsense - just results.
           </p>
           <Button asChild size="lg" className="text-base px-10">
-            <Link href="/quiz">Start Your Free Quiz →</Link>
+            <Link href="/quiz">Start the Website Quiz →</Link>
           </Button>
         </motion.div>
       </section>

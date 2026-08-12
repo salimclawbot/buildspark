@@ -2,14 +2,14 @@ import { Metadata } from "next";
 import PricingClient from "./PricingClient";
 
 export const metadata: Metadata = {
-  title: "Website Pricing | From $490 | BuildSpark",
+  title: "Website Pricing | $250/Month | BuildSpark",
   description:
-    "Straightforward pricing for Victorian local business websites. No hidden fees. No lock-in contracts.",
+    "BuildSpark websites are $250 per month with website build, hosting, security, backups, monthly changes, content updates, SEO foundations, and lead tracking.",
   alternates: { canonical: "https://buildspark.com.au/pricing" },
   openGraph: {
-    title: "Website Pricing | From $490 | BuildSpark",
+    title: "Website Pricing | $250/Month | BuildSpark",
     description:
-      "Straightforward pricing for Victorian local business websites. No hidden fees. No lock-in contracts.",
+      "One clear website plan: $250 per month for the website, care, content updates, and lead tracking.",
     url: "https://buildspark.com.au/pricing",
     siteName: "BuildSpark",
     type: "website",
@@ -25,7 +25,7 @@ const faqSchema = {
       name: "What is included?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Every plan includes design, development, mobile optimisation, basic SEO, and a contact form. Higher tiers add more pages, local SEO, Google Business setup, and revision rounds.",
+        text: "The $250/month plan includes website design and build, hosting, domain setup support, SSL/security basics, backups, monthly changes, monthly content or page updates, SEO foundations, and lead tracking. Final scope is confirmed after the quiz.",
       },
     },
     {
@@ -33,7 +33,7 @@ const faqSchema = {
       name: "How fast is delivery?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Our Starter plan can be delivered in as fast as 48 hours. Business plans take around 5 days, and Growth plans around 1 week. We'll confirm your timeline before we start.",
+        text: "Timeline depends on the site size, content, and availability for the month. BuildSpark confirms the recommended timeline after reviewing the website quiz.",
       },
     },
     {
@@ -49,7 +49,7 @@ const faqSchema = {
       name: "Can I update the site myself?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. We can set you up with a simple content management system, or you can add a Care Plan and we'll handle all updates for you.",
+        text: "BuildSpark can handle monthly changes, content updates, hosting, backups, security basics, and support as part of the $250/month website plan.",
       },
     },
     {

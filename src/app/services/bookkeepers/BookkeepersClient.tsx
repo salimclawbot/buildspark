@@ -123,11 +123,11 @@ export default function BookkeepersClient() {
           className="max-w-3xl mx-auto px-4 sm:px-6 text-center"
         >
           <Card className="border-amber-500/30 bg-amber-500/5">
-            <p className="text-zinc-400 mb-2">Websites for bookkeepers from</p>
-            <p className="text-4xl font-bold text-amber-500 mb-2">$490</p>
-            <p className="text-zinc-500 text-sm mb-4">One-off payment. No lock-in. Delivered in 48 hours.</p>
-            <Link href="/pricing" className="text-amber-500 hover:underline text-sm font-medium">
-              See full pricing →
+            <p className="text-zinc-400 mb-2">Managed websites for bookkeepers</p>
+            <p className="text-4xl font-bold text-amber-500 mb-2">$250/month</p>
+            <p className="text-zinc-500 text-sm mb-4">Website, hosting, care, updates, content and lead tracking.</p>
+            <Link href="/quiz" className="text-amber-500 hover:underline text-sm font-medium">
+              Start the website quiz →
             </Link>
           </Card>
         </motion.div>

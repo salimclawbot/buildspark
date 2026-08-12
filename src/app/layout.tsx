@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://buildspark.com.au"),
   title: "BuildSpark | Victorian Web Design for Local Business",
   description:
-    "Fast, sharp websites for Victorian local businesses. Tradies, cafes, bookkeepers, mechanics. More calls, more customers. From $490.",
+    "Modern, high-converting websites for local businesses. Website, hosting, security, backups, monthly changes, content, and lead tracking for $250 per month.",
   keywords: [
     "web design",
     "Victoria",
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "BuildSpark | Websites for Victorian Local Businesses",
+    title: "BuildSpark | Websites for Local Businesses | $250/Month",
     description:
-      "Fast, affordable websites for tradies, cafes, bakeries, mechanics and bookkeepers across Victoria. From $490.",
+      "Fast, affordable websites for trades, clinics, hospitality, equine, professional services and local businesses. $250 per month.",
     url: "https://buildspark.com.au",
     siteName: "BuildSpark",
     images: [
@@ -54,9 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BuildSpark | Websites for Victorian Local Businesses",
+    title: "BuildSpark | Websites for Local Businesses | $250/Month",
     description:
-      "Fast, affordable websites for local Victorian businesses. From $490.",
+      "Fast, affordable websites for local businesses. $250 per month.",
     images: ["https://buildspark.com.au/images/hero-workspace.webp"],
   },
   verification: {
@@ -80,7 +80,7 @@ export default function RootLayout({
               "@type": "ProfessionalService",
               name: "BuildSpark",
               description:
-                "Fast, affordable websites for Victorian local businesses",
+                "Modern, high-converting websites for local businesses",
               url: "https://buildspark.com.au",
               telephone: "1300775271",
               email: "info@buildspark.com.au",
@@ -89,7 +89,7 @@ export default function RootLayout({
                 name: "Victoria",
                 containedIn: "Australia",
               },
-              priceRange: "$490 - $1,290",
+              priceRange: "$250/month",
               aggregateRating: {
                 "@type": "AggregateRating",
                 ratingValue: "4.9",

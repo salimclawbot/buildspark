@@ -57,9 +57,10 @@ export default function TermsPage() {
 
           <h2 className="text-xl font-semibold text-white mt-8">Revisions</h2>
           <p>
-            Each plan includes revision rounds as specified (Starter: 0,
-            Business: 1, Growth: 2). Additional revisions can be arranged at a
-            fair hourly rate.
+            The $250/month website plan includes monthly changes and practical
+            care. Any larger custom features, integrations, ecommerce, or
+            extensive rebuild requests will be scoped separately before work
+            starts.
           </p>
 
           <h2 className="text-xl font-semibold text-white mt-8">
@@ -72,12 +73,13 @@ export default function TermsPage() {
           </p>
 
           <h2 className="text-xl font-semibold text-white mt-8">
-            Care Plan
+            Monthly Website Plan
           </h2>
           <p>
-            The optional Care Plan ($49/month) covers hosting, domain, security
-            updates, backups, content updates, and priority support. There are no
-            lock-in contracts and you can cancel at any time.
+            The monthly website plan covers hosting, domain setup support,
+            security basics, backups, monthly changes, content or page updates,
+            and support. There are no lock-in contracts and you can cancel at
+            any time, subject to any agreed project-specific terms.
           </p>
 
           <h2 className="text-xl font-semibold text-white mt-8">

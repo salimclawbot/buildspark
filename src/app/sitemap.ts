@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages: { url: string; priority: number; changeFrequency: Freq }[] = [
     { url: `${BASE_URL}`, priority: 1.0, changeFrequency: "weekly" },
+    { url: `${BASE_URL}/local-business-websites`, priority: 0.9, changeFrequency: "weekly" },
     { url: `${BASE_URL}/about`, priority: 0.8, changeFrequency: "weekly" },
     { url: `${BASE_URL}/services`, priority: 0.9, changeFrequency: "weekly" },
     { url: `${BASE_URL}/services/tradies`, priority: 0.9, changeFrequency: "weekly" },
@@ -18,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/services/bakeries`, priority: 0.9, changeFrequency: "weekly" },
     { url: `${BASE_URL}/services/mechanics`, priority: 0.9, changeFrequency: "weekly" },
     { url: `${BASE_URL}/services/bookkeepers`, priority: 0.9, changeFrequency: "weekly" },
-    { url: `${BASE_URL}/pricing`, priority: 0.8, changeFrequency: "weekly" },
+    { url: `${BASE_URL}/pricing`, priority: 0.4, changeFrequency: "monthly" },
     { url: `${BASE_URL}/contact`, priority: 0.8, changeFrequency: "weekly" },
     { url: `${BASE_URL}/portfolio`, priority: 0.8, changeFrequency: "weekly" },
     { url: `${BASE_URL}/locations`, priority: 0.8, changeFrequency: "weekly" },

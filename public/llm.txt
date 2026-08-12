@@ -4,10 +4,11 @@ The canonical AI summary file for BuildSpark is available at:
 
 https://buildspark.com.au/llms.txt
 
-BuildSpark builds affordable, conversion-focused websites for Victorian tradies and local businesses. Core pages include:
+BuildSpark builds affordable, conversion-focused websites for local businesses for $250 per month. Core pages include:
 
 - https://buildspark.com.au
 - https://buildspark.com.au/services
+- https://buildspark.com.au/local-business-websites
 - https://buildspark.com.au/services/tradies
 - https://buildspark.com.au/locations
 - https://buildspark.com.au/blog

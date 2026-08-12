@@ -1,85 +1,89 @@
 "use client";
 
-import { useState, FormEvent, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { FormEvent, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trackLead, trackMetaStandardEvent } from "@/lib/meta-pixel";
 
+const TOTAL_STEPS = 6;
+
 const businessTypes = [
-  "Tradie",
-  "Cafe / Restaurant",
-  "Bakery",
-  "Mechanic",
-  "Bookkeeper / Accountant",
-  "Other",
+  "Tradie / contractor",
+  "Dental / medical clinic",
+  "Surgeon / specialist",
+  "Equine / horse business",
+  "Cafe / restaurant",
+  "Health / wellness",
+  "Professional service",
+  "Retail / ecommerce",
+  "Security / CCTV",
+  "Other local business",
 ];
 
-const websiteGoals = [
-  "Get more phone calls",
-  "Get online bookings",
-  "Get enquiry forms filled",
-  "Sell products online",
-  "Just look professional",
+const currentWebsiteOptions = [
+  "No website yet",
+  "Old website that needs replacing",
+  "DIY website",
+  "Good website, but not enough leads",
+  "Not sure",
+];
+
+const goals = [
+  "More phone calls",
+  "More form enquiries",
+  "More bookings",
+  "Look more premium",
+  "Show services clearly",
+  "Rank better locally",
+  "Track leads properly",
+  "Replace a messy old site",
+];
+
+const timelineOptions = [
+  "As soon as possible",
+  "This month",
+  "Next month",
+  "Planning ahead",
 ];
 
 const styleOptions = [
-  { name: "Clean & Minimal", description: "Simple, modern, lots of white space" },
-  { name: "Bold & Colourful", description: "Eye-catching, vibrant, stands out" },
-  { name: "Professional & Corporate", description: "Polished, trustworthy, serious" },
-  { name: "Warm & Friendly", description: "Inviting, personal, approachable" },
+  "Premium and professional",
+  "Clean and simple",
+  "Warm and local",
+  "Bold and high-end",
+  "Not sure - recommend it",
 ];
 
-const TOTAL_STEPS = 6;
-
 const slideVariants = {
-  enter: (direction: number) => ({
-    x: direction > 0 ? 300 : -300,
-    opacity: 0,
-  }),
+  enter: (direction: number) => ({ x: direction > 0 ? 260 : -260, opacity: 0 }),
   center: { x: 0, opacity: 1 },
-  exit: (direction: number) => ({
-    x: direction > 0 ? -300 : 300,
-    opacity: 0,
-  }),
+  exit: (direction: number) => ({ x: direction > 0 ? -260 : 260, opacity: 0 }),
 };
 
 export default function QuizPage() {
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState(1);
   const [submitted, setSubmitted] = useState(false);
-
-  // Step 1
   const [businessType, setBusinessType] = useState("");
   const [otherBusinessType, setOtherBusinessType] = useState("");
-  // Step 2
   const [businessName, setBusinessName] = useState("");
-  const [suburb, setSuburb] = useState("");
-  // Step 3
-  const [goals, setGoals] = useState<string[]>([]);
-  // Step 4
+  const [location, setLocation] = useState("");
+  const [currentWebsite, setCurrentWebsite] = useState("");
+  const [currentWebsiteUrl, setCurrentWebsiteUrl] = useState("");
+  const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
+  const [timeline, setTimeline] = useState("");
   const [style, setStyle] = useState("");
-  const [hasLogo, setHasLogo] = useState<boolean | null>(null);
-  // Step 5
+  const [notes, setNotes] = useState("");
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [currentWebsite, setCurrentWebsite] = useState("");
-  // Plan selection (step 6 + URL param)
-  const [selectedPlan, setSelectedPlan] = useState("");
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const plan = params.get("plan");
-    if (plan) {
-      const planMap: Record<string, string> = {
-        starter: "Starter — $490",
-        business: "Business — $790",
-        growth: "Growth — $1,290",
-      };
-      if (planMap[plan]) setSelectedPlan(planMap[plan]);
-    }
-  }, []);
+  const currentMonth = useMemo(
+    () => new Intl.DateTimeFormat("en-AU", { month: "long" }).format(new Date()),
+    []
+  );
 
   function goNext() {
     setDirection(1);
@@ -92,32 +96,28 @@ export default function QuizPage() {
   }
 
   function toggleGoal(goal: string) {
-    setGoals((prev) =>
-      prev.includes(goal) ? prev.filter((g) => g !== goal) : [...prev, goal]
+    setSelectedGoals((prev) =>
+      prev.includes(goal) ? prev.filter((item) => item !== goal) : [...prev, goal]
     );
   }
 
-  function canProceed(): boolean {
-    switch (step) {
-      case 1:
-        return businessType !== "" && (businessType !== "Other" || otherBusinessType.trim() !== "");
-      case 2:
-        return businessName.trim() !== "" && suburb.trim() !== "";
-      case 3:
-        return goals.length > 0;
-      case 4:
-        return style !== "" && hasLogo !== null;
-      case 5:
-        return fullName.trim() !== "" && email.trim() !== "" && phone.trim() !== "";
-      case 6:
-        return selectedPlan !== "";
-      default:
-        return false;
+  function canProceed() {
+    if (step === 1) {
+      return businessType !== "" && (businessType !== "Other local business" || otherBusinessType.trim() !== "");
     }
+    if (step === 2) return businessName.trim() !== "" && location.trim() !== "";
+    if (step === 3) return currentWebsite !== "";
+    if (step === 4) return selectedGoals.length > 0;
+    if (step === 5) return timeline !== "" && style !== "";
+    if (step === 6) return fullName.trim() !== "" && email.trim() !== "" && phone.trim() !== "";
+    return false;
   }
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const resolvedBusinessType =
+      businessType === "Other local business" ? `Other: ${otherBusinessType}` : businessType;
+
     try {
       await fetch("https://formsubmit.co/ajax/info@buildspark.com.au", {
         method: "POST",
@@ -126,386 +126,324 @@ export default function QuizPage() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          _subject: "New Quiz Submission - BuildSpark",
+          _subject: `New $250 Website Quiz Lead - ${currentMonth}`,
           _captcha: "false",
           _template: "table",
-          "Business Type": businessType === "Other" ? `Other: ${otherBusinessType}` : businessType,
+          "Business Type": resolvedBusinessType,
           "Business Name": businessName,
-          "Suburb / Location": suburb,
-          "Website Goals": goals.join(", "),
+          Location: location,
+          "Current Website Status": currentWebsite,
+          "Current Website URL": currentWebsiteUrl || "N/A",
+          Goals: selectedGoals.join(", "),
+          Timeline: timeline,
           "Preferred Style": style,
-          "Has Logo": hasLogo === null ? "" : hasLogo ? "Yes" : "No",
+          Notes: notes || "N/A",
           "Full Name": fullName,
           Email: email,
           Phone: phone,
-          "Current Website": currentWebsite || "N/A",
-          "Interested Plan": selectedPlan,
+          Offer: "$250 per month website plan",
+          "Month Spot": currentMonth,
         }),
       });
     } catch {
-      // Still show success - email may have sent
+      // Keep the user moving even if the mail provider is slow.
     }
-    trackLead("Website Quiz", {
-      business_type: businessType === "Other" ? "Other" : businessType,
-      selected_plan: selectedPlan,
+
+    trackLead("Website Quiz - $250 Monthly Plan", {
+      business_type: resolvedBusinessType,
+      timeline,
+      month_spot: currentMonth,
+      offer: "250_per_month",
     });
     trackMetaStandardEvent("CompleteRegistration", {
-      content_name: "Website Quiz",
+      content_name: "Website Quiz - $250 Monthly Plan",
       status: "submitted",
+      month_spot: currentMonth,
     });
     setSubmitted(true);
   }
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center px-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-lg"
-        >
-          <div className="text-8xl mb-8">⚡</div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            We are on it.
-          </h1>
-          <p className="text-lg text-zinc-400 mb-10">
-            Expect your homepage preview within 24 hours. We will be in touch at{" "}
-            <span className="text-amber-500">{email}</span>.
+      <main className="flex min-h-screen items-center justify-center bg-zinc-950 px-4 text-white">
+        <div className="max-w-xl text-center">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-amber-500 text-zinc-950">
+            <CheckCircle2 className="h-10 w-10" />
+          </div>
+          <h1 className="text-4xl font-black tracking-tight sm:text-5xl">You are on the list for {currentMonth}.</h1>
+          <p className="mt-5 text-lg leading-8 text-zinc-300">
+            We have your details. We will review your business and come back with the right website plan for the $250/month setup.
           </p>
-          <Button asChild size="lg" className="text-base px-8">
-            <Link href="/">Back to Home</Link>
+          <Button asChild size="lg" className="mt-8 rounded-none px-8">
+            <Link href="/">Back to BuildSpark</Link>
           </Button>
-        </motion.div>
-      </div>
+        </div>
+      </main>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      {/* Progress bar */}
-      <div className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-zinc-800/50">
-        <div className="max-w-2xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-zinc-400">
-              Step {step} of {TOTAL_STEPS}
-            </span>
-            {step > 1 && (
-              <button
-                onClick={goBack}
-                className="text-sm text-zinc-400 hover:text-white transition-colors"
-              >
-                ← Back
-              </button>
-            )}
+    <main className="min-h-screen bg-[#f7f7f4] text-zinc-950">
+      <div className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur-xl">
+        <div className="mx-auto max-w-3xl px-4 py-4">
+          <div className="mb-3 flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-1 font-black">
+              <span>Build</span><span className="text-amber-500">Spark</span>
+            </Link>
+            <span className="text-sm font-semibold text-zinc-500">Step {step} of {TOTAL_STEPS}</span>
           </div>
-          <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+          <div className="h-2 overflow-hidden bg-zinc-200">
             <motion.div
-              className="h-full bg-amber-500 rounded-full"
-              initial={false}
+              className="h-full bg-amber-500"
               animate={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.25 }}
             />
           </div>
         </div>
       </div>
 
-      {/* Step content */}
-      <div className="flex-1 flex items-center justify-center px-4 py-12 pb-32">
-        <div className="w-full max-w-2xl">
+      <section className="mx-auto grid min-h-[calc(100vh-81px)] max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:px-8">
+        <aside className="hidden lg:block">
+          <div className="border border-zinc-200 bg-white p-8 shadow-xl">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-4 py-2 text-sm font-bold text-amber-700">
+              <Sparkles className="h-4 w-4" />
+              {currentMonth} website spots
+            </div>
+            <h1 className="text-5xl font-black leading-none tracking-tight">
+              Get your $250/month website plan.
+            </h1>
+            <p className="mt-5 text-lg leading-8 text-zinc-600">
+              Answer a few quick questions. We will work out what your business needs, what pages matter, and whether we can take it on this month.
+            </p>
+            <div className="mt-8 space-y-3 text-sm font-semibold text-zinc-700">
+              {[
+                "Website, hosting, care, content and tracking",
+                "Built for your industry, not a generic template",
+                "No $3,000-$5,000 upfront website bill",
+              ].map((item) => (
+                <div key={item} className="flex gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        <form onSubmit={handleSubmit} className="w-full">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={step}
               custom={direction}
               variants={slideVariants}
-              initial="enter"
+              initial={step === 1 ? "center" : "enter"}
               animate="center"
               exit="exit"
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="border border-zinc-200 bg-white p-5 shadow-xl sm:p-8"
             >
               {step === 1 && (
-                <div>
-                  <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
-                    What type of business do you run?
-                  </h2>
-                  <div className="grid grid-cols-2 gap-2">
-                    {businessTypes.map((type) => (
-                      <button
-                        key={type}
-                        onClick={() => setBusinessType(type)}
-                        className={`p-3 rounded-xl border text-left text-sm font-medium transition-all duration-200 ${
-                          businessType === type
-                            ? "border-amber-500 bg-amber-500/10 text-amber-500"
-                            : "border-zinc-800 bg-surface text-white hover:border-zinc-600"
-                        }`}
-                      >
-                        {type}
-                      </button>
-                    ))}
-                  </div>
-                  {businessType === "Other" && (
-                    <div className="mt-4">
-                      <label className="block text-sm text-zinc-400 mb-2">What industry are you in? <span className="text-amber-500">*</span></label>
-                      <input
-                        type="text"
-                        value={otherBusinessType}
-                        onChange={(e) => setOtherBusinessType(e.target.value)}
-                        placeholder="e.g. Landscaper, Photographer, Dentist..."
-                        className="w-full rounded-xl border border-zinc-800 bg-surface px-4 py-3 text-white placeholder:text-zinc-600 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-colors"
-                        autoFocus
-                        required
-                      />
-                    </div>
+                <QuizStep title="What type of business are we building this for?" subtitle="Pick the closest fit. If it is niche, that is fine. We build around the business.">
+                  <OptionGrid options={businessTypes} value={businessType} onChange={setBusinessType} />
+                  {businessType === "Other local business" && (
+                    <TextInput label="What industry are you in?" value={otherBusinessType} onChange={setOtherBusinessType} placeholder="e.g. cosmetic surgeon, horse trainer, legal firm" />
                   )}
-                </div>
+                </QuizStep>
               )}
 
               {step === 2 && (
-                <div>
-                  <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
-                    Tell us about your business
-                  </h2>
-                  <div className="space-y-6">
-                    <div>
-                      <label className="block text-sm text-zinc-400 mb-2">
-                        Business name
-                      </label>
-                      <input
-                        type="text"
-                        value={businessName}
-                        onChange={(e) => setBusinessName(e.target.value)}
-                        placeholder="e.g. Smith's Plumbing"
-                        className="w-full h-12 px-4 rounded-xl border border-zinc-800 bg-surface text-white placeholder:text-zinc-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-zinc-400 mb-2">
-                        Suburb / Location
-                      </label>
-                      <input
-                        type="text"
-                        value={suburb}
-                        onChange={(e) => setSuburb(e.target.value)}
-                        placeholder="e.g. Geelong, VIC"
-                        className="w-full h-12 px-4 rounded-xl border border-zinc-800 bg-surface text-white placeholder:text-zinc-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
-                      />
-                    </div>
-                  </div>
-                </div>
+                <QuizStep title="Tell us the business basics." subtitle="This helps us check your market, location and best page structure.">
+                  <TextInput label="Business name" value={businessName} onChange={setBusinessName} placeholder="e.g. Valley Equine Care" />
+                  <TextInput label="Location / service area" value={location} onChange={setLocation} placeholder="e.g. Geelong, Mornington Peninsula, Victoria-wide" />
+                </QuizStep>
               )}
 
               {step === 3 && (
-                <div>
-                  <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2">
-                    What do you want your website to do?
-                  </h2>
-                  <p className="text-zinc-400 mb-8">Select all that apply</p>
-                  <div className="space-y-3">
-                    {websiteGoals.map((goal) => (
-                      <button
-                        key={goal}
-                        onClick={() => toggleGoal(goal)}
-                        className={`w-full p-5 rounded-xl border text-left text-lg font-medium transition-all duration-200 flex items-center gap-4 ${
-                          goals.includes(goal)
-                            ? "border-amber-500 bg-amber-500/10 text-amber-500"
-                            : "border-zinc-800 bg-surface text-white hover:border-zinc-600"
-                        }`}
-                      >
-                        <span
-                          className={`w-6 h-6 rounded-md border-2 flex items-center justify-center shrink-0 transition-colors ${
-                            goals.includes(goal)
-                              ? "border-amber-500 bg-amber-500"
-                              : "border-zinc-600"
-                          }`}
-                        >
-                          {goals.includes(goal) && (
-                            <svg className="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                              <path d="M5 13l4 4L19 7" />
-                            </svg>
-                          )}
-                        </span>
-                        {goal}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                <QuizStep title="What is happening with your website now?" subtitle="No judgement. This just tells us whether we are building from scratch or replacing something.">
+                  <OptionGrid options={currentWebsiteOptions} value={currentWebsite} onChange={setCurrentWebsite} />
+                  <TextInput label="Current website URL, if you have one" value={currentWebsiteUrl} onChange={setCurrentWebsiteUrl} placeholder="https://yourbusiness.com.au" required={false} />
+                </QuizStep>
               )}
 
               {step === 4 && (
-                <div>
-                  <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
-                    What style do you like?
-                  </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                    {styleOptions.map((opt) => (
+                <QuizStep title="What should the new website actually do?" subtitle="Choose every outcome that matters. We will use this to shape the website plan.">
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {goals.map((goal) => (
                       <button
-                        key={opt.name}
-                        onClick={() => setStyle(opt.name)}
-                        className={`p-6 rounded-xl border text-left transition-all duration-200 ${
-                          style === opt.name
-                            ? "border-amber-500 bg-amber-500/10"
-                            : "border-zinc-800 bg-surface hover:border-zinc-600"
+                        type="button"
+                        key={goal}
+                        onClick={() => toggleGoal(goal)}
+                        className={`border p-4 text-left font-semibold transition ${
+                          selectedGoals.includes(goal)
+                            ? "border-amber-500 bg-amber-50 text-zinc-950"
+                            : "border-zinc-200 bg-white text-zinc-700 hover:border-zinc-400"
                         }`}
                       >
-                        <span className={`block text-lg font-medium mb-1 ${style === opt.name ? "text-amber-500" : "text-white"}`}>
-                          {opt.name}
+                        <span className="flex items-center gap-2">
+                          <span className={`h-4 w-4 border ${selectedGoals.includes(goal) ? "border-amber-500 bg-amber-500" : "border-zinc-300"}`} />
+                          {goal}
                         </span>
-                        <span className="text-sm text-zinc-400">{opt.description}</span>
                       </button>
                     ))}
                   </div>
-
-                  <div>
-                    <p className="text-lg font-medium text-white mb-4">
-                      Do you have a logo?
-                    </p>
-                    <div className="flex gap-4">
-                      {[true, false].map((val) => (
-                        <button
-                          key={String(val)}
-                          onClick={() => setHasLogo(val)}
-                          className={`px-8 py-3 rounded-xl border text-base font-medium transition-all duration-200 ${
-                            hasLogo === val
-                              ? "border-amber-500 bg-amber-500/10 text-amber-500"
-                              : "border-zinc-800 bg-surface text-white hover:border-zinc-600"
-                          }`}
-                        >
-                          {val ? "Yes" : "No"}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                </QuizStep>
               )}
 
               {step === 5 && (
-                <div>
-                  <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2">
-                    Almost done - where do we send your preview?
-                  </h2>
-                  <p className="text-zinc-400 mb-8">
-                    We&apos;ll send your free homepage mockup within 24 hours.
-                  </p>
-                  <div className="space-y-6">
-                    <div>
-                      <label className="block text-sm text-zinc-400 mb-2">
-                        Full name
-                      </label>
-                      <input
-                        type="text"
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                        placeholder="John Smith"
-                        className="w-full h-12 px-4 rounded-xl border border-zinc-800 bg-surface text-white placeholder:text-zinc-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-zinc-400 mb-2">
-                        Email address
-                      </label>
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="john@example.com"
-                        className="w-full h-12 px-4 rounded-xl border border-zinc-800 bg-surface text-white placeholder:text-zinc-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-zinc-400 mb-2">
-                        Phone number
-                      </label>
-                      <input
-                        type="tel"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        placeholder="0400 000 000"
-                        className="w-full h-12 px-4 rounded-xl border border-zinc-800 bg-surface text-white placeholder:text-zinc-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-zinc-400 mb-2">
-                        Current website (if you have one)
-                      </label>
-                      <input
-                        type="url"
-                        name="current_website"
-                        value={currentWebsite}
-                        onChange={(e) => setCurrentWebsite(e.target.value)}
-                        placeholder="https://yourbusiness.com.au"
-                        className="w-full h-12 px-4 rounded-xl border border-zinc-800 bg-surface text-white placeholder:text-zinc-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
-                      />
-                    </div>
+                <QuizStep title={`Are you aiming for a ${currentMonth} spot?`} subtitle="We cap new builds so the work stays sharp. This updates automatically each month.">
+                  <OptionGrid options={timelineOptions} value={timeline} onChange={setTimeline} />
+                  <div className="mt-6">
+                    <OptionGrid options={styleOptions} value={style} onChange={setStyle} />
                   </div>
-                </div>
+                  <TextareaInput label="Anything we should know?" value={notes} onChange={setNotes} placeholder="Services, colours, competitors, current problems, or customers you want more of." />
+                </QuizStep>
               )}
+
               {step === 6 && (
-                <div>
-                  <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
-                    Which package are you interested in?
-                  </h2>
-                  <p className="text-zinc-400 mb-8">No commitment yet, just helps us prepare the right preview for you.</p>
-                  <div className="space-y-3">
-                    {[
-                      { id: "Starter — $490", label: "Starter", price: "$490", desc: "1–3 pages · 48-hour delivery · Get online fast" },
-                      { id: "Business — $790", label: "Business", price: "$790", desc: "Up to 5 pages · Local SEO · Most popular" },
-                      { id: "Growth — $1,290", label: "Growth", price: "$1,290", desc: "Up to 10 pages · Blog · Maximum impact" },
-                      { id: "Not sure yet", label: "Not sure yet", price: "", desc: "We will recommend the best fit for you" },
-                    ].map((plan) => (
-                      <button
-                        key={plan.id}
-                        onClick={() => setSelectedPlan(plan.id)}
-                        className={`w-full p-4 rounded-xl border text-left transition-all duration-200 ${
-                          selectedPlan === plan.id
-                            ? "border-amber-500 bg-amber-500/10"
-                            : "border-zinc-800 bg-surface hover:border-zinc-600"
-                        }`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <span className="font-semibold text-white">{plan.label}</span>
-                            {plan.price && <span className="ml-2 text-amber-500 font-bold">{plan.price}</span>}
-                            <p className="text-sm text-zinc-400 mt-0.5">{plan.desc}</p>
-                          </div>
-                          {selectedPlan === plan.id && (
-                            <span className="text-amber-500 text-xl shrink-0 ml-3">✓</span>
-                          )}
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                <QuizStep title="Where should we send your website plan?" subtitle="We will review your answers and come back with the best next step for the $250/month website plan.">
+                  <TextInput label="Full name" value={fullName} onChange={setFullName} placeholder="John Smith" />
+                  <TextInput label="Email" value={email} onChange={setEmail} placeholder="john@example.com" type="email" />
+                  <TextInput label="Phone" value={phone} onChange={setPhone} placeholder="0400 000 000" type="tel" />
+                </QuizStep>
               )}
             </motion.div>
           </AnimatePresence>
 
+          <div className="mt-5 flex gap-3">
+            {step > 1 && (
+              <button
+                type="button"
+                onClick={goBack}
+                className="inline-flex h-12 items-center justify-center border border-zinc-300 bg-white px-5 font-bold text-zinc-800"
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" /> Back
+              </button>
+            )}
+            {step < TOTAL_STEPS ? (
+              <button
+                type="button"
+                onClick={goNext}
+                disabled={!canProceed()}
+                className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-black text-zinc-950 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Continue <ArrowRight className="ml-2 h-4 w-4" />
+              </button>
+            ) : (
+              <button
+                type="submit"
+                disabled={!canProceed()}
+                className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-black text-zinc-950 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Send My Website Plan <ArrowRight className="ml-2 h-4 w-4" />
+              </button>
+            )}
+          </div>
+        </form>
+      </section>
+    </main>
+  );
+}
 
-        </div>
-      </div>
-
-      {/* Sticky bottom button bar */}
-      <div className="sticky bottom-0 z-50 bg-background/95 backdrop-blur-xl border-t border-zinc-800/50 px-4 py-4" style={{ paddingBottom: "calc(1rem + env(safe-area-inset-bottom))" }}>
-        <div className="max-w-2xl mx-auto">
-          {step < TOTAL_STEPS ? (
-            <button
-              onClick={goNext}
-              disabled={!canProceed()}
-              className="w-full inline-flex items-center justify-center rounded-lg font-semibold bg-amber-500 text-black hover:bg-amber-400 disabled:opacity-50 disabled:pointer-events-none h-12 text-base px-10 transition-all duration-200 shadow-lg shadow-amber-500/20"
-            >
-              Continue →
-            </button>
-          ) : (
-            <button
-              onClick={handleSubmit}
-              disabled={!canProceed()}
-              className="w-full inline-flex items-center justify-center rounded-lg font-semibold bg-amber-500 text-black hover:bg-amber-400 disabled:opacity-50 disabled:pointer-events-none h-12 text-base px-10 transition-all duration-200 shadow-lg shadow-amber-500/20"
-            >
-              Get My Free Preview →
-            </button>
-          )}
-        </div>
-      </div>
-
+function QuizStep({
+  title,
+  subtitle,
+  children,
+}: {
+  title: string;
+  subtitle: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <h2 className="text-3xl font-black leading-tight tracking-tight sm:text-4xl">{title}</h2>
+      <p className="mt-3 mb-8 text-base leading-7 text-zinc-600">{subtitle}</p>
+      <div className="space-y-4">{children}</div>
     </div>
+  );
+}
+
+function OptionGrid({
+  options,
+  value,
+  onChange,
+}: {
+  options: string[];
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <div className="grid gap-3 sm:grid-cols-2">
+      {options.map((option) => (
+        <button
+          type="button"
+          key={option}
+          onClick={() => onChange(option)}
+          className={`border p-4 text-left font-semibold transition ${
+            value === option
+              ? "border-amber-500 bg-amber-50 text-zinc-950"
+              : "border-zinc-200 bg-white text-zinc-700 hover:border-zinc-400"
+          }`}
+        >
+          {option}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function TextInput({
+  label,
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+  required = true,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+  type?: string;
+  required?: boolean;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-2 block text-sm font-bold text-zinc-700">
+        {label} {required ? <span className="text-amber-600">*</span> : null}
+      </span>
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        required={required}
+        className="h-12 w-full border border-zinc-300 bg-white px-4 text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
+      />
+    </label>
+  );
+}
+
+function TextareaInput({
+  label,
+  value,
+  onChange,
+  placeholder,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-2 block text-sm font-bold text-zinc-700">{label}</span>
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        rows={4}
+        className="w-full border border-zinc-300 bg-white px-4 py-3 text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
+      />
+    </label>
   );
 }

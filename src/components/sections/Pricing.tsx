@@ -10,52 +10,20 @@ import { Button } from "@/components/ui/button";
 const plans = [
   {
     icon: "⚡",
-    name: "Starter",
-    price: "$490",
-    delivery: "48-hour delivery",
-    badge: "Get Online Fast",
-    badgeVariant: "default" as const,
-    features: [
-      "1–3 pages",
-      "Mobile-first design",
-      "Contact form",
-      "Google-ready",
-      "Basic SEO",
-    ],
-    popular: false,
-  },
-  {
-    icon: "🔥",
-    name: "Business",
-    price: "$790",
-    delivery: "5-day delivery",
-    badge: "⭐ Most Popular",
+    name: "Managed Website",
+    price: "$250",
+    delivery: "per month",
+    badge: "Website + care",
     badgeVariant: "amber" as const,
     features: [
-      "Up to 5 pages",
-      "Local SEO",
-      "Google Business setup",
-      "1 revision round",
-      "Contact & enquiry forms",
+      "Website design and build",
+      "Hosting and domain setup support",
+      "SSL, security and backups",
+      "Monthly changes",
+      "Monthly article or page update",
+      "Lead tracking and SEO foundations",
     ],
     popular: true,
-  },
-  {
-    icon: "🚀",
-    name: "Growth",
-    price: "$1,290",
-    delivery: "1-week delivery",
-    badge: "Maximum Impact",
-    badgeVariant: "default" as const,
-    features: [
-      "Up to 10 pages",
-      "Blog setup",
-      "Lead capture forms",
-      "Google Analytics",
-      "SEO foundations",
-      "2 revision rounds",
-    ],
-    popular: false,
   },
 ];
 
@@ -80,16 +48,16 @@ export function Pricing() {
           className="text-center mb-6"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            Straightforward pricing.{" "}
-            <span className="text-amber-500">No surprises.</span>
+            One clear plan.{" "}
+            <span className="text-amber-500">$250 per month.</span>
           </h2>
           <p className="text-zinc-400 text-lg max-w-xl mx-auto">
-            Pick your package. No hidden fees. No lock-in contracts.
+            Website, hosting, security, backups, changes, content, SEO basics and lead tracking.
           </p>
         </motion.div>
 
         {/* Pricing cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-16">
+        <div className="grid grid-cols-1 max-w-xl mx-auto gap-6 lg:gap-8 mt-16">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -124,7 +92,7 @@ export function Pricing() {
                   <span className="text-4xl font-bold text-white">
                     {plan.price}
                   </span>
-                  <span className="text-zinc-500 ml-1 text-sm">one-off</span>
+                  <span className="text-zinc-500 ml-1 text-sm">/month</span>
                 </div>
 
                 <ul className="space-y-3 mb-8 flex-1">
@@ -147,14 +115,14 @@ export function Pricing() {
                     plan.popular ? "animate-glow-pulse" : ""
                   }`}
                 >
-                  <Link href={`/quiz?plan=${plan.name.toLowerCase()}`}>Start Your Free Quiz →</Link>
+                  <Link href="/quiz">Start the Website Quiz →</Link>
                 </Button>
               </Card>
             </motion.div>
           ))}
         </div>
 
-        {/* Care Plan */}
+        {/* Scope note */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -167,23 +135,19 @@ export function Pricing() {
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-2xl">🔧</span>
-                  <h3 className="text-xl font-bold text-white">Care Plan</h3>
-                  <span className="text-2xl font-bold text-amber-500">
-                    $49
-                  </span>
-                  <span className="text-zinc-500 text-sm">/month</span>
+                  <h3 className="text-xl font-bold text-white">Included every month</h3>
                 </div>
                 <p className="text-zinc-400 text-sm mb-4">
-                  Keep your site running. We handle it all.
+                  Final inclusions are confirmed after the quiz so the scope is clear before anything starts.
                 </p>
                 <div className="flex flex-wrap gap-x-6 gap-y-2">
                   {[
-                    "Hosting included",
-                    "Domain included",
-                    "Security updates",
+                    "Hosting",
+                    "Domain setup support",
+                    "Security",
                     "Backups",
                     "Content updates",
-                    "Priority support",
+                    "Lead tracking",
                   ].map((feature) => (
                     <span
                       key={feature}
@@ -195,7 +159,7 @@ export function Pricing() {
                   ))}
                 </div>
                 <p className="text-xs text-zinc-500 mt-3">
-                  No lock-in contracts.
+                  Larger builds, ecommerce, booking systems, or complex integrations may need separate scope.
                 </p>
               </div>
               <Button asChild variant="outline" size="lg" className="md:self-center shrink-0">
