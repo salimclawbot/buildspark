@@ -2,249 +2,247 @@
 
 import {
   ArrowRight,
-  BadgeCheck,
-  BarChart3,
   Check,
-  Globe2,
   MousePointerClick,
-  ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Navbar } from "@/components/sections/Navbar";
-import { Footer } from "@/components/sections/Footer";
 import { Button } from "@/components/ui/button";
 
-const industries = [
-  { label: "Dentists", image: "/images/service-bookkeepers.webp" },
-  { label: "Surgeons", image: "/images/portfolio-hero.webp" },
-  { label: "Equine", image: "/images/buildspark-home-hero.png" },
-  { label: "Cafes", image: "/images/service-cafes.webp" },
-  { label: "Tradies", image: "/images/service-tradies.webp" },
-  { label: "Consultants", image: "/images/about-team.webp" },
-  { label: "Security", image: "/images/contact-hero.webp" },
+const nav = [
+  ["Work", "#work"],
+  ["Plan", "#plan"],
+  ["Process", "#process"],
+  ["FAQ", "/pricing"],
 ];
 
-const included = [
-  "Custom design that reflects your brand",
-  "Website, hosting and launch support",
-  "SEO foundations and mobile speed",
-  "Monthly updates, security and backups",
-  "Content improvements and article support",
-  "Lead tracking for calls, clicks and forms",
+const proof = [
+  "Australian. Local. Serious.",
+  "No lock-in contracts",
+  "Cancel anytime",
 ];
 
-const buildManageGrow = [
-  {
-    title: "Build",
-    text: "We shape the message, design the site and launch it properly around your industry.",
-    icon: Globe2,
-  },
-  {
-    title: "Manage",
-    text: "Hosting, changes, security, backups and updates stay looked after every month.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Grow",
-    text: "We keep improving pages, content and lead tracking so the website does not sit still.",
-    icon: BarChart3,
-  },
+const checklist = [
+  "More enquiries",
+  "Better first impression",
+  "Stronger service pages",
+  "Ongoing improvements every month",
+];
+
+const process = [
+  ["01", "Clarity", "We work out what your customer needs to see before they trust you."],
+  ["02", "Trust", "We shape the proof, pages, photos and message so you stop sounding generic."],
+  ["03", "Enquiries", "We make the quote path obvious and track the actions that matter."],
+  ["04", "Improve", "Each month, we keep the site useful instead of letting it sit there."],
 ];
 
 export function HomePageClient() {
   return (
-    <main className="min-h-screen bg-[#f8f3ea] text-[#111111]">
-      <Navbar ctaLabel="Start your plan" ctaHref="/quiz" singleCta tone="light" />
+    <main className="min-h-screen bg-[#f2eadf] font-sans text-[#090909]">
+      <header className="sticky top-0 z-50 border-b-2 border-[#090909] bg-[#f2eadf]/95 backdrop-blur">
+        <div className="mx-auto flex h-20 max-w-[1680px] items-center justify-between px-5 sm:px-8">
+          <Link href="/" className="text-3xl font-black tracking-[-0.06em] sm:text-4xl">
+            BuildSpark
+          </Link>
+          <nav className="hidden items-center gap-10 text-sm font-black uppercase tracking-[0.08em] md:flex">
+            {nav.map(([label, href]) => (
+              <Link key={label} href={href} className="hover:text-[#f03a24]">
+                {label}
+              </Link>
+            ))}
+          </nav>
+          <div className="hidden items-center md:flex">
+            <div className="bg-[#c8ff1a] px-8 py-7 text-sm font-black uppercase tracking-[0.08em]">
+              Australian. Local. Serious.
+            </div>
+            <Link href="/quiz" className="bg-[#090909] px-8 py-7 text-sm font-black uppercase tracking-[0.08em] text-white">
+              Book a call →
+            </Link>
+          </div>
+          <Link href="/quiz" className="bg-[#090909] px-4 py-3 text-xs font-black uppercase text-white md:hidden">
+            Start
+          </Link>
+        </div>
+      </header>
 
-      <section className="relative overflow-hidden border-b border-[#111]/10 bg-[#fbf7ef] pt-24 sm:pt-28">
-        <div className="absolute left-0 top-0 hidden h-full w-px bg-[#111]/10 lg:left-16 lg:block" />
-        <div className="absolute right-0 top-0 hidden h-full w-px bg-[#111]/10 lg:right-16 lg:block" />
-        <div className="mx-auto max-w-[1580px] px-4 pb-10 sm:px-8 lg:px-16">
-          <div className="border-x border-[#111]/10">
-            <div className="grid min-h-[760px] lg:grid-cols-[0.46fr_0.54fr]">
-              <div className="flex flex-col justify-center border-b border-[#111]/10 px-5 py-10 sm:px-8 lg:border-b-0 lg:border-r lg:px-14">
-                <div className="mb-8 inline-flex w-fit items-center gap-2 border border-[#092f1f]/15 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#092f1f]">
-                  <Sparkles className="h-4 w-4 text-[#b98b2d]" />
-                  Australian managed website studio
-                </div>
-                <h1 className="font-serif text-[4.4rem] leading-[0.88] tracking-[-0.055em] text-[#0f0f0f] sm:text-[7rem] lg:text-[7.2rem]">
-                  Websites that make businesses look{" "}
-                  <span className="italic tracking-[-0.07em]">established</span>
-                </h1>
-                <div className="mt-8 h-px w-16 bg-[#b98b2d]" />
-                <p className="mt-7 max-w-xl text-xl leading-8 text-[#111]/70">
-                  We build, manage and improve premium websites for Australian businesses for{" "}
-                  <strong className="text-[#111]">$250/month</strong>. No giant upfront invoice. No generic template. No neglected website.
-                </p>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button asChild size="lg" className="h-14 rounded-none bg-[#092f1f] px-8 text-base text-white hover:bg-[#111]">
-                    <Link href="/quiz">
-                      Start your website plan <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="h-14 rounded-none border-[#111]/20 bg-transparent px-8 text-base text-[#111] hover:bg-white">
-                    <Link href="#work">View the standard</Link>
-                  </Button>
-                </div>
-                <div className="mt-14 grid gap-5 border-t border-[#111]/10 pt-7 sm:grid-cols-3">
-                  {[
-                    ["Australian team", "Local support"],
-                    ["Fixed monthly rate", "No lock-in contracts"],
-                    ["Done-for-you", "We manage everything"],
-                  ].map(([title, text]) => (
-                    <div key={title} className="flex gap-3">
-                      <BadgeCheck className="mt-1 h-5 w-5 shrink-0 text-[#092f1f]" />
-                      <div>
-                        <p className="font-bold">{title}</p>
-                        <p className="text-sm text-[#111]/55">{text}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="relative min-h-[620px] bg-[#111]">
-                <Image
-                  src="/images/buildspark-editorial-desk-hero.png"
-                  alt="BuildSpark website strategy desk with laptop, phone and premium website mockups"
-                  fill
-                  priority
-                  className="object-cover lg:object-[58%_50%]"
-                  sizes="(max-width: 1024px) 100vw, 58vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-black/12" />
-                <div className="absolute bottom-8 left-8 grid max-w-md grid-cols-[1fr_auto] overflow-hidden border border-white/20 bg-white/90 shadow-2xl backdrop-blur sm:left-10">
-                  <div className="p-5">
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#b8642f]">Built by BuildSpark</p>
-                    <p className="mt-2 text-lg font-bold leading-6 text-[#111]">Strategy, design, launch and monthly care in one plan.</p>
-                  </div>
-                  <div className="grid place-items-center bg-[#092f1f] px-5 text-white">
-                    <span className="text-3xl font-black">$250</span>
-                  </div>
-                </div>
+      <section className="relative overflow-hidden border-b-2 border-[#090909]">
+        <div className="mx-auto grid max-w-[1680px] lg:grid-cols-[0.42fr_0.58fr]">
+          <div className="relative z-10 px-5 py-8 sm:px-8 lg:py-12">
+            <h1 className="max-w-4xl rotate-[-2deg] text-[4.7rem] font-black uppercase leading-[0.75] tracking-[-0.085em] sm:text-[8.5rem] lg:text-[9.4rem] xl:text-[11rem]">
+              Stop looking like everyone else online
+            </h1>
+            <div className="mt-4 h-3 w-[88%] rotate-[-3deg] bg-[#f03a24]" />
+            <div className="mt-10 grid gap-6 sm:grid-cols-[0.8fr_1.2fr] sm:items-end">
+              <p className="max-w-xs text-2xl font-black leading-tight tracking-[-0.04em]">
+                Websites built, managed and improved
+              </p>
+              <div className="flex items-end gap-3">
+                <span className="text-[7.5rem] font-black leading-[0.78] tracking-[-0.08em] text-[#f03a24] sm:text-[10rem]">$250</span>
+                <span className="pb-4 text-2xl font-black text-[#f03a24]">/month</span>
               </div>
             </div>
-
-            <div id="work" className="border-t border-[#111]/10 px-5 py-8 sm:px-8 lg:px-14">
-              <div className="grid gap-6 lg:grid-cols-[12rem_1fr] lg:items-center">
-                <h2 className="font-serif text-3xl leading-none tracking-[-0.03em]">
-                  Websites for every industry
-                </h2>
-                <div className="grid gap-px overflow-hidden bg-[#111]/12 sm:grid-cols-2 lg:grid-cols-7">
-                  {industries.map((industry) => (
-                    <Link key={industry.label} href="/services" className="group relative min-h-[148px] overflow-hidden bg-[#111]">
-                      <Image
-                        src={industry.image}
-                        alt={`${industry.label} website category`}
-                        fill
-                        className="object-cover opacity-70 transition duration-500 group-hover:scale-105 group-hover:opacity-90"
-                        sizes="(max-width: 1024px) 50vw, 12vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                      <span className="absolute bottom-4 left-4 font-serif text-2xl text-white">{industry.label}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg" className="h-14 rounded-none bg-[#003cff] px-8 text-base font-black uppercase tracking-[0.08em] text-white hover:bg-[#090909]">
+                <Link href="/quiz">
+                  Start the plan <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="h-14 rounded-none border-2 border-[#090909] bg-transparent px-8 text-base font-black uppercase tracking-[0.08em] text-[#090909] hover:bg-white">
+                <Link href="#work">See work</Link>
+              </Button>
             </div>
+          </div>
 
-            <div className="grid border-t border-[#111]/10 lg:grid-cols-[0.32fr_0.26fr_0.27fr_0.15fr]">
-              <div className="border-b border-[#111]/10 p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-12">
-                <h2 className="font-serif text-4xl leading-[1.05] tracking-[-0.04em] sm:text-5xl">
-                  We build, manage and <span className="italic">grow</span> your website.
-                </h2>
-                <p className="mt-5 text-lg leading-8 text-[#111]/65">
-                  A complete website service for local businesses who want to look professional and win more customers.
-                </p>
-              </div>
-              <div className="border-b border-[#111]/10 p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-12">
-                <ul className="space-y-4">
-                  {included.slice(0, 4).map((item) => (
-                    <li key={item} className="flex gap-3 text-sm font-medium text-[#111]/72">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#092f1f]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="border-b border-[#111]/10 p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-12">
-                <p className="font-serif text-7xl leading-none text-[#b98b2d]">“</p>
-                <blockquote className="font-serif text-3xl leading-tight tracking-[-0.03em]">
-                  BuildSpark took care of everything. Our new website looks credible and we finally know where enquiries come from.
-                </blockquote>
-                <p className="mt-5 text-sm font-semibold text-[#111]/55">— Local business owner</p>
-              </div>
-              <div className="p-6 sm:p-8 lg:p-12">
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#092f1f]">Proof</p>
-                <p className="mt-5 text-4xl font-black tracking-tight">4.9/5</p>
-                <p className="mt-1 text-sm text-[#111]/55">Average client rating</p>
-                <p className="mt-8 text-4xl font-black tracking-tight">No lock-in</p>
-                <p className="mt-1 text-sm text-[#111]/55">Cancel anytime</p>
-              </div>
+          <div className="relative min-h-[520px] border-t-2 border-[#090909] lg:min-h-[780px] lg:border-l-2 lg:border-t-0">
+            <Image
+              src="/images/buildspark-brutalist-homepage-hero.png"
+              alt="BuildSpark bold website strategy desk with laptop, phone, sketches and client mockups"
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="(max-width: 1024px) 100vw, 58vw"
+            />
+            <div className="absolute bottom-8 right-6 max-w-xs rotate-[-6deg] bg-[#f03a24] p-5 text-2xl font-black uppercase leading-none tracking-[-0.04em] shadow-2xl sm:right-12">
+              Be useful. Be direct. Be different.
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#111] text-white">
-        <div className="mx-auto max-w-[1580px] px-4 py-16 sm:px-8 lg:px-16 lg:py-24">
-          <div className="grid gap-10 lg:grid-cols-[0.33fr_0.67fr]">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#d9ff45]">The BuildSpark system</p>
-              <h2 className="mt-5 font-serif text-5xl leading-[0.96] tracking-[-0.05em] sm:text-7xl">
-                Built to launch. Managed to perform. Improved to grow.
-              </h2>
-              <Button asChild variant="outline" size="lg" className="mt-8 h-14 rounded-none border-white/25 bg-white/5 px-8 text-base text-white hover:bg-white/10">
-                <Link href="/services">How it works <ArrowRight className="ml-2 h-5 w-5" /></Link>
-              </Button>
-            </div>
-            <div className="grid gap-px bg-white/12 md:grid-cols-3">
-              {buildManageGrow.map((item, index) => (
-                <div key={item.title} className="bg-[#111] p-6 sm:p-8">
-                  <div className="flex items-center justify-between">
-                    <span className="grid h-10 w-10 place-items-center rounded-full bg-[#d9ff45] text-sm font-black text-[#111]">
-                      {index + 1}
-                    </span>
-                    <item.icon className="h-6 w-6 text-white/35" />
-                  </div>
-                  <h3 className="mt-10 text-3xl font-black">{item.title}</h3>
-                  <p className="mt-4 text-base leading-7 text-white/62">{item.text}</p>
-                </div>
+      <section className="relative z-20 -mt-1 border-y-2 border-[#090909] bg-[#090909] text-white">
+        <div className="mx-auto grid max-w-[1680px] gap-0 lg:grid-cols-[0.18fr_0.58fr_0.24fr]">
+          <div className="border-b border-white/20 p-5 text-xl font-black uppercase leading-none sm:p-8 lg:border-b-0 lg:border-r">
+            Ready for a website that works harder?
+          </div>
+          <div className="grid gap-4 border-b border-white/20 p-5 sm:grid-cols-4 sm:p-8 lg:border-b-0 lg:border-r">
+            {["Your name", "Business name", "Email", "Phone"].map((label) => (
+              <div key={label} className="border-b border-white/40 py-3 text-sm text-white/55">{label}</div>
+            ))}
+          </div>
+          <div className="p-5 sm:p-8">
+            <Button asChild className="h-14 w-full rounded-none bg-[#003cff] text-sm font-black uppercase tracking-[0.08em] text-white hover:bg-[#f03a24]">
+              <Link href="/quiz">Start the plan <ArrowRight className="ml-2 h-5 w-5" /></Link>
+            </Button>
+            <p className="mt-3 text-xs text-white/45">No lock-in contracts. Cancel anytime.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" className="grid border-b-2 border-[#090909] lg:grid-cols-[0.28fr_0.72fr]">
+        <div className="border-b-2 border-[#090909] bg-[#f03a24] p-6 lg:border-b-0 lg:border-r-2 lg:p-10">
+          <p className="text-[7rem] font-black leading-none tracking-[-0.08em] sm:text-[10rem]">98%</p>
+          <p className="mt-3 max-w-xs text-xl font-black uppercase leading-tight">
+            of clients stay near on year one
+          </p>
+          <p className="mt-4 text-sm font-bold">Because site works. And we look after it.</p>
+        </div>
+        <div className="grid lg:grid-cols-[0.34fr_0.28fr_0.38fr]">
+          <div className="border-b-2 border-[#090909] p-6 lg:border-b-0 lg:border-r-2 lg:p-10">
+            <blockquote className="text-3xl font-black leading-tight tracking-[-0.04em]">
+              “Our site finally reflects the quality of our work. We’ve doubled our enquiries since launch.”
+            </blockquote>
+            <p className="mt-5 text-sm font-black uppercase">— Local business owner</p>
+          </div>
+          <div className="border-b-2 border-[#090909] p-6 lg:border-b-0 lg:border-r-2 lg:p-10">
+            <p className="mb-6 text-xl font-black uppercase">Fast sites. Real results.</p>
+            <ul className="space-y-3">
+              {checklist.map((item) => (
+                <li key={item} className="flex gap-3 text-sm font-bold">
+                  <Check className="h-5 w-5 shrink-0 text-[#7cff00]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="relative min-h-[360px] bg-[#090909]">
+            <Image
+              src="/images/buildspark-home-hero.png"
+              alt="BuildSpark website examples across laptop and phone"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 32vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
+          </div>
+        </div>
+      </section>
+
+      <section id="plan" className="grid border-b-2 border-[#090909] lg:grid-cols-[0.55fr_0.45fr]">
+        <div className="p-6 sm:p-10 lg:p-16">
+          <p className="mb-5 text-sm font-black uppercase tracking-[0.16em] text-[#f03a24]">The plan</p>
+          <h2 className="max-w-4xl text-[4rem] font-black uppercase leading-[0.78] tracking-[-0.08em] sm:text-[7rem]">
+            We’re a small studio. On purpose.
+          </h2>
+          <p className="mt-8 max-w-xl text-xl font-bold leading-8">
+            No account managers. No ticket systems. Just senior people doing great work for local businesses across Australia.
+          </p>
+        </div>
+        <div className="relative min-h-[520px] border-t-2 border-[#090909] bg-[#090909] lg:border-l-2 lg:border-t-0">
+          <Image
+            src="/images/about-team.webp"
+            alt="BuildSpark studio team working on websites"
+            fill
+            className="object-cover opacity-80"
+            sizes="(max-width: 1024px) 100vw, 45vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+          <div className="absolute bottom-8 left-8 max-w-sm text-white">
+            <p className="text-4xl font-black uppercase leading-none">Build Spark</p>
+            <p className="mt-4 text-lg font-bold text-white/75">A managed website studio for businesses that need to look serious online.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" className="border-b-2 border-[#090909] bg-[#f2eadf] p-6 sm:p-10 lg:p-16">
+        <div className="grid gap-10 lg:grid-cols-[0.34fr_0.66fr]">
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.16em] text-[#003cff]">Process</p>
+            <h2 className="mt-4 text-[3.5rem] font-black uppercase leading-[0.8] tracking-[-0.08em] sm:text-[6rem]">
+              Be useful. Be direct. Be different.
+            </h2>
+          </div>
+          <div className="grid gap-px bg-[#090909] sm:grid-cols-2">
+            {process.map(([number, title, text]) => (
+              <div key={number} className="bg-[#f2eadf] p-6">
+                <p className="text-sm font-black text-[#f03a24]">{number}</p>
+                <h3 className="mt-8 text-3xl font-black uppercase">{title}</h3>
+                <p className="mt-4 text-base font-semibold leading-7 text-[#090909]/70">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-[#090909] text-white">
+        <div className="mx-auto grid max-w-[1680px] gap-10 px-6 py-12 sm:px-10 lg:grid-cols-[0.55fr_0.45fr] lg:px-16">
+          <div>
+            <p className="text-5xl font-black tracking-[-0.06em]">BuildSpark</p>
+            <h2 className="mt-10 max-w-3xl text-[3.8rem] font-black uppercase leading-[0.82] tracking-[-0.08em] sm:text-[6rem]">
+              Ready to stop looking generic?
+            </h2>
+            <div className="mt-8 flex flex-wrap gap-4">
+              {proof.map((item) => (
+                <span key={item} className="border border-white/25 px-4 py-2 text-sm font-black uppercase">
+                  {item}
+                </span>
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="border-b border-[#111]/10 bg-[#f8f3ea]">
-        <div className="mx-auto max-w-[1580px] px-4 py-16 sm:px-8 lg:px-16 lg:py-24">
-          <div className="grid gap-8 lg:grid-cols-[0.45fr_0.55fr] lg:items-end">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#b8642f]">Ready for a site that works harder?</p>
-              <h2 className="mt-5 font-serif text-5xl leading-[0.95] tracking-[-0.05em] sm:text-7xl">
-                Tell us about your business and we will map the plan.
-              </h2>
-            </div>
-            <div className="border border-[#111]/10 bg-[#092f1f] p-5 text-white sm:p-8">
-              <div className="grid gap-3 sm:grid-cols-2">
-                {["Your name", "Business name", "Email", "Phone"].map((label) => (
-                  <div key={label} className="border-b border-white/30 py-4 text-sm text-white/55">{label}</div>
-                ))}
-              </div>
-              <Button asChild size="lg" className="mt-6 h-14 w-full rounded-none bg-[#d9ff45] px-8 text-base text-[#111] hover:bg-white">
-                <Link href="/quiz">
-                  Start the plan <MousePointerClick className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <p className="mt-4 text-xs text-white/55">No lock-in contracts. Cancel anytime. Best-fit projects confirmed after the quiz.</p>
+          <div className="flex flex-col justify-end">
+            <Button asChild size="lg" className="h-16 rounded-none bg-[#c8ff1a] text-base font-black uppercase tracking-[0.08em] text-[#090909] hover:bg-white">
+              <Link href="/quiz">
+                Start the plan <MousePointerClick className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <div className="mt-10 grid grid-cols-2 gap-6 text-sm font-black uppercase text-white/60">
+              <Link href="/services">Services</Link>
+              <Link href="/pricing">Pricing</Link>
+              <Link href="/blog">Blog</Link>
+              <Link href="/contact">Contact</Link>
             </div>
           </div>
         </div>
-      </section>
-
-      <Footer variant="legacy" />
+      </footer>
     </main>
   );
 }
