@@ -89,7 +89,7 @@ export default function HowLongWebsiteClient() {
                 Take our 2-minute quiz and we&apos;ll show you a tailored proposal. No calls, no meetings, no obligations.
               </p>
               <Button asChild size="default">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
 
@@ -135,7 +135,7 @@ export default function HowLongWebsiteClient() {
                 Take our free 2-minute quiz. We&apos;ll send you a tailored proposal with honest pricing and a realistic timeline for your business.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

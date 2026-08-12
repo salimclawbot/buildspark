@@ -196,7 +196,7 @@ export default function TradieWebsiteTipsClient() {
                 Take our free 2-minute quiz. We&apos;ll show you exactly what we&apos;d build for your trade business - tailored to your industry and service area.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

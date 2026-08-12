@@ -157,7 +157,7 @@ export default function WebsiteSpeedClient() {
                 performance as part of your custom proposal.
               </p>
               <Button asChild size="default">
-                <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
 
@@ -254,7 +254,7 @@ export default function WebsiteSpeedClient() {
                 your business.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

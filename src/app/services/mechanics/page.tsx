@@ -4,7 +4,7 @@ import MechanicsClient from "./MechanicsClient";
 export const metadata: Metadata = {
   title: "Mechanic Website Design Victoria | BuildSpark",
   description:
-    "Mechanic website design in Victoria from $490. Online booking forms, services list, and local SEO to get more customers finding your workshop on Google.",
+    "Mechanic website design in Victoria for $250 per month. Online booking forms, services list, and local SEO to get more customers finding your workshop on Google.",
   alternates: { canonical: "https://buildspark.com.au/services/mechanics" },
 };
 

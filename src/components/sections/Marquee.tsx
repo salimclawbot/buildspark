@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const items = [
   "Websites that get tradies booked out",
   "Live in 5 days, not 5 months",
-  "From $490. Seriously.",
+  "$250 per month. Website, care, and tracking.",
   "Built for cafes that want full tables",
   "No contracts. No lock-in.",
   "Google-ready from day one",

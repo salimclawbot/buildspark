@@ -233,11 +233,11 @@ export default function AboutClient() {
             Ready to <span className="text-amber-500">build?</span>
           </h2>
           <p className="text-zinc-400 text-lg mb-8">
-            Take our free quiz and get a tailored website recommendation in
+            Start the website quiz and get a tailored website recommendation in
             minutes.
           </p>
           <Button asChild size="lg" className="text-base px-10">
-            <Link href="/quiz">Start Your Free Quiz →</Link>
+            <Link href="/quiz">Start the Website Quiz →</Link>
           </Button>
         </motion.div>
       </section>

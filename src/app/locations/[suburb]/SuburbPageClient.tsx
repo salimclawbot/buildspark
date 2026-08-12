@@ -11,7 +11,7 @@ import { Footer } from "@/components/sections/Footer";
 
 const reasons = [
   "Sites built in as fast as 48 hours",
-  "Simple, transparent pricing from $490",
+  "Managed website plan at $250 per month",
   "SEO-ready so customers find you on Google",
 ];
 
@@ -99,7 +99,7 @@ export default function SuburbPageClient({
             <span className="text-amber-500">{name}.</span>
           </h1>
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
-            BuildSpark builds fast, affordable websites for businesses in {name}{" "}
+            BuildSpark builds premium managed websites for businesses in {name}{" "}
             and across Victoria.
           </p>
           {description && (
@@ -203,9 +203,9 @@ export default function SuburbPageClient({
           className="max-w-3xl mx-auto px-4 sm:px-6 text-center"
         >
           <Card className="border-amber-500/30 bg-amber-500/5">
-            <p className="text-zinc-400 mb-2">Websites for {name} businesses from</p>
-            <p className="text-4xl font-bold text-amber-500 mb-2">$490</p>
-            <p className="text-zinc-500 text-sm">One-off. No hidden fees.</p>
+            <p className="text-zinc-400 mb-2">Managed websites for {name} businesses</p>
+            <p className="text-4xl font-bold text-amber-500 mb-2">$250/month</p>
+            <p className="text-zinc-500 text-sm">Website, care, updates, content and lead tracking.</p>
           </Card>
         </motion.div>
       </section>
@@ -244,7 +244,7 @@ export default function SuburbPageClient({
             <span className="text-amber-500">business?</span>
           </h2>
           <Button asChild size="lg" className="text-base px-10">
-            <Link href="/quiz">Start Your Free Quiz →</Link>
+            <Link href="/quiz">Start the Website Quiz →</Link>
           </Button>
         </motion.div>
       </section>

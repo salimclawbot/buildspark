@@ -128,7 +128,7 @@ export default function GetMoreCustomersOnlineClient() {
                 We&apos;ll show you exactly what we&apos;d build for your business&mdash;tailored to your industry and location.
               </p>
               <Button asChild size="default">
-                <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
 
@@ -182,7 +182,7 @@ export default function GetMoreCustomersOnlineClient() {
                 Take our free 2-minute quiz and we&apos;ll put together a personalised plan for your business&mdash;no obligations, no sales calls.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

@@ -4,7 +4,7 @@ import CafesClient from "./CafesClient";
 export const metadata: Metadata = {
   title: "Cafe & Restaurant Website Design Victoria | BuildSpark",
   description:
-    "Cafe and restaurant website design in Victoria from $490. Online menus, bookings, Google Maps integration, and local SEO to bring more diners through your door.",
+    "Cafe and restaurant website design in Victoria for $250 per month. Online menus, bookings, Google Maps integration, and local SEO to bring more diners through your door.",
   alternates: { canonical: "https://buildspark.com.au/services/cafes" },
 };
 

@@ -96,7 +96,7 @@ export default function WhyCheapWebsitesFailClient() {
             <p className="text-white font-semibold text-lg mb-3">Wondering what a proper website actually costs?</p>
             <p className="text-zinc-400 text-sm mb-4">Take our free 2-minute quiz and get a personalised recommendation for your business.</p>
             <Button asChild size="default">
-              <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+              <Link href="/quiz">Start the Website Quiz →</Link>
             </Button>
           </div>
 
@@ -145,7 +145,7 @@ export default function WhyCheapWebsitesFailClient() {
             obligations, no sales calls.
           </p>
           <Button asChild size="lg">
-            <Link href="/quiz">Take the Free Quiz &rarr;</Link>
+            <Link href="/quiz">Start the Website Quiz →</Link>
           </Button>
         </section>
 

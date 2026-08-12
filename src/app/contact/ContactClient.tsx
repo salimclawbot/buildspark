@@ -186,7 +186,7 @@ export default function ContactClient() {
                   Or skip the form and get a tailored recommendation in minutes.
                 </p>
                 <Button asChild variant="outline" size="lg">
-                  <Link href="/quiz">Start Your Free Quiz →</Link>
+                  <Link href="/quiz">Start the Website Quiz →</Link>
                 </Button>
               </div>
             </motion.div>

@@ -127,11 +127,11 @@ export default function PortfolioClient() {
             Want a site like <span className="text-amber-500">this?</span>
           </h2>
           <p className="text-zinc-400 text-lg mb-8">
-            Take our free quiz and get a tailored recommendation for your
+            Start the website quiz and get a tailored recommendation for your
             business.
           </p>
           <Button asChild size="lg" className="text-base px-10">
-            <Link href="/quiz">Start Your Free Quiz →</Link>
+            <Link href="/quiz">Start the Website Quiz →</Link>
           </Button>
         </motion.div>
       </section>

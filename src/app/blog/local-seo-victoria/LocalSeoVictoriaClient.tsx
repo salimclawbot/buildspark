@@ -274,7 +274,7 @@ export default function LocalSeoVictoriaClient() {
                 Take our free 2-minute quiz. We&apos;ll build you a site with local SEO baked in - optimised for your location and industry from day one.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

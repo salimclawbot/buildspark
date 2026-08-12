@@ -194,7 +194,7 @@ export default function BestWebsiteBuilderClient() {
                 Answer a few quick questions and get a personalised recommendation with zero pressure.
               </p>
               <Button asChild size="default">
-                <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
 
@@ -206,7 +206,7 @@ export default function BestWebsiteBuilderClient() {
               BuildSpark sits in the sweet spot between DIY builders and expensive agencies. You get
               the best of custom&mdash;without the price tag. Professional sites built with modern
               technology (Next.js), optimised for speed and local SEO, and delivered in days rather
-              than months. Pricing ranges from $490 to $1,290, depending on what you need.
+              than months. Pricing ranges for $250 per month to $1,290, depending on what you need.
             </p>
             <p className="text-zinc-300 text-lg leading-relaxed mb-6">
               No DIY headaches. No agency invoices that make your eyes water. No ongoing maintenance
@@ -274,7 +274,7 @@ export default function BestWebsiteBuilderClient() {
                 your business&mdash;no calls, no pressure.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

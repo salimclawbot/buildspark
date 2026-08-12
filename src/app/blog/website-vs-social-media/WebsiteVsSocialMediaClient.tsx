@@ -168,7 +168,7 @@ export default function WebsiteVsSocialMediaClient() {
                 We&apos;ll show you exactly what we&apos;d build for your business&mdash;no calls, no pressure.
               </p>
               <Button asChild size="default">
-                <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
 
@@ -247,7 +247,7 @@ export default function WebsiteVsSocialMediaClient() {
                 business&mdash;no obligations, no sales calls.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

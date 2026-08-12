@@ -4,12 +4,12 @@ import BakeriesClient from "./BakeriesClient";
 export const metadata: Metadata = {
   title: "Bakery Website Design Victoria | BuildSpark",
   description:
-    "Bakery website design in Victoria from $490. Product showcases, opening hours, online ordering, and local SEO for your bakery.",
+    "Bakery website design in Victoria for $250 per month. Product showcases, opening hours, online ordering, and local SEO for your bakery.",
   alternates: { canonical: "https://buildspark.com.au/services/bakeries" },
   openGraph: {
     title: "Bakery Website Design Victoria | BuildSpark",
     description:
-      "Bakery website design in Victoria from $490. Product showcases, opening hours, online ordering, and local SEO for your bakery.",
+      "Bakery website design in Victoria for $250 per month. Product showcases, opening hours, online ordering, and local SEO for your bakery.",
     url: "https://buildspark.com.au/services/bakeries",
     siteName: "BuildSpark",
     type: "website",

@@ -294,7 +294,7 @@ export default function BlogIndexClient() {
             your business.
           </p>
           <Button asChild size="lg" className="text-base px-10">
-            <Link href="/quiz">Start Your Quiz &rarr;</Link>
+            <Link href="/quiz">Start the Website Quiz →</Link>
           </Button>
         </motion.div>
       </section>

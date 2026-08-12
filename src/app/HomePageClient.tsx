@@ -65,28 +65,27 @@ const trustPoints = [
 export function HomePageClient() {
   return (
     <main className="min-h-screen bg-[#f7f7f4] text-zinc-950">
-      <Navbar ctaLabel="Get Started" ctaHref="/quiz" singleCta tone="light" />
+      <Navbar ctaLabel="Get Started" ctaHref="/quiz" singleCta />
 
-      <section className="relative overflow-hidden pt-28 sm:pt-32">
-        <div className="absolute inset-x-0 top-0 h-2 bg-amber-500" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_5%,rgba(245,158,11,0.20),transparent_30%),linear-gradient(180deg,#ffffff_0%,#f7f7f4_72%,#f0eee8_100%)]" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:px-8 lg:pb-24">
+      <section className="relative overflow-hidden bg-[#050505] pt-28 text-white sm:pt-32">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_18%,rgba(245,158,11,0.22),transparent_30%),radial-gradient(circle_at_90%_0%,rgba(255,255,255,0.12),transparent_26%),linear-gradient(135deg,#050505_0%,#11100d_50%,#050505_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#f7f7f4]" />
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 pb-20 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:px-8 lg:pb-28">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={false}
             className="flex flex-col justify-center"
           >
-            <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-amber-500/30 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-zinc-700 shadow-sm">
-              <Sparkles className="h-4 w-4 text-amber-500" />
-              Websites that make people trust you faster
+            <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-amber-300/30 bg-amber-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-amber-200 shadow-sm">
+              <Sparkles className="h-4 w-4 text-amber-300" />
+              Managed websites for serious operators
             </div>
-            <h1 className="max-w-3xl text-5xl font-black leading-[0.94] tracking-tight text-black sm:text-6xl lg:text-7xl">
-              World-class websites for serious local businesses.
+            <h1 className="max-w-3xl text-5xl font-black leading-[0.92] tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-8xl">
+              Look established before they ever call.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-700 sm:text-xl">
-              BuildSpark designs, hosts, protects, updates, and improves your website for{" "}
-              <strong className="text-zinc-950">$250 per month</strong>. No huge upfront bill. No messy handover. Just a site built to earn trust and bring better enquiries.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300 sm:text-xl">
+              BuildSpark builds, hosts, protects, updates, and improves premium websites for{" "}
+              <strong className="text-white">$250 per month</strong>. No big upfront agency invoice. No neglected website. Just a polished online presence that makes the right people enquire.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg" className="h-14 rounded-none !bg-amber-500 px-8 text-base !text-black shadow-xl shadow-amber-500/25 hover:!bg-amber-400">
@@ -94,27 +93,46 @@ export function HomePageClient() {
                   Start the Website Quiz <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="h-14 rounded-none border-zinc-300 bg-white px-8 text-base text-zinc-950 hover:bg-zinc-100">
+              <Button asChild variant="outline" size="lg" className="h-14 rounded-none border-white/20 bg-white/5 px-8 text-base text-white hover:bg-white/10">
                 <Link href="#work">See What We Build</Link>
               </Button>
             </div>
-            <div className="mt-7 grid gap-3 text-sm font-medium text-zinc-700 sm:grid-cols-2">
+            <div className="mt-7 grid gap-3 text-sm font-medium text-zinc-300 sm:grid-cols-2">
               {trustPoints.map((point) => (
                 <div key={point} className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
                   <span>{point}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 grid max-w-xl grid-cols-3 border border-white/10 bg-white/[0.04]">
+              {[
+                ["$250", "per month"],
+                ["8", "new builds"],
+                ["GA4", "lead tracked"],
+              ].map(([value, label]) => (
+                <div key={label} className="border-r border-white/10 p-4 last:border-r-0">
+                  <div className="text-2xl font-black text-white">{value}</div>
+                  <div className="text-[10px] font-black uppercase tracking-[0.18em] text-zinc-500">{label}</div>
                 </div>
               ))}
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.15, duration: 0.7 }}
+            initial={false}
             className="relative"
           >
-            <div className="relative aspect-[16/9] overflow-hidden border border-zinc-200 bg-white shadow-2xl shadow-zinc-900/15">
+            <div className="relative overflow-hidden border border-white/15 bg-white/[0.06] p-3 shadow-2xl shadow-amber-500/10">
+              <div className="mb-3 flex items-center justify-between border-b border-white/10 pb-3">
+                <div className="flex gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                </div>
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-zinc-500">BuildSpark studio</span>
+              </div>
+              <div className="relative aspect-[16/9] overflow-hidden">
               <Image
                 src="/images/buildspark-home-hero.png"
                 alt="BuildSpark websites shown across laptop and phone for multiple industries"
@@ -123,24 +141,17 @@ export function HomePageClient() {
                 className="object-cover contrast-125 saturate-110"
                 sizes="(max-width: 1024px) 100vw, 58vw"
               />
+              </div>
             </div>
-            <div className="absolute -bottom-6 left-6 right-6 grid grid-cols-3 border border-zinc-200 bg-white shadow-xl">
-              {[
-                ["$250", "per month"],
-                ["8", "new builds monthly"],
-                ["24/7", "tracked online"],
-              ].map(([value, label]) => (
-                <div key={label} className="border-r border-zinc-200 p-4 last:border-r-0">
-                  <div className="text-2xl font-black text-zinc-950">{value}</div>
-                  <div className="text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">{label}</div>
-                </div>
-              ))}
+            <div className="absolute -bottom-8 left-6 max-w-xs border border-amber-300/30 bg-[#10100d] p-5 shadow-2xl shadow-black/40">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-amber-300">Included every month</p>
+              <p className="mt-2 text-sm leading-6 text-zinc-300">Hosting, updates, content, backups, security and conversion tracking.</p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      <section className="border-y border-zinc-200 bg-white py-6">
+      <section className="border-y border-zinc-200 bg-[#f7f7f4] py-6">
         <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-3 px-4 sm:px-6 lg:px-8">
           {industries.map((industry) => (
             <span key={industry} className="rounded-full border border-zinc-200 px-4 py-2 text-sm font-semibold text-zinc-700">
@@ -191,6 +202,7 @@ export function HomePageClient() {
               src="/images/buildspark-portfolio-grid.png"
               alt="Portfolio grid of different BuildSpark website styles for multiple industries"
               fill
+              priority
               className="object-cover"
               sizes="100vw"
             />
@@ -205,6 +217,7 @@ export function HomePageClient() {
               src="/images/buildspark-monthly-care.png"
               alt="Business owner reviewing website leads with monthly care features"
               fill
+              priority
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />

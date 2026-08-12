@@ -4,7 +4,7 @@ import TradiesClient from "./TradiesClient";
 export const metadata: Metadata = {
   title: "Tradie Website Design Victoria | BuildSpark",
   description:
-    "Tradie website design in Victoria from $490. Mobile-first, click-to-call, and local SEO to get your phone ringing with new customers from Google.",
+    "Tradie website design in Victoria for $250 per month. Mobile-first, click-to-call, and local SEO to get your phone ringing with new customers from Google.",
   alternates: { canonical: "https://buildspark.com.au/services/tradies" },
 };
 

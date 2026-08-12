@@ -101,7 +101,7 @@ export function PainLetter() {
 
             <div className="mt-8">
               <Button asChild size="lg" className="text-base px-8">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

@@ -4,12 +4,12 @@ import LocationsClient from "./LocationsClient";
 export const metadata: Metadata = {
   title: "Website Design Across Victoria | BuildSpark",
   description:
-    "Serving 128+ suburbs across Victoria. Melbourne metro, Gippsland, Ballarat, Bendigo, Geelong and more. Websites from $490.",
+    "Serving 128+ suburbs across Victoria. Melbourne metro, Gippsland, Ballarat, Bendigo, Geelong and more. Websites for $250 per month.",
   alternates: { canonical: "https://buildspark.com.au/locations" },
   openGraph: {
     title: "Website Design Across Victoria | BuildSpark",
     description:
-      "Serving 128+ suburbs across Victoria. Melbourne metro, Gippsland, Ballarat, Bendigo, Geelong and more. Websites from $490.",
+      "Serving 128+ suburbs across Victoria. Melbourne metro, Gippsland, Ballarat, Bendigo, Geelong and more. Websites for $250 per month.",
     url: "https://buildspark.com.au/locations",
     siteName: "BuildSpark",
     type: "website",

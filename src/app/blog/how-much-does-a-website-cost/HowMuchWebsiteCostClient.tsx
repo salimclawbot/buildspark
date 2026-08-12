@@ -148,33 +148,33 @@ export default function HowMuchWebsiteCostClient() {
             </p>
 
             <h2 className="text-2xl font-bold text-white mt-12 mb-4">
-              BuildSpark ($490–$1,290)
+              BuildSpark ($250/month managed website plan)
             </h2>
             <p className="text-zinc-300 text-lg leading-relaxed mb-4">
-              This is the sweet spot we built BuildSpark to fill. Professional quality without the agency price tag, delivered in days rather than months.
+              This is the sweet spot we built BuildSpark to fill. A professional website without the big upfront invoice, plus the ongoing care most local businesses actually need.
             </p>
             <p className="text-zinc-300 text-lg leading-relaxed mb-4">
-              We use modern technology (Next.js, not bloated WordPress themes) that&apos;s faster and more SEO-friendly than traditional builds. Every site comes with local SEO baked in from day one, mobile-first design, and performance that scores 90+ on Google PageSpeed. No meetings, no calls, no back-and-forth over email for weeks. You take a quiz, tell us about your business, and we build it. You only pay if you&apos;re happy with the result.
+              We use modern technology, not bloated templates, so your site can load fast, look sharp, and support proper SEO foundations. You take the quiz, tell us about your business, and we map the website around the calls, bookings, quotes, or enquiries you want.
             </p>
             <ul className="list-disc pl-6 space-y-3 text-zinc-300 text-lg mb-6">
-              <li><strong className="text-white">Starter ($490):</strong> A clean, fast, single-page site with all the essentials. Perfect for tradies, solo operators, and new businesses that need a professional online presence quickly.</li>
-              <li><strong className="text-white">Growth ($790):</strong> Multi-page site with expanded content, service pages, and enhanced SEO. The most popular option for established local businesses ready to grow their online presence.</li>
-              <li><strong className="text-white">Pro ($1,290):</strong> Full-featured site with advanced functionality, blog, booking integration, content strategy, and priority support. Built for businesses that want to dominate their local search results.</li>
+              <li><strong className="text-white">$250 per month:</strong> Website design, build, hosting, domain setup support, SSL, security basics, backups, monthly changes, and lead tracking.</li>
+              <li><strong className="text-white">Built to convert:</strong> Clear headline, local trust signals, services, reviews, calls-to-action, forms, and mobile layouts that make it easy to enquire.</li>
+              <li><strong className="text-white">Looked after monthly:</strong> We can update pages, refresh sections, add an article or page improvement, and keep the site moving instead of letting it go stale.</li>
             </ul>
             <p className="text-zinc-300 text-lg leading-relaxed mb-6">
-              The result is a professional site that loads fast, ranks well, and actually brings in customers - without the $10,000 price tag or the three-month timeline. It&apos;s the quality of an agency site at a fraction of the cost, because we&apos;ve stripped out everything that doesn&apos;t directly make your business more visible online.
+              The result is a professional site that loads fast, builds trust, and gives visitors a clear next step - without the $3,000-$5,000 upfront website bill. Larger builds, ecommerce, booking systems, or complex integrations may need separate scope, but most local business websites fit the managed plan.
             </p>
 
             {/* Mid-post CTA */}
             <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-6 sm:p-8 my-10 text-center">
               <p className="text-white font-semibold text-lg mb-3">
-                Find out what your website would cost. Take the 2-minute quiz.
+                See if the $250/month website plan is right for your business.
               </p>
               <p className="text-zinc-400 text-sm mb-4">
-                We&apos;ll recommend the right plan for your business and show you exactly what you&apos;d get.
+                Tell us what you do, where you work, and what enquiries you want. We&apos;ll come back with the right website structure.
               </p>
               <Button asChild size="default">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
 
@@ -199,13 +199,13 @@ export default function HowMuchWebsiteCostClient() {
               Let&apos;s cut through the noise. If you&apos;re a local business - a tradie, a cafe, a hairdresser, an accountant, a physio - you probably need a site with 3–7 pages: home, about, services, contact, and maybe a couple of extras. That&apos;s it.
             </p>
             <p className="text-zinc-300 text-lg leading-relaxed mb-4">
-              A site like that, built efficiently with modern tools and optimised for local SEO, is a $490–$990 job. If someone is quoting you $5,000 or more for a basic local business site in 2026, they&apos;re either using outdated technology that takes longer to build, or they&apos;re charging for overhead you don&apos;t benefit from.
+              A site like that should not need a huge upfront invoice. Our model is simple: $250 per month for the website, hosting, care, updates, content support, SEO foundations, and lead tracking.
             </p>
             <p className="text-zinc-300 text-lg leading-relaxed mb-4">
               Don&apos;t overpay for complexity you don&apos;t need. A fast, well-optimised 5-page site will outperform a bloated 30-page site every time - in Google rankings, in user experience, and in actually converting visitors into customers.
             </p>
             <p className="text-zinc-300 text-lg leading-relaxed mb-6">
-              And remember: the biggest hidden cost is a website that doesn&apos;t work. A $200 site that sits on page 5 of Google and converts no one is infinitely more expensive than a $900 site that brings in new customers every week.
+              And remember: the biggest hidden cost is a website that doesn&apos;t work. A cheap site that sits on page 5 of Google and converts no one is more expensive than a properly managed site that brings in new enquiries.
             </p>
 
             <h2 className="text-2xl font-bold text-white mt-12 mb-4">
@@ -235,7 +235,7 @@ export default function HowMuchWebsiteCostClient() {
               Tradies are one of the most common groups we work with, and the advice online is often the worst for them. Whether you&apos;re an electrician, plumber, carpenter, or landscaper, the same principles apply: you don&apos;t need a $10,000 custom build. You need a site that works.
             </p>
             <p className="text-zinc-300 text-lg leading-relaxed mb-4">
-              For most tradies, the $490 range gives you everything you actually need: a fast, mobile-friendly site with local SEO baked in, a professional look that builds trust, and a click-to-call button that turns visitors into jobs. You don&apos;t need 15 pages and a blog with 50 articles. You need one clean, fast page that converts visitors into phone calls.
+              For most tradies, the priority is simple: a fast, mobile-friendly site with local SEO baked in, a professional look that builds trust, and a click-to-call button that turns visitors into jobs. You don&apos;t need 15 weak pages and a blog with 50 filler articles. You need a clear site that converts visitors into phone calls.
             </p>
             <p className="text-zinc-300 text-lg leading-relaxed mb-4">
               Regardless of which option you choose, these are the things that actually move the needle for a <a href="/services/tradies" className="text-amber-500 underline hover:text-amber-400">tradie website</a>:
@@ -268,7 +268,7 @@ export default function HowMuchWebsiteCostClient() {
                 Take our free 2-minute quiz. We&apos;ll recommend the right plan for your business - no calls, no meetings, no lock-in contracts.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

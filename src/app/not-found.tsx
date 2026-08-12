@@ -20,7 +20,7 @@ export default function NotFound() {
               href="/quiz"
               className="inline-flex items-center justify-center rounded-lg bg-amber-500 px-8 py-3 text-sm font-semibold text-black hover:bg-amber-400 transition-colors"
             >
-              Start Your Free Quiz &rarr;
+              Start the Website Quiz →
             </Link>
             <Link
               href="/"

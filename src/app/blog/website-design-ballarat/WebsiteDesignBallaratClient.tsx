@@ -145,7 +145,7 @@ export default function WebsiteDesignBallaratClient() {
                 We&apos;ll show you exactly what we&apos;d build for your business - tailored to your industry and location.
               </p>
               <Button asChild size="default">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
 
@@ -193,7 +193,7 @@ export default function WebsiteDesignBallaratClient() {
                 Take our free 2-minute quiz. We&apos;ll show you exactly what we&apos;d build for your business - optimised for Ballarat and the surrounding region.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

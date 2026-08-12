@@ -123,9 +123,9 @@ export default function BakeriesClient() {
           className="max-w-3xl mx-auto px-4 sm:px-6 text-center"
         >
           <Card className="border-amber-500/30 bg-amber-500/5">
-            <p className="text-zinc-400 mb-2">Starter websites from</p>
-            <p className="text-4xl font-bold text-amber-500 mb-2">$490</p>
-            <p className="text-zinc-500 text-sm">One-off. No hidden fees.</p>
+            <p className="text-zinc-400 mb-2">Managed websites</p>
+            <p className="text-4xl font-bold text-amber-500 mb-2">$250/month</p>
+            <p className="text-zinc-500 text-sm">Website, care, updates, content and lead tracking.</p>
           </Card>
         </motion.div>
       </section>
@@ -143,7 +143,7 @@ export default function BakeriesClient() {
             Ready to grow your <span className="text-amber-500">bakery?</span>
           </h2>
           <Button asChild size="lg" className="text-base px-10">
-            <Link href="/quiz">Start Your Free Quiz →</Link>
+            <Link href="/quiz">Start the Website Quiz →</Link>
           </Button>
         </motion.div>
       </section>

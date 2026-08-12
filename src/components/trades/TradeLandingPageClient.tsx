@@ -134,7 +134,7 @@ export default function TradeLandingPageClient({ trade }: { trade: TradeKey }) {
               <div key={feature} className="rounded-xl border border-white/15 bg-black/30 p-4 text-sm text-zinc-200">{feature}</div>
             ))}
           </div>
-          <p className="mt-6 text-lg font-semibold text-amber-200">From $490. Pay only when you love it.</p>
+          <p className="mt-6 text-lg font-semibold text-amber-200">$250 per month. Pay only when you love it.</p>
           <div className="mt-4">
             <Link href={config.quizHref}>
               <ShimmerButton className="bg-amber-500 px-8 py-3 text-sm font-semibold text-black">Start My Free Quiz -&gt;</ShimmerButton>
@@ -164,7 +164,7 @@ export default function TradeLandingPageClient({ trade }: { trade: TradeKey }) {
         <div className="mx-auto max-w-6xl">
           <h2 className="text-2xl font-semibold sm:text-3xl">FAQ</h2>
           <div className="mt-6 space-y-4 text-sm text-zinc-200">
-            <Faq q={`How much does a ${config.noun} website cost?`} a={`From $490 for a standard site, or $790 for a full pro build.`} />
+            <Faq q={`How much does a ${config.noun} website cost?`} a={`$250 per month for a standard site, or $790 for a full pro build.`} />
             <Faq q="How long does it take?" a="You get a preview in 48 hours. Full build is usually 5 to 7 business days." />
             <Faq q="Do I need domain and hosting?" a="No. We handle it for you and include setup in the build." />
             <Faq q="Will it rank on Google?" a="Yes. Every site is SEO-ready and includes Google Business Profile setup guidance." />

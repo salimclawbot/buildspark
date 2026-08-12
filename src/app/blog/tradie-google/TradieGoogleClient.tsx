@@ -163,7 +163,7 @@ export default function TradieGoogleClient() {
                 business.
               </p>
               <Button asChild size="default">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
 
@@ -263,7 +263,7 @@ export default function TradieGoogleClient() {
                 business.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

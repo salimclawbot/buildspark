@@ -148,7 +148,7 @@ export default function CaseStudiesClient() {
               90 days of launch.
             </p>
             <Button asChild size="lg" className="text-base">
-              <Link href="/quiz">Take the 2-Minute Quiz →</Link>
+              <Link href="/quiz">Start the Website Quiz →</Link>
             </Button>
           </motion.div>
         </div>

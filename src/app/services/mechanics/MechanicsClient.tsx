@@ -147,7 +147,7 @@ export default function MechanicsClient() {
             Ready to fill your <span className="text-amber-500">workshop?</span>
           </h2>
           <Button asChild size="lg" className="text-base px-10">
-            <Link href="/quiz">Start Your Free Quiz →</Link>
+            <Link href="/quiz">Start the Website Quiz →</Link>
           </Button>
         </motion.div>
       </section>

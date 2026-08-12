@@ -48,29 +48,27 @@ function SparkParticles() {
 
 
 const rotatingWords = [
+  "Clinic",
+  "Builder",
+  "Cafe",
+  "Equine Brand",
+  "Specialist",
   "Tradie",
-  "Plumber",
-  "Baker",
-  "Electrician",
-  "Mechanic",
-  "Cafe Owner",
-  "Landscaper",
+  "Security Team",
   "Bookkeeper",
-  "Cleaner",
-  "Florist",
+  "Restaurant",
+  "Local Brand",
 ];
 
 
 const marqueeItems = [
-  "Websites that get tradies booked out",
-  "Live in 5 days, not 5 months",
-  "From $490. Seriously.",
-  "Built for cafes that want full tables",
+  "$250 per month. Website, care, and tracking.",
+  "Built for clinics, trades, hospitality and professional services",
+  "No $3,000-$5,000 upfront invoice",
   "No contracts. No lock-in.",
-  "Google-ready from day one",
-  "Your phone. Ringing. More.",
-  "50+ Victorian businesses trust us",
-  "Stop losing leads to your competitors",
+  "SEO foundations from day one",
+  "Calls, clicks and form leads tracked",
+  "Designed to make people trust you faster",
 ];
 
 function InlineMarquee() {
@@ -129,7 +127,7 @@ export function Hero() {
               className="mb-4 sm:mb-6"
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-sm text-amber-500 font-medium">
-                ⚡ Trusted by 50+ Victorian businesses
+                ⚡ Managed websites for $250/month
               </span>
             </motion.div>
 
@@ -148,7 +146,7 @@ export function Hero() {
                 {rotatingWords[wordIndex]}.
               </span>{" "}
               <span className="text-amber-500">
-                Your Website Is Losing You Customers.
+                Your Website Should Make You Look Like the Obvious Choice.
               </span>
             </motion.h1>
 
@@ -159,9 +157,9 @@ export function Hero() {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="text-lg sm:text-xl text-zinc-400 max-w-xl mb-6 sm:mb-8 leading-relaxed"
             >
-              We build fast, affordable websites for tradies and local
-              businesses across Victoria. No contracts. No fluff. Just a site
-              that gets your phone ringing.
+              We build premium managed websites for clinics, trades, hospitality,
+              equine, professional services and local businesses. Website, hosting,
+              care, content and lead tracking for $250 per month.
             </motion.p>
 
             {/* CTAs */}
@@ -172,7 +170,7 @@ export function Hero() {
               className="flex flex-col sm:flex-row items-start gap-4 mb-5 sm:mb-8"
             >
               <Button asChild size="lg" className="text-base px-8">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
               <Button asChild variant="ghost" size="lg" className="text-base">
                 <Link href="#how-it-works">See How It Works →</Link>
@@ -211,8 +209,7 @@ export function Hero() {
               </span>
               <span className="hidden sm:inline text-zinc-700">|</span>
               <span className="flex items-center gap-1.5">
-                <span className="text-amber-500">⚡</span> 48-hour delivery
-                available
+                <span className="text-amber-500">⚡</span> Monthly updates included
               </span>
               <span className="hidden sm:inline text-zinc-700">|</span>
               <span className="flex items-center gap-1.5">

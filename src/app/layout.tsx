@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BuildSpark | Websites for Local Businesses | $250/Month",
     description:
-      "Fast, affordable websites for trades, clinics, hospitality, equine, professional services and local businesses. $250 per month.",
+      "Premium managed websites for trades, clinics, hospitality, equine, professional services and local businesses. $250 per month.",
     url: "https://buildspark.com.au",
     siteName: "BuildSpark",
     images: [
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BuildSpark | Websites for Local Businesses | $250/Month",
     description:
-      "Fast, affordable websites for local businesses. $250 per month.",
+      "Premium managed websites for local businesses. $250 per month.",
     images: ["https://buildspark.com.au/images/hero-workspace.webp"],
   },
   verification: {

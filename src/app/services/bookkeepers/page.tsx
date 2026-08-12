@@ -4,7 +4,7 @@ import BookkeepersClient from "./BookkeepersClient";
 export const metadata: Metadata = {
   title: "Bookkeeper Website Design Victoria | BuildSpark",
   description:
-    "Bookkeeper website design in Victoria from $490. Professional lead capture, credentials display, and local SEO to attract more accounting clients.",
+    "Bookkeeper website design in Victoria for $250 per month. Professional lead capture, credentials display, and local SEO to attract more accounting clients.",
   alternates: { canonical: "https://buildspark.com.au/services/bookkeepers" },
 };
 

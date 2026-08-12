@@ -75,11 +75,11 @@ export default function BookkeeperWebsiteClient() {
               Not sure if your online presence is working for you?
             </p>
             <p className="text-zinc-300 text-lg leading-relaxed mb-6">
-              Take our free quiz to find out where your business stands and what you could improve.
+              Start the website quiz to find out where your business stands and what you could improve.
             </p>
-            <Link href="/#quiz">
+            <Link href="/quiz">
               <Button className="bg-amber-500 hover:bg-amber-600 text-black font-semibold px-6 py-3">
-                Take the Free Quiz
+                Start the Website Quiz
               </Button>
             </Link>
           </div>

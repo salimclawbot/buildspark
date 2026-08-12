@@ -302,7 +302,7 @@ export default function ReviewsClient() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg" className="text-base px-10">
-              <Link href="/quiz">Take the 2-Minute Quiz →</Link>
+              <Link href="/quiz">Start the Website Quiz →</Link>
             </Button>
             <a
               href="mailto:hello@buildspark.com.au"

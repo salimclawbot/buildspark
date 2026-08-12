@@ -15,11 +15,11 @@ export function generateMetadata({
   const name = data?.name ?? params.suburb;
   return {
     title: `Website Design in ${name} | BuildSpark`,
-    description: `BuildSpark builds fast, affordable websites for businesses in ${name}, Victoria. From $490. Tradies, cafes, mechanics and more.`,
+    description: `BuildSpark builds premium managed websites for businesses in ${name}, Victoria. $250 per month. Tradies, cafes, mechanics and more.`,
     alternates: { canonical: `https://buildspark.com.au/locations/${params.suburb}` },
     openGraph: {
       title: `Website Design in ${name} | BuildSpark`,
-      description: `BuildSpark builds fast, affordable websites for businesses in ${name}, Victoria. From $490.`,
+      description: `BuildSpark builds premium managed websites for businesses in ${name}, Victoria. $250 per month.`,
       url: `https://buildspark.com.au/locations/${params.suburb}`,
       siteName: "BuildSpark",
       type: "website",

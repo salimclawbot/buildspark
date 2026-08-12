@@ -4,12 +4,12 @@ import AboutClient from "./AboutClient";
 export const metadata: Metadata = {
   title: "About BuildSpark | Victorian Web Design Team",
   description:
-    "Meet the lean Victorian web team obsessed with building sites that work. Fast, affordable websites for local businesses.",
+    "Meet the lean Victorian web team obsessed with building sites that work. Premium managed websites for local businesses.",
   alternates: { canonical: "https://buildspark.com.au/about" },
   openGraph: {
     title: "About BuildSpark | Victorian Web Design Team",
     description:
-      "Meet the lean Victorian web team obsessed with building sites that work. Fast, affordable websites for local businesses.",
+      "Meet the lean Victorian web team obsessed with building sites that work. Premium managed websites for local businesses.",
     url: "https://buildspark.com.au/about",
     siteName: "BuildSpark",
     type: "website",

@@ -20,7 +20,7 @@ export function StickyMobileCTA() {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background/95 backdrop-blur-xl border-t border-zinc-800 p-3">
       <Button asChild size="lg" className="w-full text-base font-bold">
-        <Link href="/quiz">Start Your Free Quiz →</Link>
+        <Link href="/quiz">Start the Website Quiz →</Link>
       </Button>
     </div>
   );

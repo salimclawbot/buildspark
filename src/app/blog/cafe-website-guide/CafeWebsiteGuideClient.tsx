@@ -217,7 +217,7 @@ export default function CafeWebsiteGuideClient() {
                 for your cafe&mdash;no calls, no pressure.
               </p>
               <Button asChild size="default">
-                <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
 
@@ -386,7 +386,7 @@ export default function CafeWebsiteGuideClient() {
               &ldquo;[cuisine] + [suburb]&rdquo; keywords that bring hungry customers to your door.
             </p>
             <p className="text-zinc-300 text-lg leading-relaxed mb-10">
-              Starting from $490. Live in days, not months. No DIY drag-and-drop frustration, no
+              Starting for $250 per month. Live in days, not months. No DIY drag-and-drop frustration, no
               $10,000 agency bill, and no ongoing maintenance headaches. Just a website that does
               exactly what it&apos;s supposed to do: get people through your door.
             </p>
@@ -401,7 +401,7 @@ export default function CafeWebsiteGuideClient() {
                 venue&mdash;no obligations, no sales calls. Just a clear recommendation by email.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

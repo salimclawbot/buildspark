@@ -167,7 +167,7 @@ export default function MechanicCaseStudyClient() {
                 We&apos;ll show you what we&apos;d build for your business.
               </p>
               <Button asChild size="default">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
 
@@ -289,7 +289,7 @@ export default function MechanicCaseStudyClient() {
                 Just a clear recommendation by email.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz →</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

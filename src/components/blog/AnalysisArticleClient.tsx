@@ -461,7 +461,7 @@ export default function AnalysisArticleClient({ post }: { post: AnalysisPost }) 
               </p>
               <Button asChild size="lg" className="mt-5">
                 <Link href={isDirectOffer ? "#article-lead-form" : leadFormHref}>
-                  {isDirectOffer ? `Start My ${offerPrice} Website` : "Start Your Free Quiz"} <ArrowRight className="ml-2 h-4 w-4" />
+                  {isDirectOffer ? `Start My ${offerPrice} Website` : "Start the Website Quiz"} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               {isDirectOffer ? (

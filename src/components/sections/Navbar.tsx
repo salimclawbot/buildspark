@@ -12,6 +12,9 @@ const navLinks = [
     href: "/services",
     children: [
       { label: "Tradies", href: "/services/tradies" },
+      { label: "Clinics & Specialists", href: "/quiz" },
+      { label: "Equine & Horse Businesses", href: "/quiz" },
+      { label: "Security & CCTV", href: "/blog/security-cctv-installer-websites-lead-generator" },
       { label: "Cafes & Restaurants", href: "/services/cafes" },
       { label: "Bakeries", href: "/services/bakeries" },
       { label: "Mechanics", href: "/services/mechanics" },
@@ -22,7 +25,7 @@ const navLinks = [
   { label: "Results", href: "/case-studies" },
   { label: "Reviews", href: "/reviews" },
   { label: "Blog", href: "/blog" },
-  { label: "About", href: "/about" },
+  { label: "$250/month", href: "/pricing" },
 ];
 
 type NavbarProps = {
@@ -33,7 +36,7 @@ type NavbarProps = {
 };
 
 export function Navbar({
-  ctaLabel = "Start Quiz →",
+  ctaLabel = "Get Started",
   ctaHref = "/quiz",
   singleCta = false,
   tone = "dark",

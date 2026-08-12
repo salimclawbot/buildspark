@@ -2,14 +2,14 @@ import { Metadata } from "next";
 import ServicesClient from "./ServicesClient";
 
 export const metadata: Metadata = {
-  title: "Web Design Services for Local Victorian Businesses | BuildSpark",
+  title: "Managed Website Services for Local Businesses | BuildSpark",
   description:
-    "Websites for tradies, cafes, bakeries, mechanics, bookkeepers and more. Fast builds from $490.",
+    "Premium managed websites for trades, clinics, hospitality, equine, professional services and local businesses. Website, care, updates and lead tracking for $250 per month.",
   alternates: { canonical: "https://buildspark.com.au/services" },
   openGraph: {
-    title: "Web Design Services for Local Victorian Businesses | BuildSpark",
+    title: "Managed Website Services for Local Businesses | BuildSpark",
     description:
-      "Websites for tradies, cafes, bakeries, mechanics, bookkeepers and more. Fast builds from $490.",
+      "Premium managed websites for trades, clinics, hospitality, equine, professional services and local businesses. $250 per month.",
     url: "https://buildspark.com.au/services",
     siteName: "BuildSpark",
     type: "website",

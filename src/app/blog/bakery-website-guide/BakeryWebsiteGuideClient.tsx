@@ -220,7 +220,7 @@ export default function BakeryWebsiteGuideClient() {
                 your bakery.
               </p>
               <Button asChild size="default">
-                <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
 
@@ -290,7 +290,7 @@ export default function BakeryWebsiteGuideClient() {
             </p>
             <ul className="list-disc pl-6 space-y-3 text-zinc-300 text-lg mb-6">
               <li><strong className="text-white">Google Business Profile</strong> &mdash; free, immediate impact</li>
-              <li><strong className="text-white">Fast, mobile-friendly website</strong> &mdash; with great photos, a menu with prices, and clear hours &mdash; from $490 with BuildSpark</li>
+              <li><strong className="text-white">Fast, mobile-friendly website</strong> &mdash; with great photos, a menu with prices, and clear hours &mdash; for $250 per month with BuildSpark</li>
               <li><strong className="text-white">Google Maps embed</strong> &mdash; free, helps people find you and boosts rankings</li>
               <li><strong className="text-white">Google reviews</strong> &mdash; free, ongoing effort</li>
               <li><strong className="text-white">Instagram connected to your website</strong> &mdash; free, keeps your site fresh</li>
@@ -320,7 +320,7 @@ export default function BakeryWebsiteGuideClient() {
                 your bakery. No calls. No meetings. Just a clear recommendation by email.
               </p>
               <Button asChild size="lg" className="text-base">
-                <Link href="/quiz">Start Your Free Quiz &rarr;</Link>
+                <Link href="/quiz">Start the Website Quiz →</Link>
               </Button>
             </div>
           </motion.div>

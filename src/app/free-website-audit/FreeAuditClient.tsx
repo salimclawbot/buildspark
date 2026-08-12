@@ -421,7 +421,7 @@ export default function FreeAuditClient() {
             look like for your business.
           </p>
           <Button asChild size="lg" className="text-base px-10">
-            <Link href="/quiz">Take the 2-Minute Quiz →</Link>
+            <Link href="/quiz">Start the Website Quiz →</Link>
           </Button>
         </motion.div>
       </section>
