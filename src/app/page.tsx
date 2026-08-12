@@ -1,35 +1,45 @@
 import type { Metadata } from "next";
-import { HomePageClient } from "./HomePageClient";
+import { Navbar } from "@/components/sections/Navbar";
+import { Hero } from "@/components/sections/Hero";
+import { PainLetter } from "@/components/sections/PainLetter";
+import { Stats } from "@/components/sections/Stats";
+import { WhoWeBuildFor } from "@/components/sections/WhoWeBuildFor";
+import { BeforeAfter } from "@/components/sections/BeforeAfter";
+import { HowItWorks } from "@/components/sections/HowItWorks";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { Urgency } from "@/components/sections/Urgency";
+import { Footer } from "@/components/sections/Footer";
+import { StickyMobileCTA } from "@/components/sections/StickyMobileCTA";
 
 export const metadata: Metadata = {
-  title: "BuildSpark | Websites for Local Businesses | $250/Month",
+  title: "Local Business Websites Victoria | BuildSpark",
   description:
-    "Modern, high-converting websites for local businesses, clinics, trades, hospitality, equine, professional services, and more. Website, hosting, security, backups, updates, content, and lead tracking for $250 per month.",
+    "BuildSpark builds fast, conversion-focused websites for Victorian local businesses. Clear service pages, local SEO, trust proof, forms, and tracking for $250 per month.",
   keywords: [
+    "local business websites Victoria",
+    "website design Victoria",
+    "small business websites Victoria",
     "website design $250 per month",
-    "local business websites",
-    "small business website package",
-    "website subscription Australia",
-    "web design Victoria",
-    "websites for clinics",
+    "local SEO websites",
+    "conversion focused websites",
     "websites for tradies",
-    "websites for local businesses",
+    "websites for local businesses Victoria",
   ],
   alternates: {
     canonical: "https://buildspark.com.au",
   },
   openGraph: {
-    title: "BuildSpark | Websites for Local Businesses | $250/Month",
+    title: "Local Business Websites Victoria | BuildSpark",
     description:
-      "A world-class website, hosting, care, content updates, and lead tracking for $250 per month.",
+      "Fast, practical websites for Victorian local businesses that need more calls, more enquiries, and more trust.",
     url: "https://buildspark.com.au",
     siteName: "BuildSpark",
     images: [
       {
-        url: "https://buildspark.com.au/images/buildspark-home-hero.png",
-        width: 1792,
-        height: 1024,
-        alt: "BuildSpark website examples across multiple industries",
+        url: "https://buildspark.com.au/images/website-call-now.webp",
+        width: 1200,
+        height: 630,
+        alt: "BuildSpark local business website example",
       },
     ],
     locale: "en_AU",
@@ -37,35 +47,24 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BuildSpark | Websites for Local Businesses | $250/Month",
+    title: "Local Business Websites Victoria | BuildSpark",
     description:
-      "Website, hosting, care, content updates, and lead tracking for $250 per month.",
-    images: ["https://buildspark.com.au/images/buildspark-home-hero.png"],
+      "Fast, practical websites for Victorian local businesses. $250 per month.",
+    images: ["https://buildspark.com.au/images/website-call-now.webp"],
   },
 };
 
 const homeSchema = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "BuildSpark",
+  "@type": "WebPage",
+  name: "Local Business Websites Victoria",
   url: "https://buildspark.com.au",
   description:
-    "BuildSpark builds and manages high-converting websites for local businesses for $250 per month.",
-  areaServed: {
-    "@type": "Country",
-    name: "Australia",
-  },
-  offers: {
-    "@type": "Offer",
-    name: "Managed local business website",
-    price: "250",
-    priceCurrency: "AUD",
-    priceSpecification: {
-      "@type": "UnitPriceSpecification",
-      price: "250",
-      priceCurrency: "AUD",
-      unitText: "month",
-    },
+    "BuildSpark builds fast, conversion-focused websites for Victorian local businesses.",
+  isPartOf: {
+    "@type": "WebSite",
+    name: "BuildSpark",
+    url: "https://buildspark.com.au",
   },
 };
 
@@ -76,7 +75,19 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
       />
-      <HomePageClient />
+      <main className="min-h-screen bg-background">
+        <Navbar />
+        <Hero />
+        <PainLetter />
+        <Stats />
+        <WhoWeBuildFor />
+        <BeforeAfter />
+        <HowItWorks />
+        <Testimonials />
+        <Urgency />
+        <Footer />
+        <StickyMobileCTA />
+      </main>
     </>
   );
 }
