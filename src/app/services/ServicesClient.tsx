@@ -22,15 +22,15 @@ import { Footer } from "@/components/sections/Footer";
 import { Button } from "@/components/ui/button";
 
 const services = [
-  ["Tradies", "Plumbers, electricians, builders, painters, landscapers and service crews that need more calls and quote requests.", "/services/tradies", Hammer, "bg-[#d9ff45]"],
-  ["Clinics & Specialists", "Medical, dental, cosmetic, allied health and specialist practices where trust has to land before the appointment.", "/quiz", Stethoscope, "bg-[#d8dee8]"],
-  ["Equine & Horse Businesses", "Horse trainers, agistment, breeders, therapists and rural brands that need to look established online.", "/quiz", Sparkles, "bg-[#cfe8d6]"],
-  ["Cafes & Hospitality", "Cafes, restaurants, venues and food businesses with menus, bookings, opening hours and local search needs.", "/services/cafes", Coffee, "bg-[#f0c8b2]"],
-  ["Bakeries & Food Brands", "Show products, wholesale enquiries, opening hours and the reasons customers should visit or order.", "/services/bakeries", Wheat, "bg-[#f4df93]"],
-  ["Mechanics & Workshops", "Make your workshop feel reliable, explain the services clearly, and make booking or calling simple.", "/services/mechanics", Building2, "bg-[#d8dee8]"],
-  ["Professional Services", "Bookkeepers, consultants, advisors and local experts who need credibility, service pages and lead capture.", "/services/bookkeepers", Landmark, "bg-[#e6d7ff]"],
-  ["Security, CCTV & Contractors", "Commercial and residential service teams where proof, response time and trust win the enquiry.", "/blog/security-cctv-installer-websites-lead-generator", Camera, "bg-[#bdeee4]"],
-  ["Other Local Businesses", "If your customers check you online before they call, we can build a website around that decision.", "/quiz", HeartPulse, "bg-[#ffd6e7]"],
+  ["Tradies", "Plumbers, electricians, builders, painters, landscapers and service crews that need more calls and quote requests.", "/services/tradies", Hammer],
+  ["Clinics & Specialists", "Medical, dental, cosmetic, allied health and specialist practices where trust has to land before the appointment.", "/quiz", Stethoscope],
+  ["Equine & Horse Businesses", "Horse trainers, agistment, breeders, therapists and rural brands that need to look established online.", "/quiz", Sparkles],
+  ["Cafes & Hospitality", "Cafes, restaurants, venues and food businesses with menus, bookings, opening hours and local search needs.", "/services/cafes", Coffee],
+  ["Bakeries & Food Brands", "Show products, wholesale enquiries, opening hours and the reasons customers should visit or order.", "/services/bakeries", Wheat],
+  ["Mechanics & Workshops", "Make your workshop feel reliable, explain the services clearly, and make booking or calling simple.", "/services/mechanics", Building2],
+  ["Professional Services", "Bookkeepers, consultants, advisors and local experts who need credibility, service pages and lead capture.", "/services/bookkeepers", Landmark],
+  ["Security, CCTV & Contractors", "Commercial and residential service teams where proof, response time and trust win the enquiry.", "/blog/security-cctv-installer-websites-lead-generator", Camera],
+  ["Other Local Businesses", "If your customers check you online before they call, we can build a website around that decision.", "/quiz", HeartPulse],
 ] as const;
 
 const outcomes = [
@@ -43,38 +43,38 @@ const outcomes = [
 
 export default function ServicesClient() {
   return (
-    <main className="min-h-screen bg-[#f5f2e8] text-[#141414]">
-      <Navbar ctaLabel="Get Started" ctaHref="/quiz" singleCta tone="light" />
+    <main className="min-h-screen bg-background text-white">
+      <Navbar ctaLabel="Get Started" ctaHref="/quiz" singleCta />
 
       <section className="relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_86%_12%,rgba(217,255,69,0.75),transparent_22%),radial-gradient(circle_at_10%_18%,rgba(30,73,255,0.14),transparent_28%),linear-gradient(180deg,#fffdf5,#f5f2e8)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_12%,rgba(245,158,11,0.24),transparent_28%),linear-gradient(180deg,rgba(0,0,0,0.92),hsl(var(--background)))]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end">
             <div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#1e49ff]">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-amber-400">
                 Website systems by industry
               </p>
               <h1 className="mt-5 max-w-5xl text-6xl font-black leading-[0.9] tracking-tight sm:text-8xl">
                 One price. Different playbooks.
               </h1>
-              <p className="mt-7 max-w-2xl text-xl leading-8 text-[#141414]/70">
+              <p className="mt-7 max-w-2xl text-xl leading-8 text-zinc-400">
                 The $250/month plan stays simple. The website strategy changes for the business: clinics need reassurance, tradies need speed, cafes need appetite, and specialists need authority.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="h-14 rounded-full bg-[#141414] px-8 text-base text-white hover:bg-[#1e49ff]">
+                <Button asChild size="lg" className="h-14 rounded-none px-8 text-base">
                   <Link href="/quiz">Find my website plan <ArrowRight className="ml-2 h-5 w-5" /></Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-14 rounded-full border-[#141414]/20 bg-white/60 px-8 text-base text-[#141414] hover:bg-white">
+                <Button asChild variant="outline" size="lg" className="h-14 rounded-none border-zinc-700 bg-transparent px-8 text-base text-white hover:bg-white hover:text-black">
                   <Link href="/portfolio">View work</Link>
                 </Button>
               </div>
             </div>
-            <div className="border border-[#141414]/10 bg-[#141414] p-6 text-white shadow-[0_24px_80px_rgba(20,20,20,0.18)]">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#d9ff45]">Every BuildSpark site is built to</p>
+            <div className="border border-white/10 bg-white/[0.04] p-6 text-white shadow-2xl shadow-black/30">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-amber-400">Every BuildSpark site is built to</p>
               <div className="mt-6 grid gap-px bg-white/12">
                 {outcomes.map((item) => (
-                  <div key={item} className="flex items-center gap-3 bg-[#141414] p-4">
-                    <BadgeCheck className="h-5 w-5 shrink-0 text-[#d9ff45]" />
+                  <div key={item} className="flex items-center gap-3 bg-background p-4">
+                    <BadgeCheck className="h-5 w-5 shrink-0 text-amber-500" />
                     <span className="font-bold">{item}</span>
                   </div>
                 ))}
@@ -84,23 +84,23 @@ export default function ServicesClient() {
         </div>
       </section>
 
-      <section className="bg-[#fffdf5] py-16 sm:py-24">
+      <section className="border-y border-zinc-800 bg-black/25 py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-[0.2em] text-[#b8642f]">Industries</p>
+            <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-400">Industries</p>
             <h2 className="mt-4 text-5xl font-black leading-[0.95] tracking-tight sm:text-6xl">
               The layout should match how your buyer thinks.
             </h2>
           </div>
-          <div className="mt-12 grid gap-px bg-[#141414]/14 md:grid-cols-2 lg:grid-cols-3">
-            {services.map(([title, description, href, Icon, swatch]) => (
-              <Link key={title} href={href} className="group bg-[#fffdf5] p-6 transition hover:bg-white">
-                <div className={`grid h-14 w-14 place-items-center rounded-full ${swatch}`}>
-                  <Icon className="h-7 w-7 text-[#141414]" />
+          <div className="mt-12 grid gap-px bg-zinc-800 md:grid-cols-2 lg:grid-cols-3">
+            {services.map(([title, description, href, Icon]) => (
+              <Link key={title} href={href} className="group bg-background p-6 transition hover:bg-card">
+                <div className="grid h-14 w-14 place-items-center rounded-full bg-amber-500/12 ring-1 ring-amber-500/30">
+                  <Icon className="h-7 w-7 text-amber-500" />
                 </div>
                 <h3 className="mt-10 text-3xl font-black tracking-tight">{title}</h3>
-                <p className="mt-4 min-h-[112px] text-base leading-7 text-[#141414]/62">{description}</p>
-                <span className="mt-8 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-[#1e49ff]">
+                <p className="mt-4 min-h-[112px] text-base leading-7 text-zinc-400">{description}</p>
+                <span className="mt-8 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-amber-400">
                   Explore fit <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </span>
               </Link>
@@ -109,14 +109,14 @@ export default function ServicesClient() {
         </div>
       </section>
 
-      <section className="bg-[#d8dee8] py-16 sm:py-24">
+      <section className="bg-background py-16 sm:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:px-8">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.2em] text-[#1e49ff]">$250/month</p>
+            <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-400">$250/month</p>
             <h2 className="mt-4 text-5xl font-black leading-[0.95] tracking-tight sm:text-6xl">
               Same managed care. Different conversion path.
             </h2>
-            <p className="mt-6 text-lg leading-8 text-[#141414]/68">
+            <p className="mt-6 text-lg leading-8 text-zinc-400">
               Every plan includes website design, hosting, domain setup support, monthly changes, content support, security, backups and lead analytics. The difference is how we shape the website around the customer you want.
             </p>
           </div>
@@ -127,8 +127,8 @@ export default function ServicesClient() {
               [MousePointerClick, "Clear enquiry paths"],
               [BadgeCheck, "SEO foundations"],
             ].map(([Icon, label]) => (
-              <div key={label as string} className="border border-[#141414]/10 bg-[#fffdf5] p-6">
-                <Icon className="h-7 w-7 text-[#1e49ff]" />
+              <div key={label as string} className="border border-zinc-800 bg-card p-6">
+                <Icon className="h-7 w-7 text-amber-500" />
                 <p className="mt-8 text-2xl font-black">{label as string}</p>
               </div>
             ))}
@@ -136,21 +136,21 @@ export default function ServicesClient() {
         </div>
       </section>
 
-      <section className="bg-[#141414] px-4 py-14 text-white sm:px-6 sm:py-20 lg:px-8">
+      <section className="border-y border-zinc-800 bg-black/35 px-4 py-14 text-white sm:px-6 sm:py-20 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.2em] text-[#d9ff45]">Start here</p>
+            <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-400">Start here</p>
             <h2 className="mt-3 max-w-3xl text-4xl font-black tracking-tight sm:text-6xl">
               Tell us the business. We will map the website.
             </h2>
           </div>
-          <Button asChild size="lg" className="h-14 rounded-full bg-[#d9ff45] px-8 text-base text-[#141414] hover:bg-white">
+          <Button asChild size="lg" className="h-14 rounded-none px-8 text-base">
             <Link href="/quiz">Start the website quiz <ArrowRight className="ml-2 h-5 w-5" /></Link>
           </Button>
         </div>
       </section>
 
-      <Footer variant="studio" />
+      <Footer />
     </main>
   );
 }
