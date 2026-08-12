@@ -165,16 +165,16 @@ export default function QuizPage() {
 
   if (submitted) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-zinc-950 px-4 text-white">
+      <main className="flex min-h-screen items-center justify-center bg-[#141414] px-4 text-white">
         <div className="max-w-xl text-center">
-          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-amber-500 text-zinc-950">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#d9ff45] text-[#141414]">
             <CheckCircle2 className="h-10 w-10" />
           </div>
           <h1 className="text-4xl font-black tracking-tight sm:text-5xl">You are on the list for {currentMonth}.</h1>
           <p className="mt-5 text-lg leading-8 text-zinc-300">
             We have your details. We will review your business and come back with the right website plan for the $250/month setup.
           </p>
-          <Button asChild size="lg" className="mt-8 rounded-none px-8">
+          <Button asChild size="lg" className="mt-8 rounded-full px-8">
             <Link href="/">Back to BuildSpark</Link>
           </Button>
         </div>
@@ -183,18 +183,18 @@ export default function QuizPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f7f7f4] text-zinc-950">
-      <div className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur-xl">
+    <main className="min-h-screen bg-[#f5f2e8] text-[#141414]">
+      <div className="sticky top-0 z-50 border-b border-[#141414]/10 bg-[#fffdf5]/95 backdrop-blur-xl">
         <div className="mx-auto max-w-3xl px-4 py-4">
           <div className="mb-3 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-1 font-black">
-              <span>Build</span><span className="text-amber-500">Spark</span>
+              <span>Build</span><span className="text-[#1e49ff]">Spark</span>
             </Link>
-            <span className="text-sm font-semibold text-zinc-500">Step {step} of {TOTAL_STEPS}</span>
+            <span className="text-sm font-semibold text-[#141414]/55">Step {step} of {TOTAL_STEPS}</span>
           </div>
-          <div className="h-2 overflow-hidden bg-zinc-200">
+          <div className="h-2 overflow-hidden bg-[#141414]/10">
             <motion.div
-              className="h-full bg-amber-500"
+              className="h-full bg-[#d9ff45]"
               animate={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
               transition={{ duration: 0.25 }}
             />
@@ -204,18 +204,18 @@ export default function QuizPage() {
 
       <section className="mx-auto grid min-h-[calc(100vh-81px)] max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:px-8">
         <aside className="hidden lg:block">
-          <div className="border border-zinc-200 bg-white p-8 shadow-xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-4 py-2 text-sm font-bold text-amber-700">
+          <div className="border border-[#141414]/10 bg-[#fffdf5] p-8 shadow-[0_24px_80px_rgba(20,20,20,0.12)]">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#d9ff45]/10 px-4 py-2 text-sm font-bold text-[#1e49ff]">
               <Sparkles className="h-4 w-4" />
               {currentMonth} website spots
             </div>
             <h1 className="text-5xl font-black leading-none tracking-tight">
               Get your $250/month website plan.
             </h1>
-            <p className="mt-5 text-lg leading-8 text-zinc-600">
+            <p className="mt-5 text-lg leading-8 text-[#141414]/65">
               Answer a few quick questions. We will work out what your business needs, what pages matter, and whether we can take it on this month.
             </p>
-            <div className="mt-8 space-y-3 text-sm font-semibold text-zinc-700">
+            <div className="mt-8 space-y-3 text-sm font-semibold text-[#141414]/72">
               {[
                 "Website, hosting, care, content and tracking",
                 "Built for your industry, not a generic template",
@@ -240,7 +240,7 @@ export default function QuizPage() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="border border-zinc-200 bg-white p-5 shadow-xl sm:p-8"
+              className="border border-[#141414]/10 bg-[#fffdf5] p-5 shadow-[0_24px_80px_rgba(20,20,20,0.12)] sm:p-8"
             >
               {step === 1 && (
                 <QuizStep title="What type of business are we building this for?" subtitle="Pick the closest fit. If it is niche, that is fine. We build around the business.">
@@ -275,12 +275,12 @@ export default function QuizPage() {
                         onClick={() => toggleGoal(goal)}
                         className={`border p-4 text-left font-semibold transition ${
                           selectedGoals.includes(goal)
-                            ? "border-amber-500 bg-amber-50 text-zinc-950"
-                            : "border-zinc-200 bg-white text-zinc-700 hover:border-zinc-400"
+                            ? "border-[#1e49ff] bg-[#1e49ff]/8 text-[#141414]"
+                            : "border-[#141414]/10 bg-[#fffdf5] text-[#141414]/72 hover:border-zinc-400"
                         }`}
                       >
                         <span className="flex items-center gap-2">
-                          <span className={`h-4 w-4 border ${selectedGoals.includes(goal) ? "border-amber-500 bg-amber-500" : "border-zinc-300"}`} />
+                          <span className={`h-4 w-4 border ${selectedGoals.includes(goal) ? "border-[#1e49ff] bg-[#d9ff45]" : "border-zinc-300"}`} />
                           {goal}
                         </span>
                       </button>
@@ -314,7 +314,7 @@ export default function QuizPage() {
               <button
                 type="button"
                 onClick={goBack}
-                className="inline-flex h-12 items-center justify-center border border-zinc-300 bg-white px-5 font-bold text-zinc-800"
+                className="inline-flex h-12 items-center justify-center border border-zinc-300 bg-[#fffdf5] px-5 font-bold text-[#141414]"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back
               </button>
@@ -324,7 +324,7 @@ export default function QuizPage() {
                 type="button"
                 onClick={goNext}
                 disabled={!canProceed()}
-                className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-black text-zinc-950 disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex h-12 flex-1 items-center justify-center bg-[#d9ff45] px-5 font-black text-[#141414] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Continue <ArrowRight className="ml-2 h-4 w-4" />
               </button>
@@ -332,7 +332,7 @@ export default function QuizPage() {
               <button
                 type="submit"
                 disabled={!canProceed()}
-                className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-black text-zinc-950 disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex h-12 flex-1 items-center justify-center bg-[#d9ff45] px-5 font-black text-[#141414] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Send My Website Plan <ArrowRight className="ml-2 h-4 w-4" />
               </button>
@@ -356,7 +356,7 @@ function QuizStep({
   return (
     <div>
       <h2 className="text-3xl font-black leading-tight tracking-tight sm:text-4xl">{title}</h2>
-      <p className="mt-3 mb-8 text-base leading-7 text-zinc-600">{subtitle}</p>
+      <p className="mt-3 mb-8 text-base leading-7 text-[#141414]/65">{subtitle}</p>
       <div className="space-y-4">{children}</div>
     </div>
   );
@@ -380,8 +380,8 @@ function OptionGrid({
           onClick={() => onChange(option)}
           className={`border p-4 text-left font-semibold transition ${
             value === option
-              ? "border-amber-500 bg-amber-50 text-zinc-950"
-              : "border-zinc-200 bg-white text-zinc-700 hover:border-zinc-400"
+              ? "border-[#1e49ff] bg-[#1e49ff]/8 text-[#141414]"
+              : "border-[#141414]/10 bg-[#fffdf5] text-[#141414]/72 hover:border-zinc-400"
           }`}
         >
           {option}
@@ -408,7 +408,7 @@ function TextInput({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-bold text-zinc-700">
+      <span className="mb-2 block text-sm font-bold text-[#141414]/72">
         {label} {required ? <span className="text-amber-600">*</span> : null}
       </span>
       <input
@@ -417,7 +417,7 @@ function TextInput({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         required={required}
-        className="h-12 w-full border border-zinc-300 bg-white px-4 text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
+        className="h-12 w-full border border-zinc-300 bg-[#fffdf5] px-4 text-[#141414] outline-none transition placeholder:text-zinc-400 focus:border-[#1e49ff] focus:ring-2 focus:ring-amber-500/20"
       />
     </label>
   );
@@ -436,13 +436,13 @@ function TextareaInput({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-bold text-zinc-700">{label}</span>
+      <span className="mb-2 block text-sm font-bold text-[#141414]/72">{label}</span>
       <textarea
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         rows={4}
-        className="w-full border border-zinc-300 bg-white px-4 py-3 text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
+        className="w-full border border-zinc-300 bg-[#fffdf5] px-4 py-3 text-[#141414] outline-none transition placeholder:text-zinc-400 focus:border-[#1e49ff] focus:ring-2 focus:ring-amber-500/20"
       />
     </label>
   );

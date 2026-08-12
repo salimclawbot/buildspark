@@ -52,20 +52,22 @@ export function Navbar({
     });
   }, [scrollY]);
 
-  const isLight = tone === "light";
-  const navClass = scrolled
-    ? isLight
-      ? "bg-white/90 backdrop-blur-xl border-b border-zinc-200 shadow-sm"
-      : "bg-background/80 backdrop-blur-xl border-b border-zinc-800/50"
-    : isLight
-      ? "bg-white/85 backdrop-blur-xl border-b border-zinc-200/70"
+  const isStudio = tone === "light";
+  const navClass = isStudio
+    ? scrolled
+      ? "bg-[#f5f2e8]/92 backdrop-blur-xl border-b border-[#141414]/10 shadow-[0_18px_60px_rgba(20,20,20,0.08)]"
+      : "bg-[#f5f2e8]/82 backdrop-blur-xl border-b border-[#141414]/8"
+    : scrolled
+      ? "bg-background/80 backdrop-blur-xl border-b border-zinc-800/50"
       : "bg-transparent";
-  const logoTextClass = isLight ? "text-zinc-950" : "text-white";
-  const linkClass = isLight
-    ? "text-sm text-zinc-700 hover:text-zinc-950 transition-colors duration-200"
+  const logoTextClass = isStudio ? "text-[#141414]" : "text-white";
+  const brandAccentClass = isStudio ? "text-[#1e49ff]" : "text-amber-500";
+  const sparkClass = isStudio ? "text-[#d9ff45]" : "text-amber-500";
+  const linkClass = isStudio
+    ? "text-[13px] font-semibold text-[#141414]/70 hover:text-[#1e49ff] transition-colors duration-200"
     : "text-sm text-zinc-400 hover:text-white transition-colors duration-200";
-  const dropdownClass = isLight
-    ? "absolute top-full left-0 mt-2 w-56 rounded-xl border border-zinc-200 bg-white/95 backdrop-blur-xl p-2 shadow-xl"
+  const dropdownClass = isStudio
+    ? "absolute top-full left-0 mt-3 w-64 border border-[#141414]/10 bg-[#fffdf5]/96 backdrop-blur-xl p-2 shadow-[0_24px_80px_rgba(20,20,20,0.12)]"
     : "absolute top-full left-0 mt-2 w-56 rounded-xl border border-zinc-800 bg-background/95 backdrop-blur-xl p-2 shadow-xl";
 
   return (
@@ -76,10 +78,10 @@ export function Navbar({
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-1 group">
-            <span className={`text-xl font-bold ${logoTextClass}`}>Build</span>
-            <span className="text-xl font-bold text-amber-500">Spark</span>
+            <span className={`text-xl font-black tracking-tight ${logoTextClass}`}>Build</span>
+            <span className={`text-xl font-black tracking-tight ${brandAccentClass}`}>Spark</span>
             <svg
-              className="w-5 h-5 text-amber-500 transition-transform group-hover:scale-125 group-hover:rotate-12"
+              className={`w-5 h-5 ${sparkClass} transition-transform group-hover:scale-125 group-hover:rotate-12`}
               viewBox="0 0 24 24"
               fill="currentColor"
             >
@@ -88,7 +90,7 @@ export function Navbar({
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-7">
             {navLinks.map((link) =>
               link.children ? (
                 <div
@@ -118,8 +120,8 @@ export function Navbar({
                             key={child.href}
                             href={child.href}
                             className={`block px-3 py-2 text-sm rounded-lg transition-colors ${
-                              isLight
-                                ? "text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100"
+                              isStudio
+                                ? "text-[#141414]/70 hover:text-[#1e49ff] hover:bg-[#1e49ff]/6"
                                 : "text-zinc-400 hover:text-white hover:bg-white/5"
                             }`}
                           >
@@ -141,18 +143,18 @@ export function Navbar({
               )
             )}
             {!singleCta ? (
-              <Button asChild variant="outline" size="default">
-                <Link href="/free-website-audit">Free Audit</Link>
+              <Button asChild variant="outline" size="default" className={isStudio ? "rounded-full border-[#141414]/20 bg-white/40 text-[#141414] hover:bg-white" : ""}>
+                <Link href="/free-website-audit">{isStudio ? "Website audit" : "Free Audit"}</Link>
               </Button>
             ) : null}
-            <Button asChild size="default">
+            <Button asChild size="default" className={isStudio ? "rounded-full bg-[#141414] px-5 text-white hover:bg-[#1e49ff]" : ""}>
               <Link href={ctaHref}>{ctaLabel}</Link>
             </Button>
           </div>
 
           {/* Mobile hamburger */}
           <button
-            className={`md:hidden p-2 ${isLight ? "text-zinc-950" : "text-white"}`}
+            className={`md:hidden p-2 ${isStudio ? "text-[#141414]" : "text-white"}`}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -169,18 +171,20 @@ export function Navbar({
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className={`md:hidden overflow-hidden backdrop-blur-xl border-b ${
-              isLight ? "bg-white/95 border-zinc-200" : "bg-background/95 border-zinc-800"
-            }`}
+            className={isStudio
+              ? "md:hidden overflow-hidden border-b border-[#141414]/10 bg-[#f5f2e8]/96 backdrop-blur-xl"
+              : "md:hidden overflow-hidden border-b border-zinc-800 bg-background/95 backdrop-blur-xl"
+            }
           >
             <div className="px-4 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <div key={link.label}>
                   <Link
                     href={link.href}
-                    className={`text-lg transition-colors ${
-                      isLight ? "text-zinc-800 hover:text-zinc-950" : "text-zinc-300 hover:text-white"
-                    }`}
+                    className={isStudio
+                      ? "text-lg font-semibold text-[#141414] transition-colors hover:text-[#1e49ff]"
+                      : "text-lg text-zinc-300 transition-colors hover:text-white"
+                    }
                     onClick={() => setMobileOpen(false)}
                   >
                     {link.label}
@@ -191,9 +195,10 @@ export function Navbar({
                         <Link
                           key={child.href}
                           href={child.href}
-                          className={`text-sm transition-colors ${
-                            isLight ? "text-zinc-500 hover:text-zinc-950" : "text-zinc-500 hover:text-white"
-                          }`}
+                          className={isStudio
+                            ? "text-sm text-[#141414]/60 transition-colors hover:text-[#1e49ff]"
+                            : "text-sm text-zinc-500 transition-colors hover:text-white"
+                          }
                           onClick={() => setMobileOpen(false)}
                         >
                           {child.label}
@@ -204,11 +209,11 @@ export function Navbar({
                 </div>
               ))}
               {!singleCta ? (
-                <Button asChild variant="outline" size="lg" className="mt-2 w-full">
-                  <Link href="/free-website-audit">Free Audit</Link>
+                <Button asChild variant="outline" size="lg" className={isStudio ? "mt-2 w-full rounded-full border-[#141414]/20 bg-white/40 text-[#141414]" : "mt-2 w-full"}>
+                  <Link href="/free-website-audit">{isStudio ? "Website audit" : "Free Audit"}</Link>
                 </Button>
               ) : null}
-              <Button asChild size="lg" className="mt-2 w-full">
+              <Button asChild size="lg" className={isStudio ? "mt-2 w-full rounded-full bg-[#141414] text-white" : "mt-2 w-full"}>
                 <Link href={ctaHref} onClick={() => setMobileOpen(false)}>
                   {ctaLabel}
                 </Link>
