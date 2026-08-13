@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         background: "#09090B",
         surface: "#18181B",
+        card: "#18181B",
         border: "#27272A",
         amber: {
           500: "#F59E0B",

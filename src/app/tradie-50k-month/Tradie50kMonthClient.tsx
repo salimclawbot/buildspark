@@ -136,37 +136,37 @@ function LeadForm({ placement, title }: { placement: string; title: string }) {
       id={placement === "hero" ? "growth-form" : undefined}
       aria-label={title}
       onSubmit={handleSubmit}
-      className="border border-white/12 bg-black/70 p-5 shadow-[0_24px_90px_rgba(0,0,0,0.35)] backdrop-blur sm:p-6"
+      className="buildspark-panel p-5 sm:p-6"
     >
       <input type="hidden" name="_subject" value={`New Tradie Growth Lead - ${currentMonth}`} />
       <div className="mb-5">
-        <p className="text-xs font-black uppercase tracking-[0.22em] text-amber-400">{currentMonth} spots</p>
-        <h2 className="mt-2 text-2xl font-black tracking-tight text-white">{title}</h2>
-        <p className="mt-2 text-sm leading-6 text-white/60">
+        <p className="buildspark-eyebrow">{currentMonth} spots</p>
+        <h2 className="mt-2 text-2xl buildspark-title text-white">{title}</h2>
+        <p className="mt-2 text-sm leading-6 buildspark-copy">
           Tell us what you do. We will call you with the quickest path to more enquiries.
         </p>
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
-        <label className="text-sm font-bold text-white">
+        <label className="text-sm font-black text-white">
           Name
-          <input className="mt-2 h-12 w-full border border-white/15 bg-white px-4 text-black placeholder:text-zinc-500 outline-none focus:border-amber-400" name="name" required />
+          <input className="mt-2 h-12 w-full buildspark-field px-4" name="name" required />
         </label>
-        <label className="text-sm font-bold text-white">
+        <label className="text-sm font-black text-white">
           Phone
-          <input className="mt-2 h-12 w-full border border-white/15 bg-white px-4 text-black placeholder:text-zinc-500 outline-none focus:border-amber-400" name="phone" type="tel" required />
+          <input className="mt-2 h-12 w-full buildspark-field px-4" name="phone" type="tel" required />
         </label>
-        <label className="text-sm font-bold text-white">
+        <label className="text-sm font-black text-white">
           Email
-          <input className="mt-2 h-12 w-full border border-white/15 bg-white px-4 text-black placeholder:text-zinc-500 outline-none focus:border-amber-400" name="email" type="email" required />
+          <input className="mt-2 h-12 w-full buildspark-field px-4" name="email" type="email" required />
         </label>
-        <label className="text-sm font-bold text-white">
+        <label className="text-sm font-black text-white">
           Business name
-          <input className="mt-2 h-12 w-full border border-white/15 bg-white px-4 text-black placeholder:text-zinc-500 outline-none focus:border-amber-400" name="businessName" required />
+          <input className="mt-2 h-12 w-full buildspark-field px-4" name="businessName" required />
         </label>
-        <label className="text-sm font-bold text-white sm:col-span-2">
+        <label className="text-sm font-black text-white sm:col-span-2">
           Notes
           <textarea
-            className="mt-2 min-h-28 w-full border border-white/15 bg-white px-4 py-3 text-black placeholder:text-zinc-500 outline-none focus:border-amber-400"
+            className="mt-2 min-h-28 w-full buildspark-field px-4 py-3"
             name="notes"
             placeholder="e.g. roofer in Geelong, want more roof restoration jobs"
           />
@@ -183,10 +183,10 @@ function LeadForm({ placement, title }: { placement: string; title: string }) {
 
 export function Tradie50kMonthClient() {
   return (
-    <main className="min-h-screen bg-[#080808] text-white">
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-black/88 backdrop-blur-xl">
+    <main className="min-h-screen buildspark-shell text-white">
+      <header className="sticky top-0 z-50 border-b border-white/10 buildspark-topbar">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <Link href="/" className="text-2xl font-black tracking-tight">
+          <Link href="/" className="text-2xl buildspark-title">
             Build<span className="text-amber-500">Spark</span>
           </Link>
           <nav className="hidden items-center gap-7 text-sm font-black uppercase tracking-[0.12em] text-white/68 md:flex">
@@ -216,7 +216,7 @@ export function Tradie50kMonthClient() {
               <TrendingUp className="h-4 w-4" />
               Tradie growth page
             </div>
-            <h1 className="max-w-3xl text-[2.65rem] font-black leading-[0.95] tracking-tight min-[420px]:text-5xl sm:text-6xl lg:text-7xl">
+            <h1 className="max-w-3xl text-[2.65rem] buildspark-title min-[420px]:text-5xl sm:text-6xl lg:text-7xl">
               <span className="block">Build your trade</span>
               <span className="block">business toward</span>
               <span className="block">$50,000/month.</span>
@@ -224,7 +224,7 @@ export function Tradie50kMonthClient() {
             <p className="mt-6 max-w-2xl text-xl leading-8 text-white/76">
               Not with random posts or a pretty website that sits there. With a simple system: better socials, a sharper website and more Google reviews.
             </p>
-            <div className="mt-7 grid gap-3 text-sm font-bold text-white/74 sm:grid-cols-3">
+            <div className="mt-7 grid gap-3 text-sm font-black text-white/74 sm:grid-cols-3">
               {["For roofers, tilers, remodelers", "Social + website + reviews", "Built for more enquiries"].map((item) => (
                 <div key={item} className="border border-white/12 bg-white/[0.04] p-4">
                   <BadgeCheck className="mb-3 h-5 w-5 text-amber-400" />
@@ -241,22 +241,22 @@ export function Tradie50kMonthClient() {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-amber-400">The number is not magic</p>
-              <h2 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-400">The number is not magic</p>
+              <h2 className="mt-4 text-4xl buildspark-title sm:text-5xl">
                 $50k / month starts with the jobs you need to book.
               </h2>
-              <p className="mt-5 text-lg leading-8 text-white/66">
+              <p className="mt-5 text-lg leading-8 buildspark-copy">
                 If your average job is $5,000, you need ten booked jobs. If it is $2,500, you need twenty. The point is simple: your online presence should help more of the right people trust you and ask for a quote.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               {steps.map((step, index) => (
-                <div key={step.title} className="border border-white/10 bg-black p-6">
+                <div key={step.title} className="buildspark-panel p-6">
                   <div className="mb-5 flex h-11 w-11 items-center justify-center bg-amber-500 text-lg font-black text-black">
                     {index + 1}
                   </div>
-                  <h3 className="text-2xl font-black tracking-tight">{step.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-white/62">{step.copy}</p>
+                  <h3 className="text-2xl buildspark-title">{step.title}</h3>
+                  <p className="mt-3 text-sm leading-6 buildspark-copy">{step.copy}</p>
                 </div>
               ))}
             </div>
@@ -267,31 +267,31 @@ export function Tradie50kMonthClient() {
       <section id="services" className="border-b border-white/10 bg-black px-4 py-14 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-amber-400">What we build</p>
-            <h2 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-400">What we build</p>
+            <h2 className="mt-4 text-4xl buildspark-title sm:text-5xl">
               Three things that make customers say yes before they call.
             </h2>
           </div>
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
             {services.map((service) => (
-              <div key={service.title} className="border border-white/10 bg-[#0d0d0d] p-7">
+              <div key={service.title} className="buildspark-panel p-7">
                 <service.icon className="mb-7 h-9 w-9 text-amber-400" />
-                <h3 className="text-2xl font-black tracking-tight">{service.title}</h3>
-                <p className="mt-4 text-base leading-7 text-white/64">{service.copy}</p>
+                <h3 className="text-2xl buildspark-title">{service.title}</h3>
+                <p className="mt-4 text-base leading-7 buildspark-copy">{service.copy}</p>
               </div>
             ))}
           </div>
           <div className="mt-10 grid gap-6 border border-white/10 bg-white/[0.03] p-6 lg:grid-cols-[0.9fr_1.1fr] lg:p-8">
             <div>
               <ClipboardCheck className="mb-5 h-10 w-10 text-amber-400" />
-              <h3 className="text-3xl font-black tracking-tight">What can be included</h3>
-              <p className="mt-3 text-white/62">
+              <h3 className="text-3xl buildspark-title">What can be included</h3>
+              <p className="mt-3 buildspark-copy">
                 We shape the setup around your business, your service area and the jobs that actually make money.
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {inclusions.map((item) => (
-                <div key={item} className="flex gap-3 text-sm font-bold text-white/76">
+                <div key={item} className="flex gap-3 text-sm font-black text-white/76">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" />
                   {item}
                 </div>
@@ -304,11 +304,11 @@ export function Tradie50kMonthClient() {
       <section className="border-b border-white/10 bg-[#101010] px-4 py-14 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-amber-400">Get looked at properly</p>
-            <h2 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-400">Get looked at properly</p>
+            <h2 className="mt-4 text-4xl buildspark-title sm:text-5xl">
               We will tell you what is blocking enquiries.
             </h2>
-            <p className="mt-5 text-lg leading-8 text-white/66">
+            <p className="mt-5 text-lg leading-8 buildspark-copy">
               Your website might not explain your offer. Your socials might look quiet. Your reviews might be hidden. Or your form might be too hard. We check it, then give you the next move.
             </p>
             <div className="mt-7 flex flex-wrap gap-3 text-sm font-black uppercase tracking-[0.12em] text-white/58">
@@ -326,15 +326,15 @@ export function Tradie50kMonthClient() {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="bg-amber-500 p-7 text-black">
-              <p className="text-6xl font-black tracking-tight">$250</p>
+              <p className="text-6xl buildspark-title">$250</p>
               <p className="mt-2 font-black uppercase tracking-[0.16em]">per month starting point</p>
               <p className="mt-5 text-sm font-semibold leading-6 text-black/70">
                 Straightforward support for owners who want their online presence handled properly.
               </p>
             </div>
-            <div className="border border-white/10 bg-[#0d0d0d] p-7 sm:col-span-2">
-              <h2 className="text-4xl font-black tracking-tight">The goal is not likes. The goal is booked work.</h2>
-              <p className="mt-4 max-w-3xl text-lg leading-8 text-white/66">
+            <div className="buildspark-panel p-7 sm:col-span-2">
+              <h2 className="text-4xl buildspark-title">The goal is not likes. The goal is booked work.</h2>
+              <p className="mt-4 max-w-3xl text-lg leading-8 buildspark-copy">
                 We use content, website pages and reviews to answer the questions customers already have: Can I trust you? Do you do my job? Are you local? Can I get a quote without mucking around?
               </p>
               <div className="mt-7 grid gap-3 sm:grid-cols-3">
@@ -349,12 +349,12 @@ export function Tradie50kMonthClient() {
         </div>
       </section>
 
-      <section className="bg-[#080808] px-4 py-14 sm:px-6 lg:px-8">
+      <section className="buildspark-shell px-4 py-14 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div>
             <Phone className="mb-5 h-10 w-10 text-amber-400" />
-            <h2 className="text-4xl font-black tracking-tight sm:text-5xl">Ready to see what needs fixing?</h2>
-            <p className="mt-5 text-lg leading-8 text-white/66">
+            <h2 className="text-4xl buildspark-title sm:text-5xl">Ready to see what needs fixing?</h2>
+            <p className="mt-5 text-lg leading-8 buildspark-copy">
               Leave your details and we will call you with a direct plan for your trade or contracting business.
             </p>
           </div>
