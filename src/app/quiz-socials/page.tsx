@@ -10,13 +10,10 @@ import { trackLead, trackMetaStandardEvent } from "@/lib/meta-pixel";
 const TOTAL_STEPS = 6;
 
 const businessTypes = [
-  "Tradie / contractor",
-  "Clinic / healthcare",
-  "Cafe / restaurant",
-  "Beauty / wellness",
-  "Retail / ecommerce",
+  "Tradie / local service",
+  "Health / beauty",
+  "Cafe / retail",
   "Professional service",
-  "Local service business",
   "Other business",
 ];
 
@@ -32,19 +29,16 @@ const accountOptions = [
   "Facebook only",
   "Instagram only",
   "Facebook and Instagram",
-  "Facebook, Instagram and Google Business",
+  "3 accounts",
   "Not sure - recommend it",
 ];
 
 const goals = [
-  "Look more active online",
+  "Look active online",
   "Get more messages",
-  "Get more calls",
   "Promote offers",
   "Show recent work",
-  "Build trust",
-  "Support Facebook ads",
-  "Launch a new website too",
+  "Need a new website too",
 ];
 
 const timelineOptions = [
@@ -204,7 +198,7 @@ export default function SocialsQuizPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background text-white">
+    <main className="min-h-screen overflow-x-hidden bg-background text-white">
       <div className="sticky top-0 z-50 border-b border-zinc-800 bg-card/95 backdrop-blur-xl">
         <div className="mx-auto max-w-3xl px-4 py-4">
           <div className="mb-3 flex items-center justify-between">
@@ -223,7 +217,7 @@ export default function SocialsQuizPage() {
         </div>
       </div>
 
-      <section className="mx-auto grid min-h-[calc(100vh-81px)] max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:px-8">
+      <section className="mx-auto grid min-h-[calc(100vh-81px)] max-w-6xl gap-8 px-4 py-6 sm:px-6 sm:py-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:px-8">
         <aside className="hidden lg:block">
           <div className="border border-zinc-800 bg-card p-8 shadow-[0_24px_80px_rgba(20,20,20,0.12)]">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-4 py-2 text-sm font-bold text-amber-500">
@@ -264,7 +258,7 @@ export default function SocialsQuizPage() {
               className="border border-zinc-800 bg-card p-5 shadow-[0_24px_80px_rgba(20,20,20,0.12)] sm:p-8"
             >
               {step === 1 && (
-                <QuizStep title="What type of business is this for?" subtitle="Pick the closest fit. This helps us shape the content properly.">
+                <QuizStep title="What business is this for?" subtitle="Pick the closest fit.">
                   <OptionGrid options={businessTypes} value={businessType} onChange={setBusinessType} />
                   {businessType === "Other business" && (
                     <TextInput label="What industry are you in?" value={otherBusinessType} onChange={setOtherBusinessType} placeholder="e.g. gym, roof restoration, horse trainer" />
@@ -273,23 +267,25 @@ export default function SocialsQuizPage() {
               )}
 
               {step === 2 && (
-                <QuizStep title="Tell us the business basics." subtitle="Just enough so we know who we are helping and where you operate.">
+                <QuizStep title="Business basics." subtitle="Just enough so we know who we are helping.">
                   <TextInput label="Business name" value={businessName} onChange={setBusinessName} placeholder="e.g. Valley Plumbing Co" />
                   <TextInput label="Location / service area" value={location} onChange={setLocation} placeholder="e.g. Geelong, Ballarat, Melbourne-wide" />
                 </QuizStep>
               )}
 
               {step === 3 && (
-                <QuizStep title="What is happening with your socials now?" subtitle="No judgement. This tells us how much help you need.">
+                <QuizStep title="Where are your socials at?" subtitle="This tells us how much help you need.">
+                  <GroupLabel>How active are you now?</GroupLabel>
                   <OptionGrid options={socialStatusOptions} value={socialStatus} onChange={setSocialStatus} />
                   <div className="mt-6">
+                    <GroupLabel>Where do you want help?</GroupLabel>
                     <OptionGrid options={accountOptions} value={accounts} onChange={setAccounts} />
                   </div>
                 </QuizStep>
               )}
 
               {step === 4 && (
-                <QuizStep title="What do you want your socials to do?" subtitle="Choose every outcome that matters. Keep it practical.">
+                <QuizStep title="What do you want from socials?" subtitle="Pick what matters most.">
                   <div className="grid gap-3 sm:grid-cols-2">
                     {goals.map((goal) => (
                       <button
@@ -313,9 +309,11 @@ export default function SocialsQuizPage() {
               )}
 
               {step === 5 && (
-                <QuizStep title="Choose the plan you are interested in." subtitle="This is not a contract. It helps us respond with the right option.">
+                <QuizStep title="Choose a plan." subtitle="This helps us respond with the right option.">
+                  <GroupLabel>When do you want to start?</GroupLabel>
                   <OptionGrid options={timelineOptions} value={timeline} onChange={setTimeline} />
                   <div className="mt-6 grid gap-4">
+                    <GroupLabel>Which offer suits you?</GroupLabel>
                     {plans.map((item) => (
                       <button
                         type="button"
@@ -350,7 +348,7 @@ export default function SocialsQuizPage() {
               )}
 
               {step === 6 && (
-                <QuizStep title="Where should we send the next step?" subtitle="We will review your answers and come back with the right social media plan.">
+                <QuizStep title="Where should we send it?" subtitle="We will review your answers and come back with the next step.">
                   <TextInput label="Full name" value={fullName} onChange={setFullName} placeholder="John Smith" />
                   <TextInput label="Email" value={email} onChange={setEmail} placeholder="john@example.com" type="email" />
                   <TextInput label="Phone" value={phone} onChange={setPhone} placeholder="0400 000 000" type="tel" />
@@ -359,7 +357,7 @@ export default function SocialsQuizPage() {
             </motion.div>
           </AnimatePresence>
 
-          <div className="mt-5 flex gap-3">
+          <div className="mt-5 flex gap-3 pb-4 sm:pb-0">
             {step > 1 && (
               <button
                 type="button"
@@ -374,7 +372,7 @@ export default function SocialsQuizPage() {
                 type="button"
                 onClick={goNext}
                 disabled={!canProceed()}
-                className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-black text-white disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-black text-black disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Continue <ArrowRight className="ml-2 h-4 w-4" />
               </button>
@@ -382,15 +380,28 @@ export default function SocialsQuizPage() {
               <button
                 type="submit"
                 disabled={!canProceed()}
-                className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-black text-white disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-black text-black disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Send My Social Plan <ArrowRight className="ml-2 h-4 w-4" />
               </button>
             )}
           </div>
+          {!canProceed() ? (
+            <p className="pb-6 text-center text-sm font-semibold text-white/45 sm:pb-0">
+              Answer this step to continue.
+            </p>
+          ) : null}
         </form>
       </section>
     </main>
+  );
+}
+
+function GroupLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="mb-3 text-sm font-black uppercase tracking-[0.14em] text-amber-500">
+      {children}
+    </p>
   );
 }
 
@@ -406,7 +417,7 @@ function QuizStep({
   return (
     <div>
       <h2 className="text-3xl font-black leading-tight tracking-tight sm:text-4xl">{title}</h2>
-      <p className="mt-3 mb-8 text-base leading-7 text-white/65">{subtitle}</p>
+      <p className="mt-3 mb-6 text-base leading-7 text-white/65 sm:mb-8">{subtitle}</p>
       <div className="space-y-4">{children}</div>
     </div>
   );
@@ -431,7 +442,7 @@ function OptionGrid({
           className={`border p-4 text-left font-semibold transition ${
             value === option
               ? "border-amber-500 bg-amber-500/10 text-white"
-              : "border-zinc-800 bg-card text-white/72 hover:border-amber-500/60"
+              : "border-zinc-800 bg-[#090909] text-white/78 hover:border-amber-500/60"
           }`}
         >
           {option}
@@ -467,7 +478,7 @@ function TextInput({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         required={required}
-        className="h-12 w-full border border-zinc-700 bg-card px-4 text-white outline-none transition placeholder:text-zinc-600 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
+        className="quiz-dark-field h-12 w-full border border-zinc-700 px-4 outline-none transition focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
       />
     </label>
   );
@@ -492,7 +503,7 @@ function TextareaInput({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         rows={4}
-        className="w-full border border-zinc-700 bg-card px-4 py-3 text-white outline-none transition placeholder:text-zinc-600 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
+        className="quiz-dark-field w-full border border-zinc-700 px-4 py-3 outline-none transition focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
       />
     </label>
   );

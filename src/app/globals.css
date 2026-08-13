@@ -56,3 +56,25 @@ html {
   background: rgba(245, 158, 11, 0.3);
   color: #FFFFFF;
 }
+
+.quiz-dark-field,
+.quiz-dark-field:focus,
+.quiz-dark-field:active {
+  background-color: #090909 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #f59e0b;
+}
+
+.quiz-dark-field::placeholder {
+  color: #71717a !important;
+  -webkit-text-fill-color: #71717a !important;
+}
+
+.quiz-dark-field:-webkit-autofill,
+.quiz-dark-field:-webkit-autofill:hover,
+.quiz-dark-field:-webkit-autofill:focus {
+  box-shadow: 0 0 0 1000px #090909 inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #f59e0b;
+}
