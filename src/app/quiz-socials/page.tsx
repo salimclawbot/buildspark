@@ -202,7 +202,7 @@ export default function SocialsQuizPage() {
       <div className="sticky top-0 z-50 buildspark-topbar">
         <div className="mx-auto max-w-3xl px-4 py-4">
           <div className="mb-3 flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-1 font-black">
+            <Link href="/" className="flex items-center gap-1 font-bold">
               <span>Build</span><span className="text-amber-500">Spark</span>
             </Link>
             <span className="text-sm font-semibold text-white/55">Step {step} of {TOTAL_STEPS}</span>
@@ -327,10 +327,10 @@ export default function SocialsQuizPage() {
                       >
                         <span className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                           <span>
-                            <span className="block text-2xl font-black">{item.name}</span>
+                            <span className="block text-2xl font-bold">{item.name}</span>
                             <span className="mt-2 block text-sm leading-6 text-white/65">{item.description}</span>
                           </span>
-                          <span className="text-3xl font-black text-amber-500">{item.price}</span>
+                          <span className="text-3xl font-bold text-amber-500">{item.price}</span>
                         </span>
                         <span className="mt-5 grid gap-2 sm:grid-cols-2">
                           {item.bullets.map((bullet) => (
@@ -362,7 +362,7 @@ export default function SocialsQuizPage() {
               <button
                 type="button"
                 onClick={goBack}
-                className="inline-flex h-12 items-center justify-center border border-white/15 bg-black/40 px-5 font-black text-white"
+                className="inline-flex h-12 items-center justify-center border border-white/15 bg-black/40 px-5 font-bold text-white"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back
               </button>
@@ -372,7 +372,7 @@ export default function SocialsQuizPage() {
                 type="button"
                 onClick={goNext}
                 disabled={!canProceed()}
-                className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-black text-black disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-bold text-black disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Continue <ArrowRight className="ml-2 h-4 w-4" />
               </button>
@@ -380,7 +380,7 @@ export default function SocialsQuizPage() {
               <button
                 type="submit"
                 disabled={!canProceed()}
-                className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-black text-black disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-bold text-black disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Send My Social Plan <ArrowRight className="ml-2 h-4 w-4" />
               </button>
@@ -399,7 +399,7 @@ export default function SocialsQuizPage() {
 
 function GroupLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mb-3 text-sm font-black uppercase tracking-[0.14em] text-amber-500">
+    <p className="mb-3 text-sm font-bold uppercase tracking-[0.14em] text-amber-500">
       {children}
     </p>
   );
@@ -469,7 +469,7 @@ function TextInput({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-black text-white">
+      <span className="mb-2 block text-sm font-bold text-white">
         {label} {required ? <span className="text-amber-500">*</span> : null}
       </span>
       <input
@@ -497,7 +497,7 @@ function TextareaInput({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-black text-white">{label}</span>
+      <span className="mb-2 block text-sm font-bold text-white">{label}</span>
       <textarea
         value={value}
         onChange={(e) => onChange(e.target.value)}
