@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Tradie50kMonthClient } from "./Tradie50kMonthClient";
 
-const title = "Build Your Tradie Business Toward $50k/Month | BuildSpark";
+const title = "10 Checklist Items to Grow Your Trade Business Toward $50k/Month | BuildSpark";
 const description =
-  "A direct growth landing page for tilers, roofers, kitchen remodelers, contractors and tradies who want more leads through social media, website design and Google reviews.";
+  "A direct checklist landing page for tilers, roofers, kitchen remodelers, contractors and tradies who want more quote enquiries through better socials, website design and Google reviews.";
 
 export const metadata: Metadata = {
   title,
@@ -14,6 +14,8 @@ export const metadata: Metadata = {
     "tradie website design",
     "social media management for tradies",
     "Google review service",
+    "grow trade business to 50k per month",
+    "tradie lead generation checklist",
     "roofing leads",
     "tiler marketing",
     "kitchen renovation leads",
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
         url: "https://buildspark.com.au/images/tradie-50k-growth-hero.png",
         width: 1680,
         height: 945,
-        alt: "Australian contractor reviewing website, social media and Google review growth systems",
+        alt: "Australian contractor reviewing website, social media and Google review growth checklist",
       },
     ],
     locale: "en_AU",
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
 const schema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "BuildSpark Tradie Growth Landing Page",
+  name: "BuildSpark Tradie $50k Month Growth Checklist",
   description,
   provider: {
     "@type": "ProfessionalService",
@@ -64,6 +66,7 @@ const schema = {
     "Social media management",
     "Google review support",
     "Lead generation website strategy",
+    "Tradie growth checklist",
   ],
   offers: {
     "@type": "Offer",
