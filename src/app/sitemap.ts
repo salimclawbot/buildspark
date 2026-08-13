@@ -28,6 +28,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/blog`, priority: 0.8, changeFrequency: "weekly" },
     { url: `${BASE_URL}/free-website-audit`, priority: 0.8, changeFrequency: "weekly" },
     { url: `${BASE_URL}/quiz`, priority: 0.8, changeFrequency: "weekly" },
+    { url: `${BASE_URL}/quiz-socials`, priority: 0.8, changeFrequency: "weekly" },
+    { url: `${BASE_URL}/tradie-50k-month`, priority: 0.8, changeFrequency: "weekly" },
     { url: `${BASE_URL}/privacy`, priority: 0.3, changeFrequency: "yearly" },
     { url: `${BASE_URL}/terms`, priority: 0.3, changeFrequency: "yearly" },
   ];
