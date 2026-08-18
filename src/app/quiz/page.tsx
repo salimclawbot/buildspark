@@ -1,13 +1,22 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { trackLead, trackMetaStandardEvent } from "@/lib/meta-pixel";
+import { trackLead, trackMetaStandardEvent, trackQuizEvent } from "@/lib/meta-pixel";
 
 const TOTAL_STEPS = 6;
+
+const stepTitles = [
+  "Business type",
+  "Business basics",
+  "Website status",
+  "Website goals",
+  "Timeline and style",
+  "Contact details",
+];
 
 const businessTypes = [
   "Tradie / contractor",
@@ -79,13 +88,67 @@ export default function QuizPage() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const startedTracked = useRef(false);
+  const viewedSteps = useRef(new Set<number>());
 
   const currentMonth = useMemo(
     () => new Intl.DateTimeFormat("en-AU", { month: "long" }).format(new Date()),
     []
   );
 
+  const quizName = "website_quiz";
+  const quizOffer = "250_per_month_website";
+
+  const getResolvedBusinessType = useCallback(() => {
+    return businessType === "Other local business" ? `Other: ${otherBusinessType}` : businessType;
+  }, [businessType, otherBusinessType]);
+
+  const getQuizPayload = useCallback(() => {
+    return {
+      quiz_name: quizName,
+      quiz_offer: quizOffer,
+      step_number: step,
+      step_title: stepTitles[step - 1],
+      total_steps: TOTAL_STEPS,
+      completion_percent: Math.round((step / TOTAL_STEPS) * 100),
+      business_type: getResolvedBusinessType(),
+      website_status: currentWebsite,
+      goals: selectedGoals.join(", "),
+      timeline,
+      style,
+      month_spot: currentMonth,
+    };
+  }, [
+    currentMonth,
+    currentWebsite,
+    getResolvedBusinessType,
+    selectedGoals,
+    step,
+    style,
+    timeline,
+  ]);
+
+  useEffect(() => {
+    if (!startedTracked.current) {
+      startedTracked.current = true;
+      trackQuizEvent("quiz_started", {
+        quiz_name: quizName,
+        quiz_offer: quizOffer,
+        total_steps: TOTAL_STEPS,
+        month_spot: currentMonth,
+      });
+    }
+  }, [currentMonth]);
+
+  useEffect(() => {
+    if (viewedSteps.current.has(step)) return;
+    viewedSteps.current.add(step);
+    trackQuizEvent("quiz_step_viewed", getQuizPayload());
+  }, [getQuizPayload, step]);
+
   function goNext() {
+    if (!canProceed()) return;
+    trackQuizEvent("quiz_step_completed", getQuizPayload());
     setDirection(1);
     setStep((s) => Math.min(s + 1, TOTAL_STEPS));
   }
@@ -115,8 +178,10 @@ export default function QuizPage() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    const resolvedBusinessType =
-      businessType === "Other local business" ? `Other: ${otherBusinessType}` : businessType;
+    if (!canProceed()) return;
+
+    trackQuizEvent("quiz_step_completed", getQuizPayload());
+    const resolvedBusinessType = getResolvedBusinessType();
 
     try {
       await fetch("https://formsubmit.co/ajax/info@buildspark.com.au", {
@@ -154,6 +219,13 @@ export default function QuizPage() {
       timeline,
       month_spot: currentMonth,
       offer: "250_per_month",
+    });
+    trackQuizEvent("quiz_completed", {
+      ...getQuizPayload(),
+      business_type: resolvedBusinessType,
+      lead_source: "Website Quiz - $250 Monthly Plan",
+      offer: "250_per_month",
+      status: "submitted",
     });
     trackMetaStandardEvent("CompleteRegistration", {
       content_name: "Website Quiz - $250 Monthly Plan",
@@ -230,7 +302,7 @@ export default function QuizPage() {
           </div>
         </aside>
 
-        <form onSubmit={handleSubmit} className="w-full">
+        <form onSubmit={handleSubmit} aria-label="Website quiz" className="w-full">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={step}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import {
   trackGAEvent,
@@ -78,6 +78,7 @@ function getScrollPercent() {
 export function MetaPixelEvents() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const lastClick = useRef({ signature: "", timestamp: 0 });
 
   useEffect(() => {
     trackGAEvent("page_view", getPageMeta());
@@ -101,6 +102,14 @@ export function MetaPixelEvents() {
         click_type: clickType,
         ...getPageMeta(),
       };
+      const signature = `${payload.page_path}|${payload.click_type}|${payload.action_label}|${payload.action_url || ""}`;
+      const now = Date.now();
+
+      if (lastClick.current.signature === signature && now - lastClick.current.timestamp < 500) {
+        return;
+      }
+
+      lastClick.current = { signature, timestamp: now };
 
       trackFunnelEvent("BuildSparkActionClick", payload);
 

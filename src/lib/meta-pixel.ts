@@ -41,24 +41,44 @@ function cleanParams(params?: AnalyticsEventParams) {
   ) as AnalyticsEventParams;
 }
 
+function retryWhenPixelReady(send: () => boolean, attempt = 0) {
+  if (typeof window === "undefined") return;
+  if (send()) return;
+  if (attempt >= 20) return;
+
+  window.setTimeout(() => retryWhenPixelReady(send, attempt + 1), 250);
+}
+
 export function trackGAEvent(eventName: string, params?: AnalyticsEventParams) {
-  if (typeof window === "undefined" || !window.gtag) return;
-  window.gtag("event", eventName, cleanParams(params));
+  retryWhenPixelReady(() => {
+    if (!window.gtag) return false;
+    window.gtag("event", eventName, cleanParams(params));
+    return true;
+  });
 }
 
 export function trackMetaEvent(eventName: string, params?: MetaPixelEventParams) {
-  if (typeof window === "undefined" || !window.fbq) return;
-  window.fbq("trackCustom", eventName, cleanParams(params));
+  retryWhenPixelReady(() => {
+    if (!window.fbq) return false;
+    window.fbq("trackCustom", eventName, cleanParams(params));
+    return true;
+  });
 }
 
 export function trackMetaStandardEvent(eventName: string, params?: MetaPixelEventParams) {
-  if (typeof window === "undefined" || !window.fbq) return;
-  window.fbq("track", eventName, cleanParams(params));
+  retryWhenPixelReady(() => {
+    if (!window.fbq) return false;
+    window.fbq("track", eventName, cleanParams(params));
+    return true;
+  });
 }
 
 export function trackRedditEvent(eventName: string, params?: MetaPixelEventParams) {
-  if (typeof window === "undefined" || !window.rdt) return;
-  window.rdt("track", eventName, cleanParams(params));
+  retryWhenPixelReady(() => {
+    if (!window.rdt) return false;
+    window.rdt("track", eventName, cleanParams(params));
+    return true;
+  });
 }
 
 export function trackLead(source: string, params?: MetaPixelEventParams) {
@@ -77,4 +97,18 @@ export function trackLead(source: string, params?: MetaPixelEventParams) {
     ...payload,
   });
   trackRedditEvent("Lead", payload);
+}
+
+export function trackQuizEvent(
+  eventName: "quiz_started" | "quiz_step_viewed" | "quiz_step_completed" | "quiz_plan_selected" | "quiz_completed",
+  params: AnalyticsEventParams
+) {
+  const payload = {
+    event_category: "quiz",
+    ...params,
+  };
+
+  trackGAEvent(eventName, payload);
+  trackMetaEvent(eventName, payload);
+  trackRedditEvent(eventName, payload);
 }

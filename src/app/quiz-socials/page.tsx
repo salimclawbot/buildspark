@@ -1,13 +1,22 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2, Megaphone, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { trackLead, trackMetaStandardEvent } from "@/lib/meta-pixel";
+import { trackLead, trackMetaStandardEvent, trackQuizEvent } from "@/lib/meta-pixel";
 
 const TOTAL_STEPS = 6;
+
+const stepTitles = [
+  "Business type",
+  "Business basics",
+  "Social status and accounts",
+  "Social goals",
+  "Timeline and plan",
+  "Contact details",
+];
 
 const businessTypes = [
   "Tradie / local service",
@@ -88,6 +97,8 @@ export default function SocialsQuizPage() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const startedTracked = useRef(false);
+  const viewedSteps = useRef(new Set<number>());
 
   const currentMonth = useMemo(
     () => new Intl.DateTimeFormat("en-AU", { month: "long" }).format(new Date()),
@@ -95,8 +106,65 @@ export default function SocialsQuizPage() {
   );
 
   const selectedPlan = plans.find((item) => item.value === plan);
+  const quizName = "socials_quiz";
+  const quizOffer = "social_media_management";
+
+  const getResolvedBusinessType = useCallback(() => {
+    return businessType === "Other business" ? `Other: ${otherBusinessType}` : businessType;
+  }, [businessType, otherBusinessType]);
+
+  const getQuizPayload = useCallback(() => {
+    return {
+      quiz_name: quizName,
+      quiz_offer: quizOffer,
+      step_number: step,
+      step_title: stepTitles[step - 1],
+      total_steps: TOTAL_STEPS,
+      completion_percent: Math.round((step / TOTAL_STEPS) * 100),
+      business_type: getResolvedBusinessType(),
+      social_status: socialStatus,
+      accounts_needed: accounts,
+      goals: selectedGoals.join(", "),
+      timeline,
+      selected_plan: plan,
+      selected_plan_name: selectedPlan?.name,
+      selected_plan_price: selectedPlan?.price,
+      month_spot: currentMonth,
+    };
+  }, [
+    accounts,
+    currentMonth,
+    getResolvedBusinessType,
+    plan,
+    selectedGoals,
+    selectedPlan?.name,
+    selectedPlan?.price,
+    socialStatus,
+    step,
+    timeline,
+  ]);
+
+  useEffect(() => {
+    if (!startedTracked.current) {
+      startedTracked.current = true;
+      trackQuizEvent("quiz_started", {
+        quiz_name: quizName,
+        quiz_offer: quizOffer,
+        total_steps: TOTAL_STEPS,
+        month_spot: currentMonth,
+      });
+    }
+  }, [currentMonth]);
+
+  useEffect(() => {
+    if (viewedSteps.current.has(step)) return;
+    viewedSteps.current.add(step);
+    trackQuizEvent("quiz_step_viewed", getQuizPayload());
+  }, [getQuizPayload, step]);
 
   function goNext() {
+    if (!canProceed()) return;
+    trackQuizEvent("quiz_step_completed", getQuizPayload());
     setDirection(1);
     setStep((s) => Math.min(s + 1, TOTAL_STEPS));
   }
@@ -126,8 +194,10 @@ export default function SocialsQuizPage() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    const resolvedBusinessType =
-      businessType === "Other business" ? `Other: ${otherBusinessType}` : businessType;
+    if (!canProceed()) return;
+
+    trackQuizEvent("quiz_step_completed", getQuizPayload());
+    const resolvedBusinessType = getResolvedBusinessType();
 
     try {
       await fetch("https://formsubmit.co/ajax/info@buildspark.com.au", {
@@ -168,6 +238,13 @@ export default function SocialsQuizPage() {
       timeline,
       month_spot: currentMonth,
       offer: "social_media_management",
+    });
+    trackQuizEvent("quiz_completed", {
+      ...getQuizPayload(),
+      business_type: resolvedBusinessType,
+      lead_source: "Social Media Management Quiz",
+      offer: "social_media_management",
+      status: "submitted",
     });
     trackMetaStandardEvent("CompleteRegistration", {
       content_name: "Social Media Management Quiz",
@@ -245,7 +322,7 @@ export default function SocialsQuizPage() {
           </div>
         </aside>
 
-        <form onSubmit={handleSubmit} className="w-full">
+        <form onSubmit={handleSubmit} aria-label="Social media management quiz" className="w-full">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={step}
@@ -318,7 +395,22 @@ export default function SocialsQuizPage() {
                       <button
                         type="button"
                         key={item.value}
-                        onClick={() => setPlan(item.value)}
+                        onClick={() => {
+                          setPlan(item.value);
+                          trackQuizEvent("quiz_plan_selected", {
+                            quiz_name: quizName,
+                            quiz_offer: quizOffer,
+                            step_number: step,
+                            step_title: stepTitles[step - 1],
+                            total_steps: TOTAL_STEPS,
+                            business_type: getResolvedBusinessType(),
+                            selected_plan: item.value,
+                            selected_plan_name: item.name,
+                            selected_plan_price: item.price,
+                            timeline,
+                            month_spot: currentMonth,
+                          });
+                        }}
                         className={`border p-5 text-left transition ${
                           plan === item.value
                             ? "border-amber-500 bg-amber-500/10"
