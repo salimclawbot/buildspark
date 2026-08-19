@@ -1,5 +1,6 @@
 export const META_PIXEL_ID = "1336012038696716";
 export const REDDIT_PIXEL_ID = "a2_i11htii50f2v";
+export const GOOGLE_ADS_LEAD_CONVERSION_ID = "AW-18397739421/yq_SCJCug-QcEJ3z3MRE";
 
 type MetaPixelEventParams = Record<string, string | number | boolean | undefined>;
 type AnalyticsEventParams = Record<string, string | number | boolean | undefined>;
@@ -57,6 +58,15 @@ export function trackGAEvent(eventName: string, params?: AnalyticsEventParams) {
   });
 }
 
+export function trackGoogleAdsLeadConversion(params?: AnalyticsEventParams) {
+  trackGAEvent("conversion", {
+    send_to: GOOGLE_ADS_LEAD_CONVERSION_ID,
+    value: 1.0,
+    currency: "AUD",
+    ...params,
+  });
+}
+
 export function trackMetaEvent(eventName: string, params?: MetaPixelEventParams) {
   retryWhenPixelReady(() => {
     if (!window.fbq) return false;
@@ -96,6 +106,7 @@ export function trackLead(source: string, params?: MetaPixelEventParams) {
     value: 1,
     ...payload,
   });
+  trackGoogleAdsLeadConversion(payload);
   trackRedditEvent("Lead", payload);
 }
 
