@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -11,11 +10,20 @@ import {
   Clock3,
   Globe2,
   MousePointerClick,
+  PhoneCall,
   Sparkles,
+  Star,
   Wand2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { trackLead, trackMetaStandardEvent, trackQuizEvent } from "@/lib/meta-pixel";
+import {
+  trackGAEvent,
+  trackLead,
+  trackMetaEvent,
+  trackMetaStandardEvent,
+  trackQuizEvent,
+  trackRedditEvent,
+} from "@/lib/meta-pixel";
 
 const TOTAL_STEPS = 4;
 const quizName = "website_redesign_90_quiz";
@@ -40,9 +48,16 @@ const goalOptions = [
 ];
 
 const urgencyPoints = [
-  "Fast redesign direction",
-  "Built around calls, leads or sales",
-  "No long meeting first",
+  "Homepage redesign direction",
+  "Clearer headline and CTA",
+  "Lead-focused layout notes",
+];
+
+const redesignTakeaways = [
+  "Better first impression",
+  "Phone and quote buttons made obvious",
+  "Trust proof shown where people decide",
+  "Cleaner mobile flow",
 ];
 
 const slideVariants = {
@@ -62,8 +77,10 @@ export default function RedoPage() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [sliderValue, setSliderValue] = useState(52);
   const startedTracked = useRef(false);
   const viewedSteps = useRef(new Set<number>());
+  const sliderTracked = useRef(false);
 
   const currentMonth = useMemo(
     () => new Intl.DateTimeFormat("en-AU", { month: "long" }).format(new Date()),
@@ -138,6 +155,21 @@ export default function RedoPage() {
     );
   }
 
+  function handleSliderChange(value: string) {
+    setSliderValue(Number(value));
+    if (sliderTracked.current) return;
+    sliderTracked.current = true;
+    const payload = {
+      quiz_name: quizName,
+      quiz_offer: quizOffer,
+      interaction: "before_after_slider",
+      month_spot: currentMonth,
+    };
+    trackGAEvent("redesign_slider_used", payload);
+    trackMetaEvent("BuildSparkRedesignSliderUsed", payload);
+    trackRedditEvent("BuildSparkRedesignSliderUsed", payload);
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!canProceed()) return;
@@ -204,7 +236,7 @@ export default function RedoPage() {
           </div>
           <h1 className="text-4xl buildspark-title sm:text-5xl">We have your website.</h1>
           <p className="mt-5 text-lg leading-8 buildspark-copy">
-            We will review it and send your redesign direction in 90 minutes. Keep an eye on your email and phone.
+            We will send your redesign direction by email and text within 90 minutes. Keep an eye on both.
           </p>
           <Button asChild size="lg" className="mt-8 rounded-none px-8">
             <Link href="/">Back to BuildSpark</Link>
@@ -228,26 +260,19 @@ export default function RedoPage() {
         </div>
       </header>
 
-      <section className="mx-auto grid min-h-[calc(100vh-73px)] max-w-6xl gap-8 px-4 py-6 sm:px-6 sm:py-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:px-8">
+      <section className="mx-auto grid min-h-[calc(100vh-73px)] max-w-7xl gap-8 px-4 py-4 sm:px-6 sm:py-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:px-8">
         <aside className="order-2 lg:order-1">
-          <div className="overflow-hidden border border-white/10 bg-black">
-            <Image
-              src="/images/redo/website-redesign-90.webp"
-              alt="Business owner viewing a before and after website redesign on a laptop and phone"
-              width={1680}
-              height={945}
-              priority
-              sizes="(min-width: 1024px) 520px, 100vw"
-              className="h-auto w-full object-cover"
-            />
-          </div>
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          <BeforeAfterSlider value={sliderValue} onChange={handleSliderChange} />
+          <div className="mt-4 grid gap-3 min-[520px]:grid-cols-3">
             {urgencyPoints.map((item) => (
               <div key={item} className="border border-white/10 bg-white/[0.04] p-4 text-sm font-bold text-white/72">
                 <CheckCircle2 className="mb-3 h-5 w-5 text-amber-500" />
                 {item}
               </div>
             ))}
+          </div>
+          <div className="mt-4 border border-amber-500/25 bg-amber-500/[0.07] p-4 text-sm leading-6 text-white/75">
+            <strong className="text-white">What you get back:</strong> a sharper homepage direction, clearer calls to action, trust improvements, and a practical list of what to change first.
           </div>
         </aside>
 
@@ -256,14 +281,22 @@ export default function RedoPage() {
             <Sparkles className="h-4 w-4" />
             Facebook ad redesign offer
           </div>
-          <h1 className="text-[2.55rem] buildspark-title leading-tight min-[420px]:text-5xl sm:text-6xl">
-            Put your website in. See it redesigned in 90 minutes.
+          <h1 className="text-[2.25rem] buildspark-title leading-tight min-[420px]:text-[2.65rem] sm:text-6xl">
+            Put your website in. We’ll show you what it should look like.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 buildspark-copy">
-            Drop in your current website, tell us what you want more of, and we will send you a sharper redesign direction built to get more calls, leads, bookings or sales.
+          <p className="mt-4 max-w-2xl text-base leading-7 buildspark-copy sm:mt-5 sm:text-lg sm:leading-8">
+            Drop in your current site, pick what you want more of, and we’ll send a clearer redesign direction within 90 minutes. Calls, leads, bookings or sales. That is what we build around.
           </p>
+          <div className="mt-5 hidden gap-3 sm:grid sm:grid-cols-2">
+            {redesignTakeaways.map((item) => (
+              <div key={item} className="flex items-center gap-3 border border-white/10 bg-white/[0.035] px-4 py-3 text-sm font-bold text-white/72">
+                <Star className="h-4 w-4 shrink-0 text-amber-500" />
+                {item}
+              </div>
+            ))}
+          </div>
 
-          <form onSubmit={handleSubmit} aria-label="90 minute website redesign quiz" className="mt-8">
+          <form onSubmit={handleSubmit} aria-label="90 minute website redesign quiz" className="mt-5 sm:mt-8">
             <div className="mb-4 flex items-center justify-between text-sm font-bold text-white/55">
               <span>Step {step} of {TOTAL_STEPS}</span>
               <span>{Math.round((step / TOTAL_STEPS) * 100)}%</span>
@@ -291,7 +324,7 @@ export default function RedoPage() {
                   <QuizStep
                     icon={<Globe2 className="h-7 w-7 text-amber-500" />}
                     title="Enter your current website."
-                    subtitle="This is the first thing we need. We will use it as the starting point for your redesign direction."
+                    subtitle="We’ll use it as the starting point and show you the clearer version. No stress if it is old, slow or messy. That is the point."
                   >
                     <label className="block">
                       <span className="mb-2 block text-sm font-bold text-white">Website URL *</span>
@@ -361,7 +394,7 @@ export default function RedoPage() {
                   <QuizStep
                     icon={<Clock3 className="h-7 w-7 text-amber-500" />}
                     title="Where should we send it?"
-                    subtitle="We will send your redesign direction in 90 minutes."
+                    subtitle="We’ll send your redesign direction by email and text within 90 minutes."
                   >
                     <div className="grid gap-3 sm:grid-cols-2">
                       <TextInput label="Business name" value={businessName} onChange={setBusinessName} placeholder="ABC Plumbing" required={false} />
@@ -411,7 +444,7 @@ export default function RedoPage() {
                   disabled={!canProceed()}
                   className="inline-flex h-12 flex-1 items-center justify-center bg-amber-500 px-5 font-bold text-black disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  Send My 90 Minute Redesign
+                  Send My Redesign Direction
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </button>
               )}
@@ -425,6 +458,155 @@ export default function RedoPage() {
         </section>
       </section>
     </main>
+  );
+}
+
+function BeforeAfterSlider({
+  value,
+  onChange,
+}: {
+  value: number;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <div className="border border-white/10 bg-[#080808] p-3 shadow-2xl shadow-black/40 sm:p-5">
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-amber-500">
+            Drag the slider
+          </p>
+          <h2 className="mt-1 text-2xl buildspark-title">Old site vs 90 minute direction</h2>
+        </div>
+        <div className="hidden border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-amber-300 sm:block">
+          Live idea
+        </div>
+      </div>
+
+      <div className="relative overflow-hidden border border-zinc-700 bg-zinc-950">
+        <div className="relative aspect-[1.1/1] min-[520px]:aspect-[16/10] lg:aspect-[16/10]">
+          <WebsiteMock variant="old" />
+          <div
+            className="absolute inset-y-0 right-0 overflow-hidden"
+            style={{ width: `${100 - value}%` }}
+            aria-hidden="true"
+          >
+            <div
+              className="absolute inset-y-0 right-0"
+              style={{ width: `${10000 / Math.max(100 - value, 1)}%` }}
+            >
+              <WebsiteMock variant="new" />
+            </div>
+          </div>
+
+          <div
+            className="absolute inset-y-0 z-20 w-0.5 bg-white shadow-[0_0_22px_rgba(255,255,255,0.85)]"
+            style={{ left: `${value}%` }}
+          >
+            <div className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white text-black shadow-2xl">
+              <ArrowLeft className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4" />
+            </div>
+          </div>
+
+          <div className="absolute left-3 top-3 z-30 bg-red-600 px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.12em] text-white">
+            Old site
+          </div>
+          <div className="absolute right-3 top-3 z-30 bg-amber-500 px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.12em] text-black">
+            90 min redesign
+          </div>
+        </div>
+
+        <label className="sr-only" htmlFor="redo-comparison-slider">
+          Compare old website with 90 minute redesign
+        </label>
+        <input
+          id="redo-comparison-slider"
+          type="range"
+          min="18"
+          max="82"
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          className="absolute inset-0 z-40 h-full w-full cursor-ew-resize opacity-0"
+          aria-label="Compare old website with 90 minute redesign"
+        />
+      </div>
+      <p className="mt-4 text-sm leading-6 text-white/58">
+        The idea is simple: your visitor should understand what you do, trust you, and know exactly how to enquire without hunting around.
+      </p>
+    </div>
+  );
+}
+
+function WebsiteMock({ variant }: { variant: "old" | "new" }) {
+  if (variant === "old") {
+    return (
+      <div className="absolute inset-0 bg-zinc-100 p-4 text-slate-900 sm:p-6">
+        <div className="flex items-center justify-between border-b border-slate-300 pb-2 text-[0.62rem] text-slate-500 sm:text-xs">
+          <span className="font-bold text-blue-700">ABC Local Services</span>
+          <span>Home | About | Services | Gallery | Contact</span>
+        </div>
+        <div className="mt-5 grid gap-4 sm:grid-cols-[1fr_0.7fr]">
+          <div>
+            <h3 className="text-lg font-bold text-blue-800 sm:text-2xl">Welcome to our website</h3>
+            <p className="mt-3 max-w-sm text-xs leading-5 text-slate-600 sm:text-sm">
+              We provide quality service and workmanship. Please browse our website and contact us for more information.
+            </p>
+            <div className="mt-4 grid gap-2 text-[0.62rem] text-slate-600 sm:text-xs">
+              <div className="border border-slate-300 bg-white p-2">General services</div>
+              <div className="border border-slate-300 bg-white p-2">Quality work</div>
+              <div className="border border-slate-300 bg-white p-2">Reliable team</div>
+            </div>
+          </div>
+          <div className="hidden bg-slate-300 p-3 sm:block">
+            <div className="h-24 bg-slate-400" />
+            <p className="mt-3 text-xs text-slate-600">Recent project photo</p>
+          </div>
+        </div>
+        <div className="absolute bottom-4 left-4 right-4 grid gap-2 text-[0.58rem] text-slate-500 sm:grid-cols-3 sm:text-xs">
+          <div className="border border-slate-300 bg-white p-2">No strong call button</div>
+          <div className="border border-slate-300 bg-white p-2">No clear offer</div>
+          <div className="border border-slate-300 bg-white p-2">Visitor has to guess</div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="absolute inset-0 bg-[#080b10] text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_24%,rgba(245,158,11,0.25),transparent_32%),linear-gradient(135deg,#070707_0%,#101827_58%,#050505_100%)]" />
+      <div className="relative flex h-full flex-col p-4 sm:p-6">
+        <div className="flex items-center justify-between text-[0.62rem] sm:text-xs">
+          <span className="font-black uppercase tracking-[0.12em] text-amber-400">ABC Building</span>
+          <span className="hidden text-white/65 sm:block">Home Services Projects Reviews</span>
+          <span className="inline-flex items-center gap-1 bg-amber-500 px-2 py-1 font-black text-black">
+            <PhoneCall className="h-3 w-3" />
+            Call now
+          </span>
+        </div>
+        <div className="mt-7 max-w-md sm:mt-10">
+          <p className="text-[0.62rem] font-black uppercase tracking-[0.2em] text-amber-400 sm:text-xs">
+            Built local. Built clear.
+          </p>
+          <h3 className="mt-2 text-2xl buildspark-title leading-none sm:text-5xl">
+            Quality work. More enquiries.
+          </h3>
+          <p className="mt-3 max-w-sm text-xs leading-5 text-white/70 sm:text-sm">
+            Clear service, suburb, proof and quote button above the fold so people know why to choose you.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <span className="bg-amber-500 px-3 py-2 text-xs font-black text-black">Get a Quote</span>
+            <span className="border border-white/20 px-3 py-2 text-xs font-bold text-white">View Projects</span>
+          </div>
+        </div>
+        <div className="mt-auto grid grid-cols-3 gap-2 text-[0.58rem] sm:text-xs">
+          {["4.9 reviews", "Fast response", "Fixed quote"].map((item) => (
+            <div key={item} className="border border-white/10 bg-white/[0.07] p-2 font-bold text-white/78">
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
