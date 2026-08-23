@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -10,7 +11,6 @@ import {
   Clock3,
   Globe2,
   MousePointerClick,
-  PhoneCall,
   Sparkles,
   Star,
   Wand2,
@@ -484,7 +484,13 @@ function BeforeAfterSlider({
 
       <div className="relative overflow-hidden border border-zinc-700 bg-zinc-950">
         <div className="relative aspect-[1.1/1] min-[520px]:aspect-[16/10] lg:aspect-[16/10]">
-          <WebsiteMock variant="old" />
+          <Image
+            src="/images/redo/redo-slider-before.webp"
+            alt="Outdated local business website before redesign"
+            fill
+            sizes="(min-width: 1024px) 650px, 100vw"
+            className="object-cover"
+          />
           <div
             className="absolute inset-y-0 right-0 overflow-hidden"
             style={{ width: `${100 - value}%` }}
@@ -494,7 +500,13 @@ function BeforeAfterSlider({
               className="absolute inset-y-0 right-0"
               style={{ width: `${10000 / Math.max(100 - value, 1)}%` }}
             >
-              <WebsiteMock variant="new" />
+              <Image
+                src="/images/redo/redo-slider-after.webp"
+                alt="Modern high-converting website redesign"
+                fill
+                sizes="(min-width: 1024px) 650px, 100vw"
+                className="object-cover"
+              />
             </div>
           </div>
 
@@ -533,79 +545,6 @@ function BeforeAfterSlider({
       <p className="mt-4 text-sm leading-6 text-white/58">
         The idea is simple: your visitor should understand what you do, trust you, and know exactly how to enquire without hunting around.
       </p>
-    </div>
-  );
-}
-
-function WebsiteMock({ variant }: { variant: "old" | "new" }) {
-  if (variant === "old") {
-    return (
-      <div className="absolute inset-0 bg-zinc-100 p-4 text-slate-900 sm:p-6">
-        <div className="flex items-center justify-between border-b border-slate-300 pb-2 text-[0.62rem] text-slate-500 sm:text-xs">
-          <span className="font-bold text-blue-700">ABC Local Services</span>
-          <span>Home | About | Services | Gallery | Contact</span>
-        </div>
-        <div className="mt-5 grid gap-4 sm:grid-cols-[1fr_0.7fr]">
-          <div>
-            <h3 className="text-lg font-bold text-blue-800 sm:text-2xl">Welcome to our website</h3>
-            <p className="mt-3 max-w-sm text-xs leading-5 text-slate-600 sm:text-sm">
-              We provide quality service and workmanship. Please browse our website and contact us for more information.
-            </p>
-            <div className="mt-4 grid gap-2 text-[0.62rem] text-slate-600 sm:text-xs">
-              <div className="border border-slate-300 bg-white p-2">General services</div>
-              <div className="border border-slate-300 bg-white p-2">Quality work</div>
-              <div className="border border-slate-300 bg-white p-2">Reliable team</div>
-            </div>
-          </div>
-          <div className="hidden bg-slate-300 p-3 sm:block">
-            <div className="h-24 bg-slate-400" />
-            <p className="mt-3 text-xs text-slate-600">Recent project photo</p>
-          </div>
-        </div>
-        <div className="absolute bottom-4 left-4 right-4 grid gap-2 text-[0.58rem] text-slate-500 sm:grid-cols-3 sm:text-xs">
-          <div className="border border-slate-300 bg-white p-2">No strong call button</div>
-          <div className="border border-slate-300 bg-white p-2">No clear offer</div>
-          <div className="border border-slate-300 bg-white p-2">Visitor has to guess</div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="absolute inset-0 bg-[#080b10] text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_24%,rgba(245,158,11,0.25),transparent_32%),linear-gradient(135deg,#070707_0%,#101827_58%,#050505_100%)]" />
-      <div className="relative flex h-full flex-col p-4 sm:p-6">
-        <div className="flex items-center justify-between text-[0.62rem] sm:text-xs">
-          <span className="font-black uppercase tracking-[0.12em] text-amber-400">ABC Building</span>
-          <span className="hidden text-white/65 sm:block">Home Services Projects Reviews</span>
-          <span className="inline-flex items-center gap-1 bg-amber-500 px-2 py-1 font-black text-black">
-            <PhoneCall className="h-3 w-3" />
-            Call now
-          </span>
-        </div>
-        <div className="mt-7 max-w-md sm:mt-10">
-          <p className="text-[0.62rem] font-black uppercase tracking-[0.2em] text-amber-400 sm:text-xs">
-            Built local. Built clear.
-          </p>
-          <h3 className="mt-2 text-2xl buildspark-title leading-none sm:text-5xl">
-            Quality work. More enquiries.
-          </h3>
-          <p className="mt-3 max-w-sm text-xs leading-5 text-white/70 sm:text-sm">
-            Clear service, suburb, proof and quote button above the fold so people know why to choose you.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <span className="bg-amber-500 px-3 py-2 text-xs font-black text-black">Get a Quote</span>
-            <span className="border border-white/20 px-3 py-2 text-xs font-bold text-white">View Projects</span>
-          </div>
-        </div>
-        <div className="mt-auto grid grid-cols-3 gap-2 text-[0.58rem] sm:text-xs">
-          {["4.9 reviews", "Fast response", "Fixed quote"].map((item) => (
-            <div key={item} className="border border-white/10 bg-white/[0.07] p-2 font-bold text-white/78">
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
