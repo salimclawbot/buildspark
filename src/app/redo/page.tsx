@@ -66,6 +66,23 @@ const slideVariants = {
   exit: (direction: number) => ({ x: direction > 0 ? -240 : 240, opacity: 0 }),
 };
 
+function trackRedoFunnelEvent(
+  eventName: string,
+  params: Record<string, string | number | boolean | undefined>
+) {
+  trackGAEvent(eventName, params);
+  trackMetaEvent(toMetaEventName(eventName), params);
+  trackRedditEvent(toMetaEventName(eventName), params);
+}
+
+function toMetaEventName(eventName: string) {
+  return eventName
+    .split("_")
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("");
+}
+
 export default function RedoPage() {
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState(1);
@@ -81,6 +98,10 @@ export default function RedoPage() {
   const startedTracked = useRef(false);
   const viewedSteps = useRef(new Set<number>());
   const sliderTracked = useRef(false);
+  const websiteEnteredTracked = useRef(false);
+  const designNotesTracked = useRef(false);
+  const contactFieldsTracked = useRef(new Set<string>());
+  const startedAt = useRef(Date.now());
 
   const currentMonth = useMemo(
     () => new Intl.DateTimeFormat("en-AU", { month: "long" }).format(new Date()),
@@ -107,6 +128,12 @@ export default function RedoPage() {
   useEffect(() => {
     if (!startedTracked.current) {
       startedTracked.current = true;
+      trackRedoFunnelEvent("redo_landing_viewed", {
+        quiz_name: quizName,
+        quiz_offer: quizOffer,
+        total_steps: TOTAL_STEPS,
+        month_spot: currentMonth,
+      });
       trackQuizEvent("quiz_started", {
         quiz_name: quizName,
         quiz_offer: quizOffer,
@@ -150,24 +177,71 @@ export default function RedoPage() {
   }
 
   function toggleGoal(goal: string) {
-    setSelectedGoals((current) =>
-      current.includes(goal) ? current.filter((item) => item !== goal) : [...current, goal]
-    );
+    setSelectedGoals((current) => {
+      const selected = current.includes(goal);
+      const next = selected ? current.filter((item) => item !== goal) : [...current, goal];
+      trackRedoFunnelEvent(selected ? "redo_goal_removed" : "redo_goal_selected", {
+        quiz_name: quizName,
+        quiz_offer: quizOffer,
+        goal,
+        selected_goal_count: next.length,
+        step_number: 2,
+        month_spot: currentMonth,
+      });
+      return next;
+    });
   }
 
   function handleSliderChange(value: string) {
     setSliderValue(Number(value));
     if (sliderTracked.current) return;
     sliderTracked.current = true;
-    const payload = {
+    trackRedoFunnelEvent("redesign_slider_used", {
       quiz_name: quizName,
       quiz_offer: quizOffer,
       interaction: "before_after_slider",
+      slider_value: Number(value),
       month_spot: currentMonth,
-    };
-    trackGAEvent("redesign_slider_used", payload);
-    trackMetaEvent("BuildSparkRedesignSliderUsed", payload);
-    trackRedditEvent("BuildSparkRedesignSliderUsed", payload);
+    });
+  }
+
+  function handleWebsiteChange(value: string) {
+    setWebsiteUrl(value);
+    const trimmed = value.trim();
+    if (websiteEnteredTracked.current || trimmed.length < 5 || !trimmed.includes(".")) return;
+    websiteEnteredTracked.current = true;
+    trackRedoFunnelEvent("redo_website_entered", {
+      quiz_name: quizName,
+      quiz_offer: quizOffer,
+      step_number: 1,
+      website_url: trimmed,
+      month_spot: currentMonth,
+    });
+  }
+
+  function handleDesignNotesChange(value: string) {
+    setDesignNotes(value);
+    if (designNotesTracked.current || value.trim().length < 8) return;
+    designNotesTracked.current = true;
+    trackRedoFunnelEvent("redo_design_notes_started", {
+      quiz_name: quizName,
+      quiz_offer: quizOffer,
+      step_number: 3,
+      note_length: value.trim().length,
+      month_spot: currentMonth,
+    });
+  }
+
+  function trackContactFieldStarted(fieldName: string) {
+    if (contactFieldsTracked.current.has(fieldName)) return;
+    contactFieldsTracked.current.add(fieldName);
+    trackRedoFunnelEvent("redo_contact_field_started", {
+      quiz_name: quizName,
+      quiz_offer: quizOffer,
+      step_number: 4,
+      field_name: fieldName,
+      month_spot: currentMonth,
+    });
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -176,9 +250,21 @@ export default function RedoPage() {
 
     const finalWebsiteUrl = normaliseUrl(cleanWebsiteUrl);
     trackQuizEvent("quiz_step_completed", getQuizPayload());
+    trackRedoFunnelEvent("redo_form_submit_attempt", {
+      quiz_name: quizName,
+      quiz_offer: quizOffer,
+      total_steps: TOTAL_STEPS,
+      selected_goal_count: selectedGoals.length,
+      has_business_name: businessName.trim() !== "",
+      has_design_notes: designNotes.trim() !== "",
+      time_to_submit_seconds: Math.round((Date.now() - startedAt.current) / 1000),
+      month_spot: currentMonth,
+    });
+
+    let formProviderStatus = "not_sent";
 
     try {
-      await fetch("https://formsubmit.co/ajax/info@buildspark.com.au", {
+      const response = await fetch("https://formsubmit.co/ajax/info@buildspark.com.au", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -201,8 +287,10 @@ export default function RedoPage() {
           Page: typeof window !== "undefined" ? window.location.href : "/redo",
         }),
       });
+      formProviderStatus = response.ok ? "sent" : `error_${response.status}`;
     } catch {
       // Keep the ad flow moving even if the mail provider is slow.
+      formProviderStatus = "network_error";
     }
 
     trackLead("90 Minute Website Redesign Quiz", {
@@ -218,6 +306,15 @@ export default function RedoPage() {
       lead_source: "90 Minute Website Redesign Quiz",
       offer: "90_minute_website_redesign",
       status: "submitted",
+    });
+    trackRedoFunnelEvent("redo_form_submit_success", {
+      quiz_name: quizName,
+      quiz_offer: quizOffer,
+      form_provider_status: formProviderStatus,
+      selected_goal_count: selectedGoals.length,
+      time_to_submit_seconds: Math.round((Date.now() - startedAt.current) / 1000),
+      lead_source: "90 Minute Website Redesign Quiz",
+      month_spot: currentMonth,
     });
     trackMetaStandardEvent("CompleteRegistration", {
       content_name: "90 Minute Website Redesign Quiz",
@@ -330,7 +427,7 @@ export default function RedoPage() {
                       <span className="mb-2 block text-sm font-bold text-white">Website URL *</span>
                       <input
                         value={websiteUrl}
-                        onChange={(event) => setWebsiteUrl(event.target.value)}
+                        onChange={(event) => handleWebsiteChange(event.target.value)}
                         placeholder="yourbusiness.com.au"
                         className="h-14 w-full buildspark-field px-4 text-lg"
                         inputMode="url"
@@ -379,7 +476,7 @@ export default function RedoPage() {
                   >
                     <textarea
                       value={designNotes}
-                      onChange={(event) => setDesignNotes(event.target.value)}
+                      onChange={(event) => handleDesignNotesChange(event.target.value)}
                       placeholder="e.g. black and gold, premium but simple, more photos, clearer phone button, similar to my competitor but less cluttered."
                       rows={7}
                       className="w-full buildspark-field px-4 py-4 text-base leading-7"
@@ -397,16 +494,17 @@ export default function RedoPage() {
                     subtitle="We’ll send your redesign direction by email and text within 90 minutes."
                   >
                     <div className="grid gap-3 sm:grid-cols-2">
-                      <TextInput label="Business name" value={businessName} onChange={setBusinessName} placeholder="ABC Plumbing" required={false} />
-                      <TextInput label="Your name" value={fullName} onChange={setFullName} placeholder="John Smith" required={false} />
-                      <TextInput label="Email" value={email} onChange={setEmail} placeholder="you@example.com" type="email" />
-                      <TextInput label="Mobile number" value={phone} onChange={setPhone} placeholder="0400 000 000" type="tel" />
+                      <TextInput label="Business name" value={businessName} onChange={setBusinessName} onFocus={() => trackContactFieldStarted("business_name")} placeholder="ABC Plumbing" required={false} />
+                      <TextInput label="Your name" value={fullName} onChange={setFullName} onFocus={() => trackContactFieldStarted("full_name")} placeholder="John Smith" required={false} />
+                      <TextInput label="Email" value={email} onChange={setEmail} onFocus={() => trackContactFieldStarted("email")} placeholder="you@example.com" type="email" />
+                      <TextInput label="Mobile number" value={phone} onChange={setPhone} onFocus={() => trackContactFieldStarted("phone")} placeholder="0400 000 000" type="tel" />
                       <label className="block sm:col-span-2">
                         <span className="mb-2 block text-sm font-bold text-white">Current website</span>
                         <input
                           value={websiteUrl}
-                          onChange={(event) => setWebsiteUrl(event.target.value)}
+                          onChange={(event) => handleWebsiteChange(event.target.value)}
                           placeholder="yourbusiness.com.au"
+                          onFocus={() => trackContactFieldStarted("current_website")}
                           className="h-12 w-full buildspark-field px-4"
                           inputMode="url"
                         />
@@ -576,6 +674,7 @@ function TextInput({
   label,
   value,
   onChange,
+  onFocus,
   placeholder,
   type = "text",
   required = true,
@@ -583,6 +682,7 @@ function TextInput({
   label: string;
   value: string;
   onChange: (value: string) => void;
+  onFocus?: () => void;
   placeholder: string;
   type?: string;
   required?: boolean;
@@ -596,6 +696,7 @@ function TextInput({
         type={type}
         value={value}
         onChange={(event) => onChange(event.target.value)}
+        onFocus={onFocus}
         placeholder={placeholder}
         required={required}
         className="h-12 w-full buildspark-field px-4"
