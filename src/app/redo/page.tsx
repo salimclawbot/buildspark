@@ -262,6 +262,34 @@ export default function RedoPage() {
     });
 
     let formProviderStatus = "not_sent";
+    let internalLeadStatus = "not_sent";
+
+    try {
+      const internalLeadResponse = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: "90 Minute Website Redesign Quiz",
+          businessName: businessName || "Not provided",
+          websiteOrInstagram: finalWebsiteUrl,
+          firstName: fullName || "Not provided",
+          email,
+          mobile: phone,
+          helpNeeded: selectedGoals,
+          challenge: "Website redesign in 90 minutes",
+          businessType: "Local business",
+          suburb: "",
+          notes: designNotes,
+          landingPageVariant: "redo",
+          referrer: typeof document !== "undefined" ? document.referrer : "",
+          utm: typeof window !== "undefined" ? Object.fromEntries(new URLSearchParams(window.location.search)) : {},
+          honeypot: "",
+        }),
+      });
+      internalLeadStatus = internalLeadResponse.ok ? "sent" : `error_${internalLeadResponse.status}`;
+    } catch {
+      internalLeadStatus = "network_error";
+    }
 
     try {
       const response = await fetch("https://formsubmit.co/ajax/info@buildspark.com.au", {
@@ -311,6 +339,7 @@ export default function RedoPage() {
       quiz_name: quizName,
       quiz_offer: quizOffer,
       form_provider_status: formProviderStatus,
+      internal_lead_status: internalLeadStatus,
       selected_goal_count: selectedGoals.length,
       time_to_submit_seconds: Math.round((Date.now() - startedAt.current) / 1000),
       lead_source: "90 Minute Website Redesign Quiz",
