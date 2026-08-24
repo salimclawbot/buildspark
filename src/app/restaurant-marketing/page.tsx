@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { HospitalityMarketingLanding } from "@/components/hospitality-marketing/HospitalityMarketingLanding";
 
 export const metadata: Metadata = {
@@ -24,9 +23,5 @@ export const metadata: Metadata = {
 };
 
 export default function RestaurantMarketingPage() {
-  return (
-    <Suspense fallback={null}>
-      <HospitalityMarketingLanding defaultVariant="restaurant-marketing" />
-    </Suspense>
-  );
+  return <HospitalityMarketingLanding defaultVariant="restaurant-marketing" />;
 }

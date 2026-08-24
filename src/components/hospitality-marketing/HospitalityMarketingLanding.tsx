@@ -3,7 +3,6 @@
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -224,9 +223,9 @@ function trackHospitalityEvent(eventName: string, params: Record<string, string 
 }
 
 export function HospitalityMarketingLanding({ defaultVariant = "default" }: { defaultVariant?: VariantKey }) {
-  const searchParams = useSearchParams();
-  const serviceVariant = getVariantFromValue(searchParams.get("service"));
-  const activeVariant = serviceVariant === "default" ? defaultVariant : serviceVariant;
+  const [activeVariant, setActiveVariant] = useState<VariantKey>(defaultVariant);
+  const [queryString, setQueryString] = useState("");
+  const [trackingReady, setTrackingReady] = useState(false);
   const variant = variants[activeVariant];
   const [formOpen, setFormOpen] = useState(false);
   const [step, setStep] = useState(1);
@@ -237,9 +236,18 @@ export function HospitalityMarketingLanding({ defaultVariant = "default" }: { de
   const viewed = useRef(false);
   const startedAt = useRef(Date.now());
 
-  const utm = useMemo(() => getUTM(new URLSearchParams(searchParams.toString())), [searchParams]);
+  const utm = useMemo(() => getUTM(new URLSearchParams(queryString)), [queryString]);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const serviceVariant = getVariantFromValue(params.get("service"));
+    setQueryString(params.toString());
+    setActiveVariant(serviceVariant === "default" ? defaultVariant : serviceVariant);
+    setTrackingReady(true);
+  }, [defaultVariant]);
+
+  useEffect(() => {
+    if (!trackingReady) return;
     if (viewed.current) return;
     viewed.current = true;
     trackHospitalityEvent("landing_page_view", {
@@ -248,7 +256,7 @@ export function HospitalityMarketingLanding({ defaultVariant = "default" }: { de
       page_location: window.location.href,
       ...utm,
     });
-  }, [activeVariant, utm]);
+  }, [activeVariant, trackingReady, utm]);
 
   function openForm(source: string, preselect?: string, entry?: string) {
     setFormOpen(true);
